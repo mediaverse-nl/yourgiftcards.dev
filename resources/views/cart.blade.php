@@ -13,21 +13,7 @@
 
 {{--content from the page--}}
 @section('content')
-
-    <div class="row">
-
-        @foreach($categories as $category)
-            <div class="col-xs-6 col-md-3">
-                <a href="{{URL::route('giftcards', $category->name)}}" class="thumbnail">
-                    <img src="/img/giftcard.png" alt="">
-                </a>
-                {{$category->name}}
-            </div>
-        @endforeach
-
-    </div>
-
-
+    i am the home page
 @endsection
 
 {{--this page javascripts--}}

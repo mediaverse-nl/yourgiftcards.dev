@@ -16,12 +16,11 @@
 
     <div class="row">
 
-        @foreach($categories as $category)
+        @foreach($category->product as $product)
             <div class="col-xs-6 col-md-3">
-                <a href="{{URL::route('giftcards', $category->name)}}" class="thumbnail">
-                    <img src="/img/giftcard.png" alt="">
+                <a href="{{URL::route('giftcards', $product->name)}}" class="thumbnail">
                 </a>
-                {{$category->name}}
+                {{$product->name}}
             </div>
         @endforeach
 

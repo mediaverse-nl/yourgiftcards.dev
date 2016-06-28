@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', ['as' => 'home', 'uses' => 'CategoryController@index']);
+Route::get('giftcard/{name}', ['as' => 'giftcards', 'uses' => 'ProductController@show']);
+//
+//Route::get('user/profile', [
+//    'as' => 'profile', 'uses' => 'UserController@showProfile'
+//]);
+
+Route::auth();
+
+Route::get('/admin', 'HomeController@index');
