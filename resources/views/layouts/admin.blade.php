@@ -56,7 +56,7 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('home') }}"><i class="fa fa-btn fa-sign-out"></i>yourgiftcard.nl</a></li>
+                        <li><a href="{{ route('home') }}"><i class="fa fa-btn fa-home"></i>yourgiftcard.nl</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                     </ul>
                 </li>

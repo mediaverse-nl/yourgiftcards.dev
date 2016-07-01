@@ -27,9 +27,14 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = collect(Session::get('cart'))->toArray();
+//        $cart = collect(Session::get('cart'))->toArray();
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
 
-        return view('cart')->with('cart', $cart);
+
+        return view('cart')
+            ->with('products', $cart->items)
+            ->with('totalPrice', $cart->price);
     }
 
     /**

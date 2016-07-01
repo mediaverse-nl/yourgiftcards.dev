@@ -32,43 +32,38 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        @if(Session::has('cart'))
 
-                        {{--@foreach($cart as $item )--}}
+                            {{--{{dd($products)}}--}}
+                            @foreach($products as $product)
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="img-responsive" src="/img/cardlayout/{{$product['item']->category->layout}}">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="product-name"><strong>{{$product['item']['name']}} - {{$product['item']['value']}}</strong></h4><h4><small>Product description</small></h4>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="col-xs-6 text-right">
+                                            <h6><strong>€{{$product['price']}}<span class="text-muted"></span></strong></h6>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input type="text" class="form-control input-sm" value="{{$product['qty']}}">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <button type="button" class="btn btn-link btn-xs">
+                                                <span class="glyphicon glyphicon-trash"> </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
+            <br>
+                            total price
 
-                            {{--{{var_dump($item)}}--}}
-                          {{--{{dd($item)}}--}}
-                            {{--{{array_column($item, 'item')}}--}}
-                        {{--@endforeach--}}
-
-                        {{--@foreach($cart->items as $item)--}}
-                            {{--{{dd($item)}}--}}
-                            {{--@foreach($item->product as $items => $value)--}}
-                                {{--{{$item}}--}}
-                                {{--{{dd($items->product)}}--}}
-                            {{--@endforeach--}}
-
-                            {{--<div class="row">--}}
-                                {{--<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">--}}
-                                {{--</div>--}}
-                                {{--<div class="col-xs-4">--}}
-                                    {{--<h4 class="product-name"><strong>{{$item->name}} - {{$item->value}}</strong></h4><h4><small>Product description</small></h4>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-xs-6">--}}
-                                    {{--<div class="col-xs-6 text-right">--}}
-                                        {{--<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-xs-4">--}}
-                                        {{--<input type="text" class="form-control input-sm" value="1">--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-xs-2">--}}
-                                        {{--<button type="button" class="btn btn-link btn-xs">--}}
-                                            {{--<span class="glyphicon glyphicon-trash"> </span>--}}
-                                        {{--</button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<hr>--}}
-                        {{--@endforeach--}}
+                        @else
+                            empty cart
+                        @endif
 
                         <div class="row">
                             <div class="text-center">
@@ -86,7 +81,7 @@
                     <div class="panel-footer">
                         <div class="row text-center">
                             <div class="col-xs-9">
-                                <h4 class="text-right">Total <strong>$50.00</strong></h4>
+                                <h4 class="text-right">Total <strong>${{$totalPrice}}</strong></h4>
                             </div>
                             <div class="col-xs-3">
                                 <button type="button" class="btn btn-success btn-block">

@@ -21,7 +21,7 @@
                 <a href="{{URL::route('cart.store', $product->id)}}" class="thumbnail">
                     {{$product->name}}
                     {{$product->value}}
-                    <img src="img/cardlayout/{{$product->category->layout}}" >
+                    <img src="/img/cardlayout/{{$product->category->layout}}" >
                 </a>
             </div>
         @endforeach

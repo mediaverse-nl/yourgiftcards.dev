@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->string('name');
             $table->decimal('price', 5, 2);
             $table->decimal('discount', 5, 2)->nullable();
+            $table->decimal('servicecosts', 5, 2);
             $table->string('value');
             $table->timestamps();
         });
