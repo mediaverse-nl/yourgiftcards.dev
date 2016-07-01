@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Cart;
 use App\Product;
+
+use Session;
+use Redirect;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
     public function __construct()
     {
-        $this->products = Product::all();
+        $this->cart = Session::get('cart');
+        $this->product = Product::all();
     }
 
     /**
@@ -23,7 +27,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $cart = collect(Session::get('cart'))->toArray();
+
+        return view('cart')->with('cart', $cart);
     }
 
     /**
@@ -42,9 +48,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+        $request->session()->put('cart', $cart);
+
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -53,11 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-       $category = Category::where('name', str_replace(' ', '-', $name))->first();
 
-       return view('product')->with('category', $category);
     }
 
     /**
@@ -89,8 +99,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Session::forget('cart');
+
+        return redirect()->back();
     }
 }

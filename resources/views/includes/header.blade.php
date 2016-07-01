@@ -17,11 +17,14 @@
 <div class="collapse navbar-collapse" id="app-navbar-collapse">
     <!-- Left Side Of Navbar -->
     <ul class="nav navbar-nav">
-        <li><a href="">Home</a></li>
+        <li><a href="{{route('home')}}">Home</a></li>
     </ul>
     <!-- Right Side Of Navbar -->
     <ul class="nav navbar-nav navbar-right">
         <!-- Authentication Links -->
-        <li><a href=""><i class="fa fa-btn fa-sign-out"></i>winkelwagen</a></li>
+        @if (Auth::check())
+            <li><a href="{{route('admin')}}">admin</a></li>
+        @endif
+        <li><a href="{{route('cart.index')}}"><i class="fa fa-btn fa-sign-out"></i> - winkelwagen</a></li>
     </ul>
 </div>

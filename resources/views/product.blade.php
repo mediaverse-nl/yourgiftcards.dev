@@ -18,9 +18,11 @@
 
         @foreach($category->product as $product)
             <div class="col-xs-6 col-md-3">
-                <a href="{{URL::route('giftcards', $product->name)}}" class="thumbnail">
+                <a href="{{URL::route('cart.store', $product->id)}}" class="thumbnail">
+                    {{$product->name}}
+                    {{$product->value}}
+                    <img src="img/cardlayout/{{$product->category->layout}}" >
                 </a>
-                {{$product->name}}
             </div>
         @endforeach
 

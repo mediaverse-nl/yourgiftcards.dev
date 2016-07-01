@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Productkey extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'product';
+    protected $table = 'productkey';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,28 +25,26 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['key', 'copy'];
 
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['price'];
+    protected $guarded = ['key', 'copy'];
 
     /**
      * Get the phone record associated with the user.
      */
-    public function category()
+    public function product()
     {
-        return $this->belongsTo('App\Category', 'category_id');
+        return $this->belongsTo('App\Product');
     }
 
-    /**
-     * Get the phone record associated with the user.
-     */
-    public function productkey()
+    public function user()
     {
-        return $this->hasMany('App\Productkey', 'product_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
+
 }

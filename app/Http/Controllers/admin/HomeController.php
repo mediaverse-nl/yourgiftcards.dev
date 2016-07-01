@@ -1,21 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Category;
-use App\Product;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class ProductController extends Controller
+class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->products = Product::all();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.index');
     }
 
     /**
@@ -53,11 +46,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-       $category = Category::where('name', str_replace(' ', '-', $name))->first();
-
-       return view('product')->with('category', $category);
+        //
     }
 
     /**
