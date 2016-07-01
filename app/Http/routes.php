@@ -11,6 +11,8 @@
 |
 */
 
+Route::auth();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,9 +25,11 @@ Route::get('/', ['as' => 'home', 'uses' => 'CategoryController@index']);
 Route::get('giftcard/{name}', ['as' => 'giftcards', 'uses' => 'ProductController@show']);
 
 Route::get('shoppingcart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
+Route::get('checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@create']);
 Route::get('cart/empty', ['as' => 'cart.empty', 'uses' => 'CartController@destroy']);
 
 Route::get('cart/{id}', ['as' => 'cart.store', 'uses' => 'CartController@store']);
+//Route::get('cart/checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@create']);
 
 //Route::get('cart/{id}', ['as' => 'cart.store', function(Illuminate\Http\Request $request, $id){
 //    $items = $request->session()->get('cart');
@@ -33,8 +37,6 @@ Route::get('cart/{id}', ['as' => 'cart.store', 'uses' => 'CartController@store']
 //    $request->session()->push('cart', $items);
 //    return redirect()->back();
 //}]);
-
-Route::auth();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
@@ -68,12 +70,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 
     Route::get('/order', ['as' => 'admin.order', 'uses' => 'admin\OrderController@index']);
-//    Route::get('/order/create', ['as' => 'admin.order.create', 'uses' => 'admin\OrderController@create']);
-//    Route::post('/order', ['as' => 'admin.order.store', 'uses' => 'admin\OrderController@store']);
-//    Route::get('/order/{id}', ['as' => 'admin.order.show', 'uses' => 'admin\OrderController@show']);
-//    Route::get('/order/{id}/edit', ['as' => 'admin.order.edit', 'uses' => 'admin\OrderController@edit']);
-//    Route::patch('/order/{id}', ['as' => 'admin.order.update', 'uses' => 'admin\OrderController@update']);
-//    Route::destroy('/order/{id}', ['as' => 'admin.order.destroy', 'uses' => 'admin\OrderController@destroy']);
+    Route::get('/order/create', ['as' => 'admin.order.create', 'uses' => 'admin\OrderController@create']);
+    Route::post('/order', ['as' => 'admin.order.store', 'uses' => 'admin\OrderController@store']);
+    Route::get('/order/{id}', ['as' => 'admin.order.show', 'uses' => 'admin\OrderController@show']);
+    Route::get('/order/{id}/edit', ['as' => 'admin.order.edit', 'uses' => 'admin\OrderController@edit']);
+    Route::patch('/order/{id}', ['as' => 'admin.order.update', 'uses' => 'admin\OrderController@update']);
+    Route::delete('/order/{id}', ['as' => 'admin.order.destroy', 'uses' => 'admin\OrderController@destroy']);
 
 //    Route::get('/giftcard', ['as' => 'admin.giftcard', 'uses' => 'AdminController@index']);
 

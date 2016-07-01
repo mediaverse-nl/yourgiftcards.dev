@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Orderdetail extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'order';
+    protected $table = 'orderdetail';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,7 +25,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['fullname', 'email', 'order'];
+//    protected $fillable = [];
 
     /**
      * The attributes that aren't mass assignable.
@@ -34,13 +34,20 @@ class Order extends Model
      */
     protected $guarded = ['order_id', 'product_id'];
 
-    public function orderdetail()
-    {
-        return $this->hasMany('App\Orderdetail');
-    }
-
+    /**
+     * Get the phone record associated with the user.
+     */
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsTo('App\Product');
     }
+
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
+
 }

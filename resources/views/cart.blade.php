@@ -84,9 +84,9 @@
                                 <h4 class="text-right">Total <strong>${{$totalPrice}}</strong></h4>
                             </div>
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-success btn-block">
-                                    Checkout
-                                </button>
+                                <a href="{{URL::route('cart.checkout')}}" class="btn btn-success btn-block">
+                                    checkout
+                                </a>
                                 <a href="{{URL::route('cart.empty')}}" class="btn btn-danger btn-block">
                                     empty
                                 </a>

@@ -11,7 +11,7 @@
             <li class="{{ '/'.Request::path() == route('admin.category', array(), false) ? 'active' : null}}"><a href="{{route('admin.category')}}">categories</a></li>
             <li class="{{ '/'.Request::path() == route('admin.product', array(), false) ? 'active' : null}}"><a href="{{route('admin.product')}}">giftcards</a></li>
             <li class="{{ '/'.Request::path() == route('admin.stock', array(), false) ? 'active' : null}}"><a href="{{route('admin.stock')}}">stock</a></li>
-            <li><a href="#">orders</a></li>
+            <li class="{{ '/'.Request::path() == route('admin.order', array(), false) ? 'active' : null}}"><a href="{{route('admin.order')}}">order</a></li>
             <li><a href="#">blog</a></li>
             <li><a href="#">nieuwsbrief</a></li>
             <li><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Link 2 (toggle)</a>

@@ -27,10 +27,8 @@ class CartController extends Controller
      */
     public function index()
     {
-//        $cart = collect(Session::get('cart'))->toArray();
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-
 
         return view('cart')
             ->with('products', $cart->items)
@@ -44,7 +42,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        return view('cart_order');
     }
 
     /**
