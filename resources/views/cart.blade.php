@@ -35,6 +35,8 @@
                         @if(Session::has('cart'))
 
                             {{--{{dd($products)}}--}}
+
+                            {{--{{dd($products)}}--}}
                             @foreach($products as $product)
                                 <div class="row">
                                     <div class="col-xs-2"><img class="img-responsive" src="/img/cardlayout/{{$product['item']->category->layout}}">

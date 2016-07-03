@@ -1,25 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Cart;
-use App\Product;
-
-use Session;
-use Redirect;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class CartController extends Controller
+class BlogController extends Controller
 {
-    public function __construct()
-    {
-        $this->oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $this->product = Product::all();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = new Cart($this->oldCart);
-
-        return view('cart')
-            ->with('products', $cart->items)
-            ->with('totalPrice', $cart->price);
+        
     }
 
     /**
@@ -41,7 +26,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        return view('checkout')->with('cart', $this->oldCart);
+        //
     }
 
     /**
@@ -50,14 +35,9 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $product = Product::find($id);
-        $cart = new Cart($this->oldCart);
-        $cart->add($product, $product->id);
-        $request->session()->put('cart', $cart);
-
-        return redirect()->route('cart.index');
+        //
     }
 
     /**
@@ -68,7 +48,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -100,10 +80,8 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        Session::forget('cart');
-
-        return redirect()->back();
+        //
     }
 }

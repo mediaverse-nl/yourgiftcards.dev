@@ -18,6 +18,10 @@ class CreateCategoryTable extends Migration
             $table->string('thumbnail', 25);
             $table->string('layout', 25);
             $table->string('icon', 25);
+            $table->string('description', 250);
+            $table->string('levering', 250);
+            $table->string('instructions', 250);
+            $table->enum('status', ['on', 'off']);
         });
     }
 

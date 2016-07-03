@@ -16,10 +16,11 @@ class CreateProductkeyTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('product');
-            $table->string('key')->unique();
-            $table->string('copy');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('user');
+            $table->string('key')->unique();
+            $table->string('copy');
+            $table->enum('status', ['sell', 'sold']);
             $table->timestamps();
         });
     }

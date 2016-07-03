@@ -16,11 +16,12 @@ class CreateProductTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('category');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->decimal('price', 5, 2);
             $table->decimal('discount', 5, 2)->nullable();
             $table->decimal('servicecosts', 5, 2);
             $table->string('value');
+            $table->enum('status', ['on', 'off']);
             $table->timestamps();
         });
     }

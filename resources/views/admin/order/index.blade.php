@@ -21,7 +21,9 @@
                             <th>id</th>
                             <th>order</th>
                             <th>email</th>
+                            <th>total</th>
                             <th>date</th>
+                            <th>status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,10 +31,14 @@
                         @foreach($order as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{$item->product->name}}</td>
+                                <td>{{$item->fullname}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->total}}</td>
+                                <td>{{$item->status}}</td>
                                 <td>{{$item->created_at}}</td>
-                                <td style="width: 60px;">
-                                    <a class="btn btn-info btn-sm" href="{{route('admin.stock.edit', $item->id)}}">edit</a>
+                                <td style="width: 120px;">
+                                    <a class="btn btn-info btn-sm" href="{{route('admin.order.show', $item->id)}}">show</a>
+                                    <a class="btn btn-warning btn-sm" href="{{route('admin.order.edit', $item->id)}}">edit</a>
                                 </td>
                             </tr>
                         @endforeach

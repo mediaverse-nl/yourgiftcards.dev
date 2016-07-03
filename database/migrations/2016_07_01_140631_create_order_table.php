@@ -17,9 +17,11 @@ class CreateOrderTable extends Migration
             $table->integer('orderdetail_id')->unsigned();
             $table->foreign('orderdetail_id')->references('id')->on('orderdetail');
             $table->string('orderid');
-            $table->string('email', 60);
-            $table->string('status');
-            $table->string('fullname', 40);
+            $table->string('email', 80);
+            $table->string('fullname', 60);
+            $table->string('method');
+            $table->decimal('total', 5, 2);
+            $table->enum('status', ['open', 'cancelled', 'expired', 'failed', 'pending', 'paid', 'paidout', 'refunded', 'charged_back']);
             $table->timestamps();
         });
     }

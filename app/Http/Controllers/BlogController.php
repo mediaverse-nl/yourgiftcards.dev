@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CategoryController extends Controller
+class BlogController extends Controller
 {
-    public function __construct()
-    {
-        $this->category = Category::all();
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('welcome')->with('categories', $this->category);
+        return view('blog.index');
     }
+    
 
     /**
      * Display the specified resource.
@@ -31,9 +27,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category)
+    public function show($id)
     {
-        return view('category')->with('category', $this->category->where('name', str_replace(' ', '-', $category))->first());
+        //
     }
 
 }

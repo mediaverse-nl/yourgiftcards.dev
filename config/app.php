@@ -160,6 +160,10 @@ return [
 
         'Collective\Html\HtmlServiceProvider',
 
+        Mollie\Laravel\MollieServiceProvider::class,
+
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -208,6 +212,10 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

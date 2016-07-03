@@ -8,6 +8,7 @@
 <div class="col-lg-2">
     <nav style="background-color: #555">
         <ul class="nav">
+            <li class="{{ '/'.Request::path() == route('admin', array(), false) ? 'active' : null}}"><a href="{{route('admin')}}">dashboard</a></li>
             <li class="{{ '/'.Request::path() == route('admin.category', array(), false) ? 'active' : null}}"><a href="{{route('admin.category')}}">categories</a></li>
             <li class="{{ '/'.Request::path() == route('admin.product', array(), false) ? 'active' : null}}"><a href="{{route('admin.product')}}">giftcards</a></li>
             <li class="{{ '/'.Request::path() == route('admin.stock', array(), false) ? 'active' : null}}"><a href="{{route('admin.stock')}}">stock</a></li>
