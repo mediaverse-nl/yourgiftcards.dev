@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Productkey;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class ProductController extends Controller
     {
         $this->product = new Product();
         $this->category = new Category();
+        $this->stock = Productkey::with('product')->orderBy('product_id')->get();
     }
 
     /**
@@ -30,7 +32,8 @@ class ProductController extends Controller
 
         return view('product')
             ->with('category', $cate)
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('stock', $this->stock);
     }
 
 }

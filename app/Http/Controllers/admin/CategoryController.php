@@ -60,6 +60,10 @@ class CategoryController extends Controller
             'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
             'layout'     => 'required|mimes:jpeg,png,jng,bmp',
             'icon'     => 'required|mimes:jpeg,png,jng,bmp,ico',
+            'description'     => 'required|max:250',
+            'levering'     => 'required|max:250',
+            'instructions'     => 'required|max:250',
+            'status'     => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -89,6 +93,10 @@ class CategoryController extends Controller
         $this->category->layout =  $full_path_2;
         $this->category->icon =  $full_path_3;
         $this->category->name =  $request->name;
+        $this->category->description =  $request->description;
+        $this->category->levering =  $request->levering;
+        $this->category->instructions =  $request->instructions;
+        $this->category->status =  $request->status;
 
         $this->category->save();
 
@@ -129,6 +137,10 @@ class CategoryController extends Controller
             'thumbnail'     => 'mimes:jpeg,png,jng,bmp',
             'layout'     => 'mimes:jpeg,png,jng,bmp',
             'icon'     => 'mimes:jpeg,png,jng,bmp,ico',
+            'description'     => 'required|max:250',
+            'levering'     => 'required|max:250',
+            'instructions'     => 'required|max:250',
+            'status'     => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -145,6 +157,10 @@ class CategoryController extends Controller
         $category = $this->category->find($id);
 
         $category->name =  $request->name;
+        $category->description =  $request->description;
+        $category->levering =  $request->levering;
+        $category->instructions =  $request->instructions;
+        $category->status =  $request->status;
 
         if($request->hasFile('thumbnail')){
             $minetype1 = $request->file('thumbnail')->getClientOriginalExtension();

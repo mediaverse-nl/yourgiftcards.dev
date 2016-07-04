@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Productkey;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->category = Category::all();
+        $this->stock = Productkey::with('product')->orderBy('product_id')->get();
     }
 
     /**
@@ -22,7 +24,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('welcome')->with('categories', $this->category);
+        return view('categories')->with('category', $this->category);
     }
 
     /**
@@ -33,7 +35,9 @@ class CategoryController extends Controller
      */
     public function show($category)
     {
-        return view('category')->with('category', $this->category->where('name', str_replace(' ', '-', $category))->first());
+        return view('category')
+            ->with('category', $this->category->where('name', str_replace(' ', '-', $category))->first())
+            ->with('stock', $this->stock);
     }
 
 }

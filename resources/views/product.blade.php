@@ -14,37 +14,62 @@
 {{--content from the page--}}
 @section('content')
 
-    <img style="height: 150px;" src="/img/thumbnail/{{$product->category->thumbnail}}"><br>
+    <div class="col-lg-5">
 
-    {{$product->name}}<br>
-    {{$product->price}}<br>
-    {{$product->servicecosts}}<br>
+        <div>
+            <img style="height: 230px;" src="/img/thumbnail/{{$product->category->thumbnail}}"><br>
+            @if($product->discount != '0.00' )
+                <label class="badge" style="font-size: 20px; margin-top: -70px; margin-left: 280px;">{{$product->discount}}</label>
+            @endif
+        </div>
 
-    <a href="{{route('cart.store', $product->id)}}">bestellen</a>
+        <h1>{{$product->name}}</h1><br>
 
-    <br>
-    <br>
-    @foreach($category->product as $item)
-        @if($product->name != $item->name)
-            <div class="thumbnail" style="40px; width: 80px; display: inline-block">
-                <a href="{{route('giftcard.show', [$category->name, str_replace(' ', '-', $item->name)])}}">
-                    <img src="/img/cardlayout/{{$item->category->layout}}">
-                    <span>{{$item->value}}</span>
-                </a>
-            </div>
-
+        @if($product->discount != '0.00')
+            price: <del class="small">{{$product->price}}</del>
+             <b style="font-size: 18px;">{{$product->price - $product->discount}}</b><br>
         @endif
-    @endforeach
-    product description
-    {{$category->description}}
 
-    <hr>
+        @if($product->discount == '0.00')
+            price: {{$product->price}}<br>
+        @endif
+        <span class="small">servicecosts: + {{$product->servicecosts}}</span><br>
 
-    handleiding
-    <hr>
+        <br>
+        @if($stock->where('product_id', $product->id)->count() >= 1)
+            <a href="{{route('cart.store', $product->id)}}">bestellen</a>
+        @else
+            <a class="btn btn-primary" disabled="">not in stock</a>
+        @endif
 
+        <br>
+        <br>
+        <label>relaties</label><br>
+        @foreach($category->product as $item)
+            @if($product->name != $item->name)
+                <div class="thumbnail" style=" width: 80px; display: inline-block">
+                    <a href="{{route('giftcard.show', [$category->name, str_replace(' ', '-', $item->name)])}}">
+                        <img src="/img/cardlayout/{{$item->category->layout}}">
+                        <span>{{$item->value}}</span>
+                    </a>
+                </div>
+            @endif
+        @endforeach
+        <hr>
+    </div>
 
+    <div class="col-lg-7">
+        <h2>product description</h2>
+        {{$category->description}}
 
+        <hr>
+        <h2>handleiding</h2>
+        {{$category->instructions}}
+        <hr>
+        <h2>levering</h2>
+        {{$category->levering}}
+        <hr>
+    </div>
 
 @endsection
 

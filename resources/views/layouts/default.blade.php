@@ -19,12 +19,45 @@
             }
             .footer {
                 position: absolute;
-                bottom: 0;
+                bottom: -200px;
                 width: 100%;
                 /* Set the fixed height of the footer here */
                 height: 200px;
                 background-color: #f5f5f5;
             }
+
+          .navbar {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                width: 100% !important;
+                height: 78px !important;
+                border-bottom: 30px solid #2B3E51 !important;
+                background: #F59D00 !important;
+
+            }
+            .navbar-nav > li > a{
+                font-weight: bold;
+                color: #2B3E51 !important;
+            }
+
+            #flag {
+                height: 50px;
+                position: relative;
+                color: white;
+            }
+            #flag:after {
+                content: "";
+                position: absolute;
+                left: 15px;
+                bottom: 0;
+                width: 0;
+                height: 0;
+                border-bottom: 10px solid #2B3E51;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+            }
+
         </style>
 
         @include('includes.head')

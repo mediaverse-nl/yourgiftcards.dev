@@ -13,7 +13,8 @@
 
 Route::auth();
 
-Route::get('/', ['as' => 'home', 'uses' => 'CategoryController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
 Route::get('giftcard/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
 Route::get('giftcard/{category}/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 

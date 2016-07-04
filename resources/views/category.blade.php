@@ -14,13 +14,36 @@
 {{--content from the page--}}
 @section('content')
 
-    meest gekochte kaart
-    <div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>onze tip</h3>
+            <div class="thumbnail" style="height: 200px;">
+                <a href="">
+                    {{--{{$product->name}}--}}
+                    {{--<span class="badge" style=" font-size: 20px; top: 150px; right: 30px; position: absolute">{{$product->value}}</span>--}}
+                    <img src="/img/cardlayout/" >
+                </a>
+                {{--@if($stock->where('product_id', $product->id)->count() >= 1)--}}
+                    {{--<a href="{{URL::route('cart.store', $product->id)}}" class="btn btn-default">direct bestellen</a>--}}
+                {{--@else--}}
+                    {{--<a class="btn btn-primary" disabled="">not in stock</a>--}}
+                {{--@endif--}}
 
+            </div>
+
+            <hr>
+        </div>
+        <div class="col-lg-4 bottom">
+            <h3>product description</h3>
+            {{$category->description}}
+            <hr>
+        </div>
+        <div class="col-lg-4">
+            snel makkelijk en direct
+
+
+        </div>
     </div>
-
-    <hr>
-
     <div class="row">
 
         @foreach($category->product as $product)
@@ -31,16 +54,20 @@
                         <span class="badge" style=" font-size: 20px; top: 150px; right: 30px; position: absolute">{{$product->value}}</span>
                         <img src="/img/cardlayout/{{$product->category->layout}}" >
                     </a>
-                    <a href="{{URL::route('cart.store', $product->id)}}" class="btn btn-default">direct bestellen</a>
+                    @if($stock->where('product_id', $product->id)->count() >= 1)
+                        <a href="{{URL::route('cart.store', $product->id)}}" class="btn btn-default">direct bestellen</a>
+                    @else
+                        <a class="btn btn-primary" disabled="">not in stock</a>
+                    @endif
+
                 </div>
             </div>
         @endforeach
+
     </div>
 
-    product description
-    <hr>
-
-    handleiding
+    <h3>instructions</h3>
+    {{$category->instructions}}
     <hr>
 
 

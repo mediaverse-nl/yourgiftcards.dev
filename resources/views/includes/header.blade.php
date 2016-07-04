@@ -9,7 +9,7 @@
     </button>
 
     <!-- Branding Image -->
-    <a class="navbar-brand" href="{{ url('/') }}">
+    <a class="navbar-brand" href="{{ route('home') }}">
         yourgiftcards
     </a>
 </div>
@@ -18,6 +18,7 @@
     <!-- Left Side Of Navbar -->
     <ul class="nav navbar-nav">
         <li><a href="{{route('home')}}">Home</a></li>
+        <li id="flag"><a href="{{route('giftcards.index')}}" >Giftcards</a></li>
         <li><a href="{{route('blog')}}">Nieuws</a></li>
         <li><a href="{{route('klantenservice')}}">Klantenservice</a></li>
     </ul>
@@ -29,4 +30,12 @@
         @endif
         <li><a href="{{route('cart.index')}}"><i class="fa fa-btn fa-shopping-cart"></i><span class="badge">{{Session::has('cart') ? Session::get('cart')->qty : '0'}}</span> winkelwagen</a></li>
     </ul>
+</div>
+
+<div class="collapse navbar-collapse" id="app-navbar-collapse">
+
+    @foreach($categories as $category)
+        <a href="{{route('giftcards', str_replace(' ', '-', $category->name))}}"><img class="img-circle" style="height: 25px;" src="/img/icon/{{$category->icon}}"></a>
+    @endforeach
+<span class="pull-right" style="color: #eeeeee;">direct geleverd per mail 24/7</span>
 </div>

@@ -39,7 +39,7 @@
                     <div class="form-group">
                         {!! Form::label('price', 'price', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => '10.-']) !!}
+                            {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => '10,95']) !!}
                         </div>
                     </div>
 
@@ -47,7 +47,15 @@
                     <div class="form-group">
                         {!! Form::label('discount', 'discount', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::text('discount', null, ['class' => 'form-control', 'placeholder' => '%']) !!}
+                            {!! Form::text('discount', null, ['class' => 'form-control', 'placeholder' => '0,45']) !!}
+                        </div>
+                    </div>
+
+                    <!-- servicecosts -->
+                    <div class="form-group">
+                        {!! Form::label('servicecosts', 'servicecosts', ['class' => 'col-lg-2 control-label']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::text('servicecosts', null, ['class' => 'form-control', 'placeholder' => '1,95']) !!}
                         </div>
                     </div>
 
@@ -56,6 +64,14 @@
                         {!! Form::label('value', 'value', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
                             {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'amount of the card']) !!}
+                        </div>
+                    </div>
+
+                    <!-- status -->
+                    <div class="form-group">
+                        {!! Form::label('status', 'status', ['class' => 'col-lg-2 control-label']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::select('status', array('on', 'off'), null, ['class' => 'form-control'] ) !!}
                         </div>
                     </div>
 

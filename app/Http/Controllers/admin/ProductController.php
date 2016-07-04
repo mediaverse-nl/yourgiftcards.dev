@@ -56,14 +56,19 @@ class ProductController extends Controller
     {
         $messages = [
             'name.required'        => 'geef een product naam op',
+            'discount.between'     => '0.01 ~ 1000.00',
+            'price.between'        => '1.00 ~ 1000.00',
+            'servicecosts.between' => '0.45 ~ 1000.00',
         ];
 
         $rules = [
             'name'           => 'required|max:40',
             'value'          => 'required|numeric',
             'category_id'    => 'required|numeric',
-            'price'          => array('required', 'regex:/^\d*(\.\d{2})?$/'),
-            'discount'       => array('regex:/^\d*(\.\d{2})?$/'),
+            'status'         => 'required',
+            'price'          => 'required|between:1.00,1000.00',
+            'discount'       => 'required|between:0.01,1000.00',
+            'servicecosts'   => 'required|between:0.45,1000.00',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -80,6 +85,8 @@ class ProductController extends Controller
         $this->product->discount        =  $request->discount;
         $this->product->value           =  $request->value;
         $this->product->name            =  $request->name;
+        $this->product->servicecosts    =  $request->servicecosts;
+        $this->product->status          =  $request->status;
 
         $this->product->save();
 
@@ -129,7 +136,13 @@ class ProductController extends Controller
 
         $product = $this->product->find($id);
 
-        $product->name =  $request->name;
+        $product->category_id     =  $request->category_id;
+        $product->price           =  $request->price;
+        $product->discount        =  $request->discount;
+        $product->value           =  $request->value;
+        $product->name            =  $request->name;
+        $product->servicecosts    =  $request->servicecosts;
+        $product->status          =  $request->status;
 
         $product->save();
 

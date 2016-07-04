@@ -14,16 +14,17 @@
 {{--content from the page--}}
 @section('content')
 
+
     <div class="row">
 
-        {{--@foreach($categories as $category)--}}
-            {{--<div class="col-xs-6 col-md-3">--}}
-                {{--<a href="{{URL::route('giftcards', $category->name)}}" class="thumbnail">--}}
-                    {{--<img src="img/thumbnail/{{$category->thumbnail}}" alt="">--}}
-                {{--</a>--}}
-                {{--{{$category->name}}--}}
-            {{--</div>--}}
-        {{--@endforeach--}}
+        @foreach($category as $item)
+            <div class="col-xs-6 col-md-3">
+                <a href="{{URL::route('giftcards', $item->name)}}" class="thumbnail">
+                <img src="img/thumbnail/{{$item->thumbnail}}" alt="">
+                </a>
+                {{$item->name}}
+            </div>
+        @endforeach
 
     </div>
 
