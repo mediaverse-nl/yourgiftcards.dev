@@ -25,13 +25,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category, $name)
+    public function show($name)
     {
-        $cate = $this->category->where('name', str_replace('-', ' ', $category))->first();
         $product = $this->product->where('name', str_replace('-', ' ', $name))->first();
 
         return view('product')
-            ->with('category', $cate)
+            ->with('category', $product->category)
             ->with('product', $product)
             ->with('stock', $this->stock);
     }

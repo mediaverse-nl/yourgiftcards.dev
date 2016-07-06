@@ -4,13 +4,16 @@
 
 <title>@yield('title')</title>
 <meta name="description" content="@yield('description')">
-<meta name="keywords" content="tekst">
-<meta name="robots" content="selectie">
-<meta name="revisit-after" content="periode">
+<meta name="keywords" content="@yield('keywords')">
 
 <meta name="author" content="Hege Refsnes">
-
+<meta name="language" content="taal">
+<meta name="robots" content="selectie">
+<meta name="revisit-after" content="periode">
 <meta name="googlebot" content="noodp">
+
+@yield('mate-tags')
+{{--<meta property="og:image" content="http://example.com/link-to-image.jpg" />--}}
 
 <!-- Fonts -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use App\Productkey;
 
 use Illuminate\Http\Request;
@@ -35,9 +36,13 @@ class CategoryController extends Controller
      */
     public function show($category)
     {
+        $categoryItem = $this->category->where('name', str_replace(' ', '-', $category))->first();
+        $specialProduct = Product::where('category_id', $categoryItem->id)->orderBy('discount', 'desc')->first();
+
         return view('category')
-            ->with('category', $this->category->where('name', str_replace(' ', '-', $category))->first())
-            ->with('stock', $this->stock);
+            ->with('category', $categoryItem)
+            ->with('stock', $this->stock)
+            ->with('tip', $specialProduct);
     }
 
 }

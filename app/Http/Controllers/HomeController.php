@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests;
+use App\Orderdetail;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome')->with('category', $this->category);
+        $product = Product::where('status', 'on')->take(4)->get();
+
+        return view('welcome')
+            ->with('category', $this->category)
+            ->with('product', $product);
     }
 }

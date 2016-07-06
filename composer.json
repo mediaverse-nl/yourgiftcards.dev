@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.0",
         "mollie/laravel-mollie": "^1.2",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

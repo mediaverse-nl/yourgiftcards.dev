@@ -15,8 +15,8 @@ Route::auth();
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
-Route::get('giftcard/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
-Route::get('giftcard/{category}/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
+Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
+Route::get('giftcard/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 
 Route::group(['prefix' => 'shoppingcart'], function () {
 
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'shoppingcart'], function () {
 });
 
 Route::get('blog', ['as' => 'blog', 'uses' => 'BlogController@index']);
-Route::get('blog/{id}', ['as' => 'blog.show', 'uses' => 'BlogController@show']);
+Route::get('blog/{title}', ['as' => 'blog.show', 'uses' => 'BlogController@show']);
 
 Route::get('klantenservice', ['as' => 'klantenservice',  function () {
     return view('contact');

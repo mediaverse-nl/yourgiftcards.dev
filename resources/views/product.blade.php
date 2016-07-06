@@ -14,6 +14,8 @@
 {{--content from the page--}}
 @section('content')
 
+    {!! Breadcrumbs::render('product', $product) !!}
+
     <div class="col-lg-5">
 
         <div>
@@ -48,7 +50,7 @@
         @foreach($category->product as $item)
             @if($product->name != $item->name)
                 <div class="thumbnail" style=" width: 80px; display: inline-block">
-                    <a href="{{route('giftcard.show', [$category->name, str_replace(' ', '-', $item->name)])}}">
+                    <a href="{{route('giftcard.show', [str_replace(' ', '-', $item->name)])}}">
                         <img src="/img/cardlayout/{{$item->category->layout}}">
                         <span>{{$item->value}}</span>
                     </a>

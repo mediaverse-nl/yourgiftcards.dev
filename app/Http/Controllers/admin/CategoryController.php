@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Product;
 use App\Category;
 
 use Validator;
@@ -17,6 +18,8 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->category = new Category;
+//        $this->category = $this->category->where('status', 'on')->get();
+//        $this->product = Product::with('companies', $this->category->lists('name', 'status'));
     }
 
     /**

@@ -15,7 +15,7 @@
 
                 @include('errors.message')
 
-                {!! Form::model($product, array('route' => array('admin.product.update', $product->id),'class' => 'form-horizontal',  'method' => 'patch' )) !!}
+                {!! Form::model($product, array('route' => array('admin.product.update', $product->id), 'class' => 'form-horizontal', 'method' => 'patch' )) !!}
 
                 <fieldset>
 
@@ -71,7 +71,7 @@
                     <div class="form-group">
                         {!! Form::label('status', 'status', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::select('status', array('on', 'off'), null, ['class' => 'form-control'] ) !!}
+                            {!! Form::select('status', \App\Product::lists('status', 'status'), null, ['class' => 'form-control'] ) !!}
                         </div>
                     </div>
 

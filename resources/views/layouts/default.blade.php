@@ -14,16 +14,16 @@
              }
             body {
                 /* Margin bottom by footer height */
-                margin-bottom: 200px;
+                padding-bottom: 200px;
                 font-family: 'Lato';
             }
-            .footer {
+            footer {
                 position: absolute;
-                bottom: -200px;
+                bottom: 0px;
                 width: 100%;
                 /* Set the fixed height of the footer here */
                 height: 200px;
-                background-color: #f5f5f5;
+                background-color: #2B3E51;
             }
 
           .navbar {
@@ -61,17 +61,18 @@
         </style>
 
         @include('includes.head')
+
     </head>
 
     <body id="app-layout">
 
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container clear-top">
                 @include('includes.header')
             </div>
         </nav>
 
-        <div id="main" class="container clear-top">
+        <div id="warp" class=" container clear-top"  style="margin-top: 100px;">
             @yield('content')
         </div>
 

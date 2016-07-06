@@ -27,5 +27,10 @@ class User extends Authenticatable
     public function productkey()
     {
         return $this->hasMany('App\Productkey', 'id');
+    } 
+    
+    public function blog()
+    {
+        return $this->hasMany('App\Blog', 'id');
     }
 }

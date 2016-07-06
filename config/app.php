@@ -165,6 +165,10 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+
+        App\Providers\BlogServiceProvider::class,
+
     ],
 
     /*
@@ -217,6 +221,9 @@ return [
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+
 
     ],
 

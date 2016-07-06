@@ -15,7 +15,7 @@
 
                 @include('errors.message')
 
-                {!! Form::model($category, array('route' => array('admin.category.update', $category->id), 'method' => 'patch', 'files' => true)) !!}
+                {!! Form::model($category, array('route' => array('admin.category.update', $category->id), 'class' => 'form-horizontal', 'method' => 'patch', 'files' => true)) !!}
 
                 <fieldset>
 

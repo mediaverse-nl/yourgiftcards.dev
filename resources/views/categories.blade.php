@@ -16,8 +16,9 @@
 
 
     <div class="row">
+        {!! Breadcrumbs::render('giftcards') !!}
 
-        @foreach($category as $item)
+         @foreach($category as $item)
             <div class="col-xs-6 col-md-3">
                 <a href="{{URL::route('giftcards', $item->name)}}" class="thumbnail">
                 <img src="img/thumbnail/{{$item->thumbnail}}" alt="">
