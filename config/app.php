@@ -169,6 +169,9 @@ return [
 
         App\Providers\BlogServiceProvider::class,
 
+        Collective\Bus\BusServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -224,6 +227,7 @@ return [
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

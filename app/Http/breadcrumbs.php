@@ -15,6 +15,41 @@ Breadcrumbs::register('contact', function($breadcrumbs)
     $breadcrumbs->push('contact', route('klantenservice'));
 });
 
+// Home > algemene voorwaarden
+Breadcrumbs::register('algemenevoorwaarden', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Terms and Conditions', route('algemeen.voorwaarden'));
+});
+
+// Home > Disclaimer
+Breadcrumbs::register('disclaimer', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Disclaimer', route('algemeen.voorwaarden'));
+});
+
+// Home > Privacy
+Breadcrumbs::register('privacy', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('privacy', route('privacy'));
+});
+
+// Home > Privacy
+Breadcrumbs::register('manuals', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Manuals', route('guide'));
+});
+
+// Home > return
+Breadcrumbs::register('return', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Return Policy', route('refund'));
+});
+
 // Home > Blog
 Breadcrumbs::register('blog', function($breadcrumbs)
 {

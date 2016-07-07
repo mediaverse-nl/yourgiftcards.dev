@@ -18,6 +18,14 @@ Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryControlle
 Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
 Route::get('giftcard/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 
+Route::resource('giftcard', 'ProductController');
+
+Route::get('algemene-voorwaarden', ['as' => 'algemeen.voorwaarden', 'uses' => 'PageController@algemenevoorwaarden']);
+Route::get('disclaimer', ['as' => 'disclaimer', 'uses' => 'PageController@disclaimer']);
+Route::get('privacy', ['as' => 'privacy', 'uses' => 'PageController@privacy']);
+Route::get('refund', ['as' => 'refund', 'uses' => 'PageController@refund']);
+Route::get('handleiding', ['as' => 'guide', 'uses' => 'PageController@guide']);
+
 Route::group(['prefix' => 'shoppingcart'], function () {
 
     Route::get('/', ['as' => 'cart.index', 'uses' => 'CartController@index']);

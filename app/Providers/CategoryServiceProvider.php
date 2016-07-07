@@ -14,7 +14,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Category::all();
+        $categories = Category::where('status', 'on')->get();
 
         view()->share('categories', $categories);
     }

@@ -24,9 +24,9 @@
                                     <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
                                 </div>
                                 <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary btn-sm btn-block">
+                                    <a class="btn btn-primary btn-sm btn-block"href="{{route('giftcards.index')}}">
                                         <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -42,14 +42,21 @@
                                     <div class="col-xs-2"><img class="img-responsive" src="/img/cardlayout/{{$product['item']->category->layout}}">
                                     </div>
                                     <div class="col-xs-4">
-                                        <h4 class="product-name"><strong>{{$product['item']['name']}} - {{$product['item']['value']}}</strong></h4><h4><small>Product description</small></h4>
+                                        <h4 class="product-name">
+                                            <strong>{{$product['item']['name']}} - {{$product['item']['value']}}</strong>
+                                        </h4>
+                                        <h4>
+                                            <small>{{str_limit($product['item']->category->description, 50, '...')}}</small>
+                                        </h4>
                                     </div>
                                     <div class="col-xs-6">
-                                        <div class="col-xs-6 text-right">
+                                        <div class="col-xs-4 text-right">
                                             <h6><strong>€{{$product['price']}}<span class="text-muted"></span></strong></h6>
                                         </div>
-                                        <div class="col-xs-4">
-                                            <input type="text" class="form-control input-sm" value="{{$product['qty']}}">
+                                        <div class="col-xs-6">
+                                            <a href="{{route('cart.store', $product['item']['name'])}}" class="btn btn-sm btn-default fa fa-minus pull-left" aria-hidden="true"></a>
+                                            <input type="text" style="width: 40px; margin-right: 4px;" class="form-control input-sm pull-left text-center" value="{{$product['qty']}}" disabled>
+                                            <a href="{{route('cart.store', $product['item']['name'])}}" class="btn btn-sm btn-default fa fa-plus pull-left" aria-hidden="true"></a>
                                         </div>
                                         <div class="col-xs-2">
                                             <button type="button" class="btn btn-link btn-xs">
@@ -60,25 +67,11 @@
                                 </div>
                                 <hr>
                             @endforeach
-            <br>
-                            total price
 
                         @else
                             empty cart
                         @endif
 
-                        <div class="row">
-                            <div class="text-center">
-                                <div class="col-xs-9">
-                                    <h6 class="text-right">Added items?</h6>
-                                </div>
-                                <div class="col-xs-3">
-                                    <button type="button" class="btn btn-default btn-sm btn-block">
-                                        Update cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="panel-footer">
                         <div class="row text-center">

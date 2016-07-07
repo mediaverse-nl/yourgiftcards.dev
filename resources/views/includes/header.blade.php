@@ -37,5 +37,5 @@
     @foreach($categories as $category)
         <a href="{{route('giftcards', str_replace(' ', '-', $category->name))}}"><img class="img-circle" style="height: 25px;" src="/img/icon/{{$category->icon}}"></a>
     @endforeach
-<span class="pull-right" style="color: #eeeeee;">direct geleverd per mail 24/7</span>
+    <span class="pull-right" style="color: #eeeeee;">direct geleverd per mail 24/7</span>
 </div>
