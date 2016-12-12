@@ -20,7 +20,7 @@ class OrderController extends Controller
 
     public function __construct()
     {
-        $this->oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $this->oldCart = Cart::content();;
         $this->order = new Order;
         $this->orderdetail = new Orderdetail;
     }

@@ -32,7 +32,7 @@
 
             @foreach($product as $item)
                 <div class="col-xs-6 col-md-3">
-                    <a href="{{URL::route('giftcard.show', str_replace(' ', '-', $item->name) )}}" class="thumbnail">
+                    <a href="{{URL::route('giftcard.show', [$item->id, str_replace(' ', '-', $item->name)] )}}" class="thumbnail">
                         <img src="/img/thumbnail/{{$item->category->thumbnail}}" alt="">
                     </a>
                     <h2>{{$item->name}}</h2>

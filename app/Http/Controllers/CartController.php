@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
+
 use App\Product;
 
+use Cart;
 use Session;
 use Redirect;
+use Validator;
+use Mollie;
 
 use Illuminate\Http\Request;
 
@@ -16,8 +19,8 @@ class CartController extends Controller
 {
     public function __construct()
     {
-        $this->oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $this->product = Product::all();
+        $this->product =  new Product;
+        $this->mollie = Mollie::api();
     }
 
     /**
@@ -27,11 +30,61 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = new Cart($this->oldCart);
+        $cart = Cart::content();
 
-        return view('cart')
-            ->with('products', $cart->items)
-            ->with('totalPrice', $cart->price);
+        return view('cart', ['cart' => $cart]);
+    }
+
+    public function add(Request $request)
+    {
+        $rules = [
+            'product_id' => 'required',
+            'qty' => 'required'
+        ];
+
+        $validator = Validator::make(Request()->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $product = $this->product->find(Request()->get('product_id'));
+
+        Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'qty' => $request->qty ? $request->qty : 1,
+            'options' => [$product],
+            'price' => ($product->price + $product->servicecosts) - $product->discount
+        ]);
+
+        return redirect()->route('cart.index');
+    }
+
+    public function remove(){
+        Cart::remove(Request()->get('row'));
+        return redirect()->route('cart.index');
+    }
+
+    public function decrease()
+    {
+        Cart::update(Request()->get('row'), Request()->get('qty'));
+        return redirect()->route('cart.index');
+    }
+
+    public function increase()
+    {
+        Cart::update(Request()->get('row'), Request()->get('qty'));
+        return redirect()->route('cart.index');
+    }
+
+    public function destroy()
+    {
+        Cart::destroy();
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -41,45 +94,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        return view('checkout')->with('cart', $this->oldCart);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $id)
-    {
-        $product = Product::find($id);
-        $cart = new Cart($this->oldCart);
-        $cart->add($product, $product->id);
-        $request->session()->put('cart', $cart);
-
-        return redirect()->route('cart.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('checkout')->with('cart', Cart::content());
     }
 
     /**
@@ -89,21 +104,36 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
-    }
+        $rules = [
+            'levering' => 'required',
+            'payment_method' => 'required',
+            'email' => 'required|email',
+        ];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
-    {
-        Session::forget('cart');
+        $validator = Validator::make($request->all(), $rules);
 
-        return redirect()->back();
+        if ($validator->fails()) {
+            return redirect()
+                ->route('cart.checkout')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $array = [];
+        foreach (Cart::content() as $item){
+            $property = $this->product->where('serialNumber', $item->id)->first();
+            $array[] = [
+                'property_id' => $property->id,
+                'order_id' => $order->id,
+                'selling_price' => $item->price,
+                'amount' => $item['qty']
+            ];
+        }
+
+        OrderItem::insert($array);
+
+        Cart::destroy();
     }
 }

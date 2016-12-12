@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index')->with('categories', $this->category->all());
+        return view('admin.category.index')->with('categories', $this->category->get());
     }
 
     /**

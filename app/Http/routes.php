@@ -16,9 +16,9 @@ Route::auth();
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
 Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
-Route::get('giftcard/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
+Route::get('{category}-/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 
-Route::resource('giftcard', 'ProductController');
+//Route::resource('giftcard', 'ProductController');
 
 Route::get('algemene-voorwaarden', ['as' => 'algemeen.voorwaarden', 'uses' => 'PageController@algemenevoorwaarden']);
 Route::get('disclaimer', ['as' => 'disclaimer', 'uses' => 'PageController@disclaimer']);
@@ -30,9 +30,12 @@ Route::group(['prefix' => 'shoppingcart'], function () {
 
     Route::get('/', ['as' => 'cart.index', 'uses' => 'CartController@index']);
     Route::get('/checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@create']);
-    Route::get('/empty', ['as' => 'cart.empty', 'uses' => 'CartController@destroy']);
-    Route::get('/{id}', ['as' => 'cart.store', 'uses' => 'CartController@store']);
-    
+    Route::post('/cart', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+    Route::post('/verwijder', ['as' => 'cart.remove', 'uses' => 'CartController@remove']);
+    Route::post('/plus', ['as' => 'cart.increase', 'uses' => 'CartController@increase']);
+    Route::post('/min', ['as' => 'cart.decrease', 'uses' => 'CartController@decrease']);
+    Route::post('/legen', ['as' => 'cart.empty', 'uses' => 'CartController@destroy']);
+
     //webhook link
     Route::get('payment/{id}', ['as' => 'cart.payment', 'uses' => 'OrderController@show']);
 

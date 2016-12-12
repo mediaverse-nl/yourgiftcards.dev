@@ -33,13 +33,31 @@
         @endif
 
         @if($product->discount == '0.00')
-            price: {{$product->price}}<br>
+            price: {{$product->price}}<br>sss
         @endif
         <span class="small">servicecosts: + {{$product->servicecosts}}</span><br>
 
         <br>
         @if($stock->where('product_id', $product->id)->count() >= 1)
-            <a href="{{route('cart.store', $product->id)}}">bestellen</a>
+            {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
+                <label>Aantal</label>
+                <br>
+
+                <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
+
+                <button class=" btn btn-primary pull-left" type="submit">
+                    Toevoegen aan winkelwagen
+                </button>
+                <select id="qty" class="form-control pull-left" name="qty" style="width: 55px;" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <br>
+            {{ Form::close() }}
+
+            {{--<a href="{{route('cart.store', $product->id)}}">bestellen</a>--}}
         @else
             <a class="btn btn-primary" disabled="">not in stock</a>
         @endif
@@ -50,7 +68,7 @@
         @foreach($category->product as $item)
             @if($product->name != $item->name)
                 <div class="thumbnail" style=" width: 80px; display: inline-block">
-                    <a href="{{route('giftcard.show', [str_replace(' ', '-', $item->name)])}}">
+                    <a href="{{route('giftcard.show', [$category, str_replace(' ', '-', $item->name)])}}">
                         <img src="/img/cardlayout/{{$item->category->layout}}">
                         <span>{{$item->value}}</span>
                     </a>

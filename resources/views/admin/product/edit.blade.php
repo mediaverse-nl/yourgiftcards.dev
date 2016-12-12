@@ -15,6 +15,12 @@
 
                 @include('errors.message')
 
+                Tesseract OCR for PHP
+                "thiagoalessio/tesseract_ocr": "1.0.0-RC"
+
+
+                {{$product->productkey->where('status', 'sell')->count()}}
+
                 {!! Form::model($product, array('route' => array('admin.product.update', $product->id), 'class' => 'form-horizontal', 'method' => 'patch' )) !!}
 
                 <fieldset>
@@ -88,6 +94,13 @@
 
             </div>
         </div>
+
+        <div>
+            @foreach($product->productkey as $stock)
+                {{$stock}}
+            @endforeach
+        </div>
+
     </div>
 
 @endsection

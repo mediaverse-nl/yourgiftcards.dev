@@ -170,7 +170,12 @@ return [
         App\Providers\BlogServiceProvider::class,
 
         Collective\Bus\BusServiceProvider::class,
+
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -228,6 +233,10 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
 
     ],
 

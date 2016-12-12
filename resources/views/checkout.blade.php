@@ -16,27 +16,33 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-10">
+            @include('errors.message')
+
+            <div class="col-lg-10 col-lg-offset-1">
+
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        select a payment method
-                    </div>
                     <div class="panel-footer">
+                        <div class="row">
 
-                        <div class="container">
-                            <div class="">
-                                <div class="col-md-5">
-                                    {{$cart->price}}
-                                </div>
-                                <div class="col-md-5">
+                            <div class="col-md-6">
 
-                                    @if(isset($array))
-                                        {{var_dump($array)}}
-                                    @endif
+                                <table class="table-responsive table">
+                                    <tr>
+                                        <th>product</th>
+                                        <th>price</th>
+                                    </tr>
+                                    @foreach(Cart::content() as $item)
+                                        <tr>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->price}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
 
-                                    @include('errors.message')
+                            </div>
+                                <div class="col-md-6">
 
-                                    {!! Form::open(['route' => 'cart.payment', 'class' => 'form-horizontal']) !!}
+                                    {!! Form::open(['route' => 'cart.checkout', 'class' => 'form-horizontal']) !!}
 
                                     <fieldset>
 
@@ -76,9 +82,7 @@
                                     {!! Form::close()  !!}
 
                                 </div>
-                            </div>
-
-                        </div>
+                                </div>
 
                     </div>
                 </div>

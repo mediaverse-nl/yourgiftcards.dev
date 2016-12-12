@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.product.index')
-            ->with('products', $this->product->all())
+            ->with('products', $this->product->get())
             ->with('stock', $this->stock);
     }
 

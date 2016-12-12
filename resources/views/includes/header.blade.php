@@ -28,7 +28,7 @@
         @if (Auth::check())
             <li><a href="{{route('admin')}}"><i class="fa fa-btn fa-tachometer"></i>admin</a></li>
         @endif
-        <li><a href="{{route('cart.index')}}"><i class="fa fa-btn fa-shopping-cart"></i><span class="badge">{{Session::has('cart') ? Session::get('cart')->qty : '0'}}</span> winkelwagen</a></li>
+        <li><a href="{{route('cart.index')}}"><i class="fa fa-btn fa-shopping-cart"></i><span class="badge">{{Cart::count()}}</span> winkelwagen</a></li>
     </ul>
 </div>
 

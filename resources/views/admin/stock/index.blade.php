@@ -15,6 +15,8 @@
 
                 @include('errors.message')
 
+                stock
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -22,6 +24,7 @@
                             <th>product</th>
                             <th>key</th>
                             <th>copy</th>
+                            <th>status</th>
                             <th>username</th>
                             <th>created at</th>
                             <th></th>
@@ -34,6 +37,7 @@
                                 <td>{{$item->product->name}}</td>
                                 <td>{{str_limit($item->key, 10, '...')}}</td>
                                 <td>{{$item->copy}}</td>
+                                <td>{{$item->status}}</td>
                                 <td>{{$item->user->name}}</td>
                                 <td>{{$item->created_at}}</td>
                                 <td style="width: 60px;">

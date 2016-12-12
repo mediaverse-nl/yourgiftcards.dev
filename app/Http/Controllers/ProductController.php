@@ -25,7 +25,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($category, $name)
     {
         $product = $this->product->where('name', str_replace('-', ' ', $name))->first();
 
