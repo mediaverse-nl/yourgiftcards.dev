@@ -1,6 +1,6 @@
 <?php
 
 return array (
-  'cart' => '',
+  'cart' => 'winkelwage',
   'lang-select' => 'select',
 );

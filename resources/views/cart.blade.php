@@ -60,6 +60,7 @@
                                             <small class="text-muted">servicekoste<br>+ €{{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
                                         </div>
                                         <div class="col-xs-6">
+                                            <label>Aantal</label><br><br>
                                             <form method="POST" action="{{route('cart.decrease')}}" style="display: inline-block">
                                                 <input type="hidden" name="row" value="{{$item->rowId}}">
                                                 <input type="hidden" name="qty" value="{{$item->qty - 1}}">
