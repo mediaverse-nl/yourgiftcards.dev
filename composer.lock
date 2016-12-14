@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5b5b1b4ac2b44028ebd87e3ff16f35fd",
-    "content-hash": "4ab72dc591cfb2bdbe6c25c47d6ee433",
+    "hash": "98dc604868ff98f3f9c9ee3d92dc7fd4",
+    "content-hash": "eb1fbf335e5a7bc4d1ffa48bd6cb4887",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -60,6 +60,55 @@
                 "webprofiler"
             ],
             "time": "2016-09-15 14:05:56"
+        },
+        {
+            "name": "barryvdh/laravel-translation-manager",
+            "version": "v0.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-translation-manager.git",
+                "reference": "05921dff9b2af33b67c9ed3839a82a1258190d46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-translation-manager/zipball/05921dff9b2af33b67c9ed3839a82a1258190d46",
+                "reference": "05921dff9b2af33b67c9ed3839a82a1258190d46",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.0.x|5.1.x|5.2.x|5.3.x",
+                "illuminate/translation": "5.0.x|5.1.x|5.2.x|5.3.x",
+                "php": ">=5.4.0",
+                "symfony/finder": "~2.3|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\TranslationManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Manage Laravel Translations",
+            "keywords": [
+                "laravel",
+                "translations",
+                "translator"
+            ],
+            "time": "2016-09-28 11:18:49"
         },
         {
             "name": "classpreloader/classpreloader",

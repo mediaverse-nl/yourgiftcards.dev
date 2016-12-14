@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Product;
 
 use Cart;
@@ -39,7 +38,7 @@ class CartController extends Controller
     {
         $rules = [
             'product_id' => 'required',
-            'qty' => 'required'
+//            'qty' => 'required'
         ];
 
         $validator = Validator::make(Request()->all(), $rules);
@@ -64,29 +63,6 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    public function remove(){
-        Cart::remove(Request()->get('row'));
-        return redirect()->route('cart.index');
-    }
-
-    public function decrease()
-    {
-        Cart::update(Request()->get('row'), Request()->get('qty'));
-        return redirect()->route('cart.index');
-    }
-
-    public function increase()
-    {
-        Cart::update(Request()->get('row'), Request()->get('qty'));
-        return redirect()->route('cart.index');
-    }
-
-    public function destroy()
-    {
-        Cart::destroy();
-        return redirect()->route('cart.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -94,7 +70,12 @@ class CartController extends Controller
      */
     public function create()
     {
-        return view('checkout')->with('cart', Cart::content());
+        if (Cart::count() == 0)
+            return redirect()->route('cart.index');
+
+        return view('checkout')
+            ->with('cart', Cart::content())
+            ->with('mollie', $this->mollie->methods()->all());
     }
 
     /**
@@ -135,5 +116,28 @@ class CartController extends Controller
         OrderItem::insert($array);
 
         Cart::destroy();
+    }
+
+    public function remove(){
+        Cart::remove(Request()->get('row'));
+        return redirect()->route('cart.index');
+    }
+
+    public function decrease()
+    {
+        Cart::update(Request()->get('row'), Request()->get('qty'));
+        return redirect()->route('cart.index');
+    }
+
+    public function increase()
+    {
+        Cart::update(Request()->get('row'), Request()->get('qty'));
+        return redirect()->route('cart.index');
+    }
+
+    public function destroy()
+    {
+        Cart::destroy();
+        return redirect()->route('cart.index');
     }
 }

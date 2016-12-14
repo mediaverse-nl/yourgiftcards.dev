@@ -13,12 +13,12 @@
 
 Route::auth();
 
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
 Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
 Route::get('{category}-/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
-
-//Route::resource('giftcard', 'ProductController');
 
 Route::get('algemene-voorwaarden', ['as' => 'algemeen.voorwaarden', 'uses' => 'PageController@algemenevoorwaarden']);
 Route::get('disclaimer', ['as' => 'disclaimer', 'uses' => 'PageController@disclaimer']);
@@ -26,8 +26,8 @@ Route::get('privacy', ['as' => 'privacy', 'uses' => 'PageController@privacy']);
 Route::get('refund', ['as' => 'refund', 'uses' => 'PageController@refund']);
 Route::get('handleiding', ['as' => 'guide', 'uses' => 'PageController@guide']);
 
-Route::group(['prefix' => 'shoppingcart'], function () {
-
+Route::group(['prefix' => 'shoppingcart'], function ()
+{
     Route::get('/', ['as' => 'cart.index', 'uses' => 'CartController@index']);
     Route::get('/checkout', ['as' => 'cart.checkout', 'uses' => 'CartController@create']);
     Route::post('/cart', ['as' => 'cart.add', 'uses' => 'CartController@add']);
@@ -37,9 +37,11 @@ Route::group(['prefix' => 'shoppingcart'], function () {
     Route::post('/legen', ['as' => 'cart.empty', 'uses' => 'CartController@destroy']);
 
     //webhook link
-    Route::get('payment/{id}', ['as' => 'cart.payment', 'uses' => 'OrderController@show']);
-
+//    Route::get('payment/{id}', ['as' => 'cart.payment', 'uses' => 'OrderController@show']);
 });
+
+Route::get('/order/{id}', ['as' => 'order.get', 'uses' => 'MollieController@get']);
+Route::post('/order/create', ['as' => 'order.create', 'uses' => 'MollieController@create']);
 
 Route::get('blog', ['as' => 'blog', 'uses' => 'BlogController@index']);
 Route::get('blog/{title}', ['as' => 'blog.show', 'uses' => 'BlogController@show']);

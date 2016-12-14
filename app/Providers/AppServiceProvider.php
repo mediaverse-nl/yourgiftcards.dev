@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Socialite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Socialite::extend('mollie', function ($app) {
+            $config = $app['config']['services.mollie'];
+
+            return Socialite::buildProvider('Mollie\Laravel\MollieConnectProvider', $config);
+        });
     }
 
     /**

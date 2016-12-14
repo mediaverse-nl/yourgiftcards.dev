@@ -19,11 +19,12 @@
         {!! Breadcrumbs::render('giftcards') !!}
 
          @foreach($category as $item)
-            <div class="col-xs-6 col-md-3">
-                <a href="{{URL::route('giftcards', $item->name)}}" class="thumbnail">
-                <img src="img/thumbnail/{{$item->thumbnail}}" alt="">
+            <div class="col-xs-6 col-md-3" style="height: 140px !important;">
+                <a href="{{URL::route('giftcards', $item->name)}}" class="">
+                    <img class="img-responsive" src="img/thumbnail/{{$item->thumbnail}}" alt="">
+
+                    {{$item->name}}
                 </a>
-                {{$item->name}}
             </div>
         @endforeach
 

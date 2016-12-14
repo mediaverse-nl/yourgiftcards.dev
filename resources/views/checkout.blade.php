@@ -42,7 +42,7 @@
                             </div>
                                 <div class="col-md-6">
 
-                                    {!! Form::open(['route' => 'cart.checkout', 'class' => 'form-horizontal']) !!}
+                                    {!! Form::open(['route' => 'order.create', 'class' => 'form-horizontal', 'method' => 'POST']) !!}
 
                                     <fieldset>
 
@@ -66,7 +66,9 @@
                                         <div class="form-group">
                                             {!! Form::label('methods', 'methods', ['class' => 'col-lg-2 control-label']) !!}
                                             <div class="col-lg-10">
-                                                {!! Form::text('methods', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
+                                                {{--{!! Form::text('methods', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}--}}
+                                                {!! Form::select('methods', collect($mollie)->pluck('id', 'id')) !!}
+
                                             </div>
                                         </div>
 
@@ -82,7 +84,14 @@
                                     {!! Form::close()  !!}
 
                                 </div>
-                                </div>
+                            </div>
+
+
+                        @foreach($mollie as $item)
+                            {{$item->id}}
+                            <img src="{{$item->image->bigger}}">
+                        @endforeach
+                            {{--{{dd($mollie)}}--}}
 
                     </div>
                 </div>

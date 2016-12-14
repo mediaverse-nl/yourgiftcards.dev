@@ -20,16 +20,19 @@
 
         <div class="col-lg-4">
             <h3>onze tip</h3>
-            <div class="thumbnail" style="height: 260px;">
+            <div class="thumbnail" style="height: auto">
                 <a href="{{route('giftcard.show',[$category->name, str_replace(' ', '-', $tip->name)])}}">
-                    {{$tip->name}}
-                    <span class="badge" style=" font-size: 20px; top: 150px; right: 30px; position: absolute">{{$tip->value}}</span>
+                    <h2 class="text-center">{{$tip->name}}</h2>
+                    <span class="badge" style="top: 150px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">€{{$tip->value}}</span>
                     <img src="/img/cardlayout/{{$tip->category->layout}}" >
                 </a>
                 @if($stock->where('product_id', $tip->id)->count() >= 1)
-                    <a href="{{URL::route('cart.add', $tip->id)}}" class="btn btn-default">direct bestellen</a>
+                    {!! Form::model($tip, array('route' => 'cart.add', 'method' => 'post')) !!}
+                    <input type="hidden" value="{{$tip->id}}" name="product_id" class="pull-left">
+                    <input class="btn btn-default center-block" value="direct bestellen" style="background-color: #F59D00; color:#fff;" type="submit">
+                    {{ Form::close() }}
                 @else
-                    <a class="btn btn-primary" disabled="">not in stock</a>
+                    <input class="btn btn-default center-block" value="uitverkocht" style="background-color: #F59D00; color:#fff;" disabled>
                 @endif
 
             </div>
@@ -43,8 +46,6 @@
         </div>
         <div class="col-lg-4">
             snel makkelijk en direct
-
-
         </div>
     </div>
     <div class="row">
@@ -52,17 +53,22 @@
         @foreach($category->product as $product)
             @if($product->id != $tip->id)
                 <div class="col-xs-6 col-md-3">
-                    <div class="thumbnail">aaa
-                        <a href="{{route('giftcard.show',[$category->name, str_replace(' ', '-', $product->name)])}}">
-                            {{$product->name}}
-                            <span class="badge" style=" font-size: 20px; top: 150px; right: 30px; position: absolute">{{$product->value}}</span>
+                    <div class="thumbnail" style="height: auto">
+                        <a  href="{{route('giftcard.show',[$category->name, str_replace(' ', '-', $product->name)])}}">
+                            <h3 class="text-center" style="font-size:16px; ">{{$product->name}}</h3>
+                            <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">€{{$product->value}}</span>
                             <img src="/img/cardlayout/{{$product->category->layout}}" >
                         </a>
+                        <br>
                         @if($stock->where('product_id', $product->id)->count() >= 1)
-                            <a href="{{URL::route('cart.add', $product->id)}}" class="btn btn-default">direct bestellen</a>
+                            {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
+                                <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
+                                <input class="btn btn-default center-block" value="direct bestellen" style="background-color: #F59D00; color:#fff;" type="submit">
+                            {{ Form::close() }}
                         @else
-                            <a class="btn btn-primary" disabled="">not in stock</a>
+                            <input class="btn btn-default center-block" value="uitverkocht" style="background-color: #F59D00; color:#fff;" disabled>
                         @endif
+                        <p class="text-center"><small>Servicekosten + {{$tip->servicecosts}}</small></p>
 
                     </div>
                 </div>

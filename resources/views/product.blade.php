@@ -18,24 +18,26 @@
 
     <div class="col-lg-5">
 
-        <div>
-            <img style="height: 230px;" src="/img/thumbnail/{{$product->category->thumbnail}}"><br>
+        <div class="" style="position: relative"><br>
             @if($product->discount != '0.00' )
-                <label class="badge" style="font-size: 20px; margin-top: -70px; margin-left: 280px;">{{$product->discount}}</label>
+                <span class="tags">
+                    <span class="price-tag"><a href="javascript:void();"><small>Korting</small> €{{$product->discount}}</a></span>
+                </span>
             @endif
+            <img style="height: 230px;" src="/img/thumbnail/{{$product->category->thumbnail}}">
         </div>
 
-        <h1>{{$product->name}}</h1><br>
+        <h1 class="" >{{$product->name}}</h1>
 
         @if($product->discount != '0.00')
-            price: <del class="small">{{$product->price}}</del>
-             <b style="font-size: 18px;">{{$product->price - $product->discount}}</b><br>
+            <b style="font-weight: bold">price:</b> <del class="small">{{$product->price}}</del>
+            <b style="font-size: 18px;">{{$product->price - $product->discount}}</b><br>
         @endif
 
         @if($product->discount == '0.00')
-            price: {{$product->price}}<br>sss
+            <b>price: </b>{{$product->price}}<br>
         @endif
-        <span class="small">servicecosts: + {{$product->servicecosts}}</span><br>
+        <span class="small">servicekosten: + {{$product->servicecosts}}</span><br>
 
         <br>
         @if($stock->where('product_id', $product->id)->count() >= 1)
@@ -45,10 +47,9 @@
 
                 <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
 
-                <button class=" btn btn-primary pull-left" type="submit">
-                    Toevoegen aan winkelwagen
-                </button>
-                <select id="qty" class="form-control pull-left" name="qty" style="width: 55px;" >
+                <input class="btn btn-primary pull-left" value="Toevoegen aan winkelwagen" type="submit" style="border-radius: 0px; height: 34px;  border: none; background-color: #F59D00;">
+
+                <select id="qty" class="form-control pull-left" name="qty" style="width: 55px; margin-left: 0px; border-radius: 1px; " >
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -59,12 +60,12 @@
 
             {{--<a href="{{route('cart.store', $product->id)}}">bestellen</a>--}}
         @else
-            <a class="btn btn-primary" disabled="">not in stock</a>
+            <a class="btn btn-primary" disabled="">uitverkocht</a>
         @endif
 
         <br>
         <br>
-        <label>relaties</label><br>
+        <label>Zie ook</label><br>
         @foreach($category->product as $item)
             @if($product->name != $item->name)
                 <div class="thumbnail" style=" width: 80px; display: inline-block">
@@ -99,5 +100,71 @@
 @endsection
 {{--this page styling--}}
 @section('stylesheet')
+<style>
+    .tags{
+        position: absolute;
+        z-index: 1;
+        bottom: 20px;
+        right: 0;
+    }
+    .tags a {
+        float: left;
+        position: relative;
+        width: auto;
+        height: 30px;
+        margin-left: 20px;
+        padding: 0 12px;
+        line-height: 30px;
+        background: #1f8dd6;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+    }
 
+    .tags a:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+
+    .tags a:after {
+        content: "";
+        position: absolute;
+        top: 13px;
+        width: 4px;
+        height: 4px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        background: #fff;
+        -moz-box-shadow: -1px -1px 2px #004977;
+        -webkit-box-shadow: -1px -1px 2px #004977;
+        box-shadow: -1px -1px 2px #004977;
+    }
+    /* Add rounded corners to right end of the anchor tag */
+    .price-tag a {
+        -moz-border-radius-bottomright: 4px;
+        -webkit-border-bottom-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        -moz-border-radius-topright: 4px;
+        -webkit-border-top-right-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    /* Position left and show only right border of triangle  */
+    .price-tag a:before {
+        left: -15px;
+        border-color: transparent #1f8dd6 transparent transparent;
+        border-width: 15px 15px 15px 0;
+    }
+
+    /* Fix the circle between anchor box and triangle left to it  */
+    .price-tag a:after {
+        left: -2px;
+    }
+</style>
 @endsection

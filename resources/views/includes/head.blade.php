@@ -22,7 +22,111 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-{{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+<link href="http://blazeworx.com/flags.css" rel="stylesheet">
+
+<style>
+    .fa-btn {
+        margin-right: 6px;
+
+
+    }
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    /*body {*/
+    /*!* Margin bottom by footer height *!*/
+    /*padding-bottom: 200px;*/
+    /*!*font-family: 'Lato';*!*/
+    /*}*/
+    footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 200px;
+        background-color: #2B3E51;
+    }
+
+    .navbar {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 100% !important;
+        height: 78px !important;
+        border-bottom: 30px solid #2B3E51 !important;
+        background: #F59D00 !important;
+
+    }
+    .navbar-nav > li > a{
+        font-weight: bold;
+        color: #2B3E51 !important;
+    }
+
+    #flag {
+        height: 50px;
+        position: relative;
+        color: white;
+    }
+    #flag:after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-bottom: 10px solid #2B3E51;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+    }
+
+    body {
+        font-family: 'Lato' !important;
+        background-color: #f7f7f7 !important;
+        padding-bottom: 240px;
+    }
+
+    .thumbnail{
+        background-color: #fff !important;
+        border-radius: 0px !important;
+    }
+
+    a {
+        /*color: #fff;*/
+        transition: .5s;
+        -moz-transition: .5s;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
+        font-family: 'Muli', sans-serif;
+    }
+
+    a:hover { text-decoration: underline }
+
+    h1 {
+        padding-bottom: 15px;
+        color: #ff6600 !important;
+    }
+
+    h1 a {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 48px;
+        color: #333;
+    }
+
+    h1 a:hover {
+        color: #ff6600;
+        text-decoration: none;
+    }
+
+    p {
+        color: #333;
+        font-family: 'Muli', sans-serif;
+        margin-bottom: 15px;
+    }
+
+</style>
+
 
 @yield('stylesheet')

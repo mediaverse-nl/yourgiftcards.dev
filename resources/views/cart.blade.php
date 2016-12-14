@@ -57,7 +57,7 @@
                                             @else
                                                 <h6><span class="discount">€{{$item->options[0]->price}}</span><strong>€{{$item->price - $item->options[0]->servicecosts}}<span class="text-muted"></span></strong></h6>
                                             @endif
-                                            <small class="text-muted">servicekoste €{{$item->options[0]->servicecosts}} p.st.</small>
+                                            <small class="text-muted">servicekoste<br>+ €{{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
                                         </div>
                                         <div class="col-xs-6">
                                             <form method="POST" action="{{route('cart.decrease')}}" style="display: inline-block">
@@ -100,7 +100,7 @@
                     <div class="panel-footer">
                         <div class="row text-center">
                             <div class="col-xs-9">
-                                <h4 class="text-right">Total <strong>${{Cart::subtotal()}}</strong></h4>
+                                <h4 class="text-right">Totaal <strong>${{Cart::subtotal()}}</strong></h4>
                             </div>
                             <div class="col-xs-3">
                                 <a href="{{URL::route('cart.checkout')}}" class="btn btn-success btn-block">
