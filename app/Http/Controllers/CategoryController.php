@@ -36,7 +36,8 @@ class CategoryController extends Controller
      */
     public function show($category)
     {
-        $categoryItem = $this->category->where('name', str_replace(' ', '-', $category))->first();
+        $categoryItem = $this->category->where('name', str_replace('-', ' ', $category))->first();
+//        dd(str_replace(' ', '-', $category));
         $specialProduct = Product::where('category_id', $categoryItem->id)->orderBy('discount', 'desc')->first();
 
         return view('category')

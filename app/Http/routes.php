@@ -18,7 +18,7 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
 Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
-Route::get('{category}-/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
+Route::get('{category}/c/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 
 Route::get('algemene-voorwaarden', ['as' => 'algemeen.voorwaarden', 'uses' => 'PageController@algemenevoorwaarden']);
 Route::get('disclaimer', ['as' => 'disclaimer', 'uses' => 'PageController@disclaimer']);

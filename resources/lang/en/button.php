@@ -1,7 +1,6 @@
 <?php
 
 return array (
-  'cart' => 'shopping cart
-',
+  'cart' => '',
   'lang-select' => 'select',
 );

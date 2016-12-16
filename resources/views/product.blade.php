@@ -81,13 +81,16 @@
 
     <div class="col-lg-7">
         <h2>product description</h2>
+        <p>Luisterd u of graag naar muziek dan is :category of kinderen dan is :category het beste cadeua om te geven. </p>
         {{$category->description}}
 
         <hr>
-        <h2>handleiding</h2>
+        <h2>@lang('text.title_guide')</h2>
+        Uw kunt deze :category giftcard van €:euro verzilveren op :domein deze code is wel t/m 13 jaar gelding na aankoop
         {{$category->instructions}}
         <hr>
         <h2>levering</h2>
+        Deze :category giftcard word per direct via mail geleverd
         {{$category->levering}}
         <hr>
     </div>

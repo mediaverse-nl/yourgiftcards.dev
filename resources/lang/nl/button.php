@@ -10,4 +10,9 @@ return array (
   'continue' => 'Verder winkelen',
   'lang-select' => 'select
 ',
+  'home' => 'Home',
+  'giftcards' => 'giftcards
+',
+  'blog' => 'nieuws',
+  'service' => 'Klantenservice',
 );

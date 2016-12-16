@@ -77,7 +77,7 @@
                     <div class="form-group">
                         {!! Form::label('status', 'status', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::select('status', \App\Product::lists('status', 'status'), null, ['class' => 'form-control'] ) !!}
+                            {!! Form::select('status', array('on' => 'on', 'off' => 'off'), null, ['class' => 'form-control'] ) !!}
                         </div>
                     </div>
 

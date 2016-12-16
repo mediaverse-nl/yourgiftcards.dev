@@ -3,7 +3,6 @@
     <head>
 
         @include('includes.head')
-
     </head>
 
     <body id="app-layout">

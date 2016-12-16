@@ -17,10 +17,10 @@
 <div class="collapse navbar-collapse" id="app-navbar-collapse">
     <!-- Left Side Of Navbar -->
     <ul class="nav navbar-nav">
-        <li><a href="{{route('home')}}">Home</a></li>
-        <li id="flag"><a href="{{route('giftcards.index')}}" >Giftcards</a></li>
-        <li><a href="{{route('blog')}}">Nieuws</a></li>
-        <li><a href="{{route('klantenservice')}}">Klantenservice</a></li>
+        <li><a href="{{route('home')}}">@lang('button.home')</a></li>
+        <li id="flag"><a href="{{route('giftcards.index')}}" >@lang('button.giftcards')</a></li>
+        <li><a href="{{route('blog')}}">@lang('button.blog')</a></li>
+        <li><a href="{{route('klantenservice')}}">@lang('button.service')</a></li>
 
     </ul>
     <!-- Right Side Of Navbar -->
@@ -32,9 +32,7 @@
         <li>
             <a href="{{route('cart.index')}}"><i class="fa fa-btn fa-shopping-cart"></i>
                 <span class="badge">{{Cart::count()}}</span>
-                {{--{{App::getLocale()}}--}}
                 @lang('button.cart')
-{{--                {{trans('button.cart')}}--}}
             </a>
         </li>
 
@@ -43,14 +41,16 @@
 
 <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
+    <span style="color: #fff;">Zie ook: </span>
     @foreach($categories as $category)
-        <a href="{{route('giftcards', str_replace(' ', '-', $category->name))}}"><img class="img-circle" style="height: 25px;" src="/img/icon/{{$category->icon}}"></a>
+        {{--<span style="color: #B0BEC5">{{$category->name}}</span>--}}
+        <a href="{{route('giftcards', str_replace(' ', '-', $category->name))}}"><img class="img-circle" style="height: 25px; width: 25px;" src="/img/icon/{{$category->icon}}"></a>
     @endforeach
 
     <span class="pull-right" style="margin-left: 20px; margin-top: 2px;">
         <div id="lang-select" data-selected-country="{{strtoupper(App::getLocale())}}" class="flagstrap">
             <select id="flagstrap-Wct8wGJT" style="display: none;">
-                <option value="">select</option>
+                {{--<option value="">select</option>--}}
                 @foreach (Config::get('languages') as $lang => $language)
                     <option value="{{strtoupper($lang)}}">{{$language}}</option>
                 @endforeach
@@ -62,7 +62,7 @@
                 <span class="caret" style="margin-left: 20px;"></span>
             </button>
             <ul id="flagstrap-drop-down-Wct8wGJT-list" aria-labelled-by="flagstrap-drop-down-Wct8wGJT" class="dropdown-menu">
-                <li><a data-val="">select</a></li>
+                {{--<li><a data-val="">select</a></li>--}}
                 @foreach (Config::get('languages') as $lang => $language)
                     <li><a href="{{ route('lang.switch', $lang) }}" data-val="{{strtoupper($lang)}}"><i class="flagstrap-icon flagstrap-{{$lang}}" style="margin-right: 20px;"></i>{{$language}}</a></li>
                 @endforeach
@@ -71,6 +71,6 @@
         {{--<div id="lang-select" data-selected-country="{{strtoupper(App::getLocale())}}"></div>--}}
     </span>
 
-    <span class="pull-right" style="color: #eeeeee;">direct geleverd per mail 24/7</span>
+    <span class="pull-right" style="color: #eeeeee;">@lang('text.delivery')</span>
 
 </div>

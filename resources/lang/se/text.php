@@ -1,4 +1,6 @@
 <?php
+
 return array (
-    'cart' => '',
+  'checkout' => 'Afrekenen',
+  'cart' => '',
 );

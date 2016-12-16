@@ -19,9 +19,9 @@
         {!! Breadcrumbs::render('category', $category) !!}
 
         <div class="col-lg-4">
-            <h3>onze tip</h3>
+            <h3>@lang('text.tip')</h3>
             <div class="thumbnail" style="height: auto">
-                <a href="{{route('giftcard.show',[$category->name, str_replace(' ', '-', $tip->name)])}}">
+                <a href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $tip->name)])}}">
                     <h2 class="text-center">{{$tip->name}}</h2>
                     <span class="badge" style="top: 150px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">€{{$tip->value}}</span>
                     <img src="/img/cardlayout/{{$tip->category->layout}}" >
@@ -40,7 +40,7 @@
             <hr>
         </div>
         <div class="col-lg-4 bottom">
-            <h3>product description</h3>
+            <h3>@lang('text.product_description')</h3>
             {{$category->description}}
             <hr>
         </div>
@@ -68,7 +68,7 @@
                         @else
                             <input class="btn btn-default center-block" value="uitverkocht" style="background-color: #F59D00; color:#fff;" disabled>
                         @endif
-                        <p class="text-center"><small>Servicekosten + {{$tip->servicecosts}}</small></p>
+                        <p class="text-center"><small class="text-muted">Servicekosten + {{$tip->servicecosts}}</small></p>
 
                     </div>
                 </div>
@@ -77,7 +77,7 @@
 
     </div>
 
-    <h3>instructions</h3>
+    <h3>@lang('text.instructions')</h3>
     {{$category->instructions}}
     <hr>
 
