@@ -6,15 +6,20 @@ use App\Category;
 use App\Product;
 use App\Productkey;
 
+use Mollie\Laravel\Facades\Mollie;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class CategoryController extends Controller
 {
+    protected $mollie;
+
     public function __construct()
     {
-        $this->category = Category::all();
+        $this->mollie = Mollie::api();
+        $this->category = new Category;
         $this->stock = Productkey::with('product')->orderBy('product_id')->get();
     }
 
@@ -25,7 +30,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories')->with('category', $this->category);
+        return view('categories')
+            ->with('category', $this->category->get());
     }
 
     /**
@@ -37,13 +43,13 @@ class CategoryController extends Controller
     public function show($category)
     {
         $categoryItem = $this->category->where('name', str_replace('-', ' ', $category))->first();
-//        dd(str_replace(' ', '-', $category));
         $specialProduct = Product::where('category_id', $categoryItem->id)->orderBy('discount', 'desc')->first();
 
         return view('category')
             ->with('category', $categoryItem)
             ->with('stock', $this->stock)
-            ->with('tip', $specialProduct);
+            ->with('tip', $specialProduct)
+            ->with('mollie', $this->mollie->methods()->all());
     }
 
 }

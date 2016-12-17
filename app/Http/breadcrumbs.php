@@ -67,6 +67,7 @@ Breadcrumbs::register('blog.post', function($breadcrumbs, $blog)
 // Giftcards
 Breadcrumbs::register('giftcards', function($breadcrumbs)
 {
+    $breadcrumbs->parent('home');
     $breadcrumbs->push('giftcards', route('giftcards.index'));
 });
 

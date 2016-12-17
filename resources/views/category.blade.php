@@ -3,12 +3,12 @@
 
 {{--title from the page--}}
 @section('title')
-    home page
-@endsection
+    @lang('category.page_title')
+@stop
 
 {{--meta tag description--}}
 @section('description')
-    online kaart verkoop
+    @lang('category.page_description')
 @stop
 
 {{--content from the page--}}
@@ -19,33 +19,51 @@
         {!! Breadcrumbs::render('category', $category) !!}
 
         <div class="col-lg-4">
-            <h3>@lang('text.tip')</h3>
+            {{--<h3>@lang('text.tip')</h3>--}}
             <div class="thumbnail" style="height: auto">
                 <a href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $tip->name)])}}">
                     <h2 class="text-center">{{$tip->name}}</h2>
                     <span class="badge" style="top: 150px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">€{{$tip->value}}</span>
                     <img src="/img/cardlayout/{{$tip->category->layout}}" >
                 </a>
+                <br>
                 @if($stock->where('product_id', $tip->id)->count() >= 1)
                     {!! Form::model($tip, array('route' => 'cart.add', 'method' => 'post')) !!}
                     <input type="hidden" value="{{$tip->id}}" name="product_id" class="pull-left">
-                    <input class="btn btn-default center-block" value="direct bestellen" style="background-color: #F59D00; color:#fff;" type="submit">
+                    <input class="btn btn-default center-block" value="@lang('button.to_cart')" style="background-color: #F59D00; color:#fff;" type="submit">
                     {{ Form::close() }}
                 @else
-                    <input class="btn btn-default center-block" value="uitverkocht" style="background-color: #F59D00; color:#fff;" disabled>
+                    <input class="btn btn-default center-block" value="@lang('button.soldout')" style="background-color: #F59D00; color:#fff;" disabled>
                 @endif
 
             </div>
 
             <hr>
         </div>
-        <div class="col-lg-4 bottom">
-            <h3>@lang('text.product_description')</h3>
+        <div class="col-lg-5 bottom">
+            <h2>@lang('text.product_description')</h2>
             {{$category->description}}
             <hr>
         </div>
-        <div class="col-lg-4">
-            snel makkelijk en direct
+        <div class="col-lg-3 thumbnail">
+            <br>
+            <h3 class="text-center" style="margin: -10px 0px 7px 0px;">Betaal methodes</h3>
+            <p class="text-center">
+                @foreach($mollie as $item)
+                    <img style="padding: 3px;" src="{{$item->image->normal}}">
+                @endforeach
+            </p>
+            <hr>
+            <p class="text-center">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                <b>snel makkelijk en direct</b>
+                <i class="fa fa-quote-right" aria-hidden="true"></i>
+            </p>
+            <hr>
+            <p class="text-center">
+                <b>Direct geleverd per e-mail</b> <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </p>
+
         </div>
     </div>
     <div class="row">
@@ -63,12 +81,12 @@
                         @if($stock->where('product_id', $product->id)->count() >= 1)
                             {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
                                 <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
-                                <input class="btn btn-default center-block" value="direct bestellen" style="background-color: #F59D00; color:#fff;" type="submit">
+                                <input class="btn btn-default center-block" value="@lang('button.to_cart')" style="background-color: #F59D00; color:#fff;" type="submit">
                             {{ Form::close() }}
                         @else
-                            <input class="btn btn-default center-block" value="uitverkocht" style="background-color: #F59D00; color:#fff;" disabled>
+                            <input class="btn btn-default center-block" value="@lang('button.soldout')" style="background-color: #F59D00; color:#fff;" disabled>
                         @endif
-                        <p class="text-center"><small class="text-muted">Servicekosten + {{$tip->servicecosts}}</small></p>
+                        <p class="text-center"><small class="text-muted">@lang('text.tag_servicecosts') + {{$tip->servicecosts}}</small></p>
 
                     </div>
                 </div>
@@ -80,9 +98,6 @@
     <h3>@lang('text.instructions')</h3>
     {{$category->instructions}}
     <hr>
-
-
-
 
 @endsection
 

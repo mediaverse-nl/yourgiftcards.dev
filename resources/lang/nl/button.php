@@ -15,4 +15,12 @@ return array (
 ',
   'blog' => 'nieuws',
   'service' => 'Klantenservice',
+  'soldout' => 'Uitverkocht',
+  'read_more' => 'Lees verder',
+  'disclaimer' => 'Disclaimer',
+  'return_policy' => 'Return Policy',
+  'privacy' => 'Privacy',
+  'terms' => 'Terms and Conditions',
+  'to_cart' => 'Direct bestellen',
+  'add_to_cart' => 'Toevoegen aan winkelwagen',
 );

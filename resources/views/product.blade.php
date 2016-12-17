@@ -3,12 +3,12 @@
 
 {{--title from the page--}}
 @section('title')
-    home page
-@endsection
+    @lang('product.page_title')
+@stop
 
 {{--meta tag description--}}
 @section('description')
-    online kaart verkoop
+    @lang('product.page_description')
 @stop
 
 {{--content from the page--}}
@@ -21,7 +21,7 @@
         <div class="" style="position: relative"><br>
             @if($product->discount != '0.00' )
                 <span class="tags">
-                    <span class="price-tag"><a href="javascript:void();"><small>Korting</small> €{{$product->discount}}</a></span>
+                    <span class="price-tag"><a href="javascript:void();"><small>@lang('text.tag_discount')</small> €{{$product->discount}}</a></span>
                 </span>
             @endif
             <img style="height: 230px;" src="/img/thumbnail/{{$product->category->thumbnail}}">
@@ -30,24 +30,24 @@
         <h1 class="" >{{$product->name}}</h1>
 
         @if($product->discount != '0.00')
-            <b style="font-weight: bold">price:</b> <del class="small">{{$product->price}}</del>
+            <b style="font-weight: bold">@lang('text.tag_price'):</b> <del class="small">{{$product->price}}</del>
             <b style="font-size: 18px;">{{$product->price - $product->discount}}</b><br>
         @endif
 
         @if($product->discount == '0.00')
-            <b>price: </b>{{$product->price}}<br>
+            <b>@lang('text.tag_price'): </b>{{$product->price}}<br>
         @endif
-        <span class="small">servicekosten: + {{$product->servicecosts}}</span><br>
+        <span class="small">@lang('text.tag_servicecosts'): + {{$product->servicecosts}}</span><br>
 
         <br>
         @if($stock->where('product_id', $product->id)->count() >= 1)
             {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
-                <label>Aantal</label>
+                <label>@lang('text.tag_amount')</label>
                 <br>
 
                 <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
 
-                <input class="btn btn-primary pull-left" value="Toevoegen aan winkelwagen" type="submit" style="border-radius: 0px; height: 34px;  border: none; background-color: #F59D00;">
+                <input class="btn btn-primary pull-left" value="@lang('button.add_to_cart')" type="submit" style="border-radius: 0px; height: 34px;  border: none; background-color: #F59D00;">
 
                 <select id="qty" class="form-control pull-left" name="qty" style="width: 55px; margin-left: 0px; border-radius: 1px; " >
                     <option value="1">1</option>
@@ -60,12 +60,12 @@
 
             {{--<a href="{{route('cart.store', $product->id)}}">bestellen</a>--}}
         @else
-            <a class="btn btn-primary" disabled="">uitverkocht</a>
+            <a class="btn btn-primary" disabled="">@lang('button.soldout')</a>
         @endif
 
         <br>
         <br>
-        <label>Zie ook</label><br>
+        <label>@lang('text.tag_check_this')</label><br>
         @foreach($category->product as $item)
             @if($product->name != $item->name)
                 <div class="thumbnail" style=" width: 80px; display: inline-block">
@@ -80,27 +80,27 @@
     </div>
 
     <div class="col-lg-7">
-        <h2>product description</h2>
+        <h2>@lang('text.title_description')</h2>
         <p>Luisterd u of graag naar muziek dan is :category of kinderen dan is :category het beste cadeua om te geven. </p>
-        {{$category->description}}
+        {{$category->description}}aa
 
         <hr>
         <h2>@lang('text.title_guide')</h2>
         Uw kunt deze :category giftcard van €:euro verzilveren op :domein deze code is wel t/m 13 jaar gelding na aankoop
         {{$category->instructions}}
         <hr>
-        <h2>levering</h2>
+        <h2>@lang('text.title_delivery')</h2>
         Deze :category giftcard word per direct via mail geleverd
         {{$category->levering}}
         <hr>
     </div>
 
-@endsection
+@stop
 
 {{--this page javascripts--}}
 @section('javascript')
 
-@endsection
+@stop
 {{--this page styling--}}
 @section('stylesheet')
 <style>
@@ -170,4 +170,4 @@
         left: -2px;
     }
 </style>
-@endsection
+@stop

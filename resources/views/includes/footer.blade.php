@@ -3,13 +3,13 @@
         <div class="col-lg-12" style="color: #F59D00">
 
             <div class="col-lg-4">
-                <h2 style="font-size: 18px;">Algemeen</h2>
+                <h2 style="font-size: 18px;">@lang('text.tag_general')</h2>
                 <ul>
-                    <li><a href="{{route('algemeen.voorwaarden')}}">Terms and Conditions</a></li>
-                    <li><a href="{{route('disclaimer')}}">Disclaimer</a></li>
-                    <li><a href="{{route('privacy')}}">Privacy</a></li>
-                    <li><a href="{{route('refund')}}">Return Policy</a></li>
-                    <li><a href="{{route('guide')}}">handleidingen</a></li>
+                    <li><a href="{{route('algemeen.voorwaarden')}}">@lang('button.terms')</a></li>
+                    <li><a href="{{route('disclaimer')}}">@lang('button.disclaimer')</a></li>
+                    <li><a href="{{route('privacy')}}">@lang('button.privacy')</a></li>
+                    <li><a href="{{route('refund')}}">@lang('button.return_policy')</a></li>
+                    <li><a href="{{route('guide')}}">@lang('text.title_guide')</a></li>
                 </ul>
             </div>
 
@@ -24,14 +24,14 @@
             </div>
 
             <div class="col-lg-5">
-                <h2 style="font-size: 18px;">Latest news</h2>
+                <h2 style="font-size: 18px;">@lang('text.latest_news')</h2>
                 <hr>
                 <a href="{{route('blog.show', str_replace(' ', '-', $nieuws->title))}}">
                     <img class="col-lg-5" style="height: 70px;" src="/img/blog/{{$nieuws->image}}"><br>
                 </a>
                 <div class="col-lg-7">
                     <h3 style="font-size: 14px; margin-top: -20px;">{{$nieuws->title}}</h3>
-                    <p style="font-size: 12px; color: #F7F7F7;">{{str_limit($nieuws->text, 60, '... ')}}<br> <a href="{{route('blog.show', str_replace(' ', '-', $nieuws->title))}}">Read More</a></p>
+                    <p style="font-size: 12px; color: #F7F7F7;">{{str_limit($nieuws->text, 60, '... ')}}<br> <a href="{{route('blog.show', str_replace(' ', '-', $nieuws->title))}}">@lang('button.read_more')</a></p>
                 </div>
             </div>
 
@@ -39,6 +39,9 @@
                 <span id="copyright text-right center-block">© Copyright 2015 yourgiftcard </span>
                 <span class="pull-right">A Mediaverse.nl Company</span>
             </div>
+
+        </div>
+        <div class="col-lg-12">
 
         </div>
     </div>

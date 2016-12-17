@@ -13,6 +13,7 @@
 
 Route::auth();
 
+//set the language session
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
@@ -35,9 +36,6 @@ Route::group(['prefix' => 'shoppingcart'], function ()
     Route::post('/plus', ['as' => 'cart.increase', 'uses' => 'CartController@increase']);
     Route::post('/min', ['as' => 'cart.decrease', 'uses' => 'CartController@decrease']);
     Route::post('/legen', ['as' => 'cart.empty', 'uses' => 'CartController@destroy']);
-
-    //webhook link
-//    Route::get('payment/{id}', ['as' => 'cart.payment', 'uses' => 'OrderController@show']);
 });
 
 Route::get('/order/{id}', ['as' => 'order.get', 'uses' => 'MollieController@get']);
@@ -93,19 +91,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::patch('/order/{id}', ['as' => 'admin.order.update', 'uses' => 'admin\OrderController@update']);
 
 });
-
-
-
-//Route::get('login', function () {
-//    return Socialite::with('mollie')
-////        ->scopes(['profiles.read']) // Additional permission: profiles.read
-//        ->redirect();
-//});
-//
-//Route::get('login_callback', function () {
-//    $user = Socialite::with('mollie')->user();
-//
-//    Mollie::api()->setAccessToken($user->token);
-//
-//    return Mollie::api()->profiles()->all(); // Retrieve all payment profiles available on the obtained Mollie account
-//});

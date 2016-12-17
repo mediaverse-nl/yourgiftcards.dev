@@ -2,14 +2,13 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    home page
-@endsection
+@section('title', trans('seo.home.page_title'))
+@section('description', trans('seo.home.page_description'))
+@section('keywords', trans('seo.home.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    online kaart verkoop
-@stop
+@push('mate-tags')
+    <meta name="language" content="GB">
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -47,12 +46,11 @@
     <br>
     <br>
 
-@endsection
+@stop
 
 {{--this page javascripts--}}
-@section('javascript')
+@push('javascript')
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function(){
             $('.single-item').slick({
@@ -67,11 +65,11 @@
             });
         });
     </script>
+@endpush
 
-@endsection
 {{--this page styling--}}
-@section('stylesheet')
+@push('stylesheet')
     <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-@endsection
+@endpush
