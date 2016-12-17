@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{strtoupper(App::getLocale())}}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,9 +12,41 @@
 
         <meta name="author" content="Mediaverse">
         <meta name="language" content="{{strtoupper(App::getLocale())}}">
-        <meta name="robots" content="">
-        <meta name="revisit-after" content="periode">
+        <meta name="robots" content="index">
+        <meta name="revisit-after" content="15 days">
         <meta name="googlebot" content="noodp">
+
+        <meta property="og:description" content="" />
+        <meta property="og:determiner" content="the" />
+        <meta property="og:locale" content="en_{{strtoupper(App::getLocale())}}" >
+        <meta property="og:locale:alternate" content="fr_FR" />
+        <meta property="og:locale:alternate" content="es_ES" />
+        <meta property="og:site_name" content="" />
+
+        <meta property="og:image" content="http://example.com/ogp.jpg" />
+        <meta property="og:image:secure_url" content="https://secure.example.com/ogp.jpg" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="300" />
+
+
+        <meta property="og:title" content="" />
+        <meta property="og:type" content="company" />
+        <meta property="og:image" content="" />
+        <meta property="og:url" content="{{Request::url()}}" />
+        <meta property="og:description" content="" />
+
+        <meta property="article:section" content="" />
+        <meta property="article:published_time" content="" />
+        <meta property="article:modified_time" content="" />
+        {{--<!-- for Twitter -->--}}
+        <meta name="twitter:card" content="product" />
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:url" content="{{Request::url()}}" />
+        <meta name="twitter:image" content="" />
+
+
 
         @stack('mate-tags')
         {{--<meta property="og:image" content="http://example.com/link-to-image.jpg" />--}}

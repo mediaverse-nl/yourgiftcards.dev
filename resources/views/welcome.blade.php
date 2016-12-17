@@ -7,7 +7,7 @@
 @section('keywords', trans('seo.home.keywords'))
 
 @push('mate-tags')
-    <meta name="language" content="GB">
+    {{--<meta name="language" content="GB">--}}
 @endpush
 
 {{--content from the page--}}
