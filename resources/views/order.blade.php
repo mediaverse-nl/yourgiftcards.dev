@@ -13,19 +13,25 @@
 
 {{--content from the page--}}
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="panel panel-info">
-                    <div class="panel-body">
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="panel panel-info">
+                <div class="panel-body">
 
-                           {{$order}}
-
-                    </div>
+                       {{--{{dd($order->orderedProduct)}}--}}
+                    @if($order->status === 'paid')
+                        @foreach($order->orderedProduct as $item)
+                            {{$item->productkey->key}}<br>
+                        @endforeach
+                    @else
+                        Betaling is gefaald
+                    @endif
 
                 </div>
+
             </div>
         </div>
+
     </div>
 @endsection
 

@@ -32,6 +32,11 @@ class CartController extends Controller
     {
         $cart = Cart::content();
 
+        foreach ($cart as $item){
+            $stock = Productkey::where('product_id', $item->id)->where('status', 'sell')->count();
+            Cart::update($item->rowId, $stock > $item->qty ? $item->qty : $stock);
+        }
+
         return view('cart', ['cart' => $cart]);
     }
 
@@ -52,22 +57,10 @@ class CartController extends Controller
 
         $product = $this->product->find(Request()->get('product_id'));
 
-        $stock = Productkey::where('product_id', $product->id)->count();
-
-        if($request->qty){
-            if($stock >= $request->qty){
-                $max = $request->qty;
-            }else{
-                $max = $stock;
-            }
-        }else{
-            $max = 1;
-        }
-
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
-            'qty' => $max,
+            'qty' => Request()->get('qty') ? Request()->get('qty') : 1,
             'options' => [$product],
             'price' => ($product->price + $product->servicecosts) - $product->discount
         ]);
@@ -93,32 +86,24 @@ class CartController extends Controller
     public function remove()
     {
         Cart::remove(Request()->get('row'));
-
         return redirect()->route('cart.index');
     }
 
     public function decrease(Request $request)
     {
-        $search = Cart::update($request->row, 1);
-        $stock = Productkey::where('product_id', $search->id)->count();
-        Cart::update(Request()->get('row'), $stock > Request()->get('qty') ? Request()->get('qty') : $stock);
-
+        Cart::update(Request()->get('row'), Request()->get('qty') ? Request()->get('qty') : 1);
         return redirect()->route('cart.index');
     }
 
     public function increase(Request $request)
     {
-        $search = Cart::update($request->row, 1);
-        $stock = Productkey::where('product_id', $search->id)->count();
-        Cart::update(Request()->get('row'), $stock > Request()->get('qty') ? Request()->get('qty') : $stock);
-
+        Cart::update(Request()->get('row'), Request()->get('qty') ? Request()->get('qty') : 1);
         return redirect()->route('cart.index');
     }
 
     public function destroy()
     {
         Cart::destroy();
-
         return redirect()->route('cart.index');
     }
 }

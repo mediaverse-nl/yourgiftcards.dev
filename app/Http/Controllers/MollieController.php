@@ -82,14 +82,16 @@ class MollieController extends Controller
         $data = [];
         foreach (Cart::content() as $item){
 
-            Productkey::where('product_id', $item->options[0]->id)->where('status', 'sell')->get();
+            $keys = Productkey::where('product_id', $item->options[0]->id)->where('status', 'sell')->get();
 
-            $data[] = [
-                'order_id' => $order->id,
-                'productkey_id' => $item->options[0]->id,
-                'price'=> $item->options[0]->price,
-                'servicecosts' => $item->options[0]->servicecosts
-            ];
+            foreach ($keys as $key){
+                $data[] = [
+                    'order_id' => $order->id,
+                    'productkey_id' => $key->id,
+                    'price'=> $item->options[0]->price,
+                    'servicecosts' => $item->options[0]->servicecosts
+                ];
+            }
         }
 
         OrderedProduct::insert($data);
@@ -105,20 +107,20 @@ class MollieController extends Controller
 
         if ($payment->isPaid())
         {
-//            if ($order->status != 'paid'){
-//                foreach($order->orderItems as $product){
-//                    $new_stock = (int)$product->property->stock - $product->amount;
-//                    $this->property->where('id', $product->property_id)
-//                        ->update(array('stock' => $new_stock));
-//                }
-//            }
             $order->status = self::STATUS_COMPLETED;
-//            Mail::send('emails.payment', ['payment' => $order], function($m) use ($order){
-////                $m->from('info@esigareteindhoven.com');
+
+            foreach ($order->orderedProduct as $item){
+                Productkey::where('id', '=', $item->productkey_id)
+                    ->where('status', '!=', 'sold')
+                    ->update(['status' => 'sold']);
+            }
+
+//            Mail::send('mail.payment', ['payment' => $order], function($m) use ($order){
+//                $m->from('info@justgiftcards.com');
 //                $m->to($order->email, $order->name)->subject('Betaalbevestiging!');
 //            });
         }
-        elseif (! $payment->isOpen())
+        elseif (!$payment->isOpen())
         {
             $order->status = self::STATUS_CANCELLED;
         }

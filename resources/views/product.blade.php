@@ -55,7 +55,7 @@
             <label>@lang('text.tag_amount')</label>
             <br>
 
-            @if($stock->where('product_id', $product->id)->count() >= 1)
+            @if($stock->where('product_id', $product->id)->where('status', 'sell')->count() >= 1)
                 {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
                     <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
                     <input class="btn btn-primary pull-left" value="@lang('button.add_to_cart')" type="submit" style="border-radius: 0px; height: 34px;  border: none; background-color: #F59D00;">

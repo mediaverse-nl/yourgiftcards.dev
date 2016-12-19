@@ -25,7 +25,7 @@
                     <img src="/img/cardlayout/{{$tip->category->layout}}" >
                 </a>
                 <br>
-                @if($stock->where('product_id', $tip->id)->count() >= 1)
+                @if($stock->where('product_id', $tip->id)->where('status', 'sell')->count() >= 1)
                     {!! Form::model($tip, array('route' => 'cart.add', 'method' => 'post')) !!}
                     <input type="hidden" value="{{$tip->id}}" name="product_id" class="pull-left">
                     <input class="btn btn-default center-block" value="@lang('button.to_cart')" style="background-color: #F59D00; color:#fff;" type="submit">
@@ -76,7 +76,7 @@
                             <img src="/img/cardlayout/{{$product->category->layout}}" >
                         </a>
                         <br>
-                        @if($stock->where('product_id', $product->id)->count() >= 1)
+                        @if($stock->where('product_id', $product->id)->where('status', 'sell')->count() >= 1)
                             {!! Form::model($product, array('route' => 'cart.add', 'method' => 'post')) !!}
                                 <input type="hidden" value="{{$product->id}}" name="product_id" class="pull-left">
                                 <input class="btn btn-default center-block" value="@lang('button.to_cart')" style="background-color: #F59D00; color:#fff;" type="submit">
