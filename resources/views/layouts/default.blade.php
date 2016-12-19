@@ -12,9 +12,19 @@
 
         <meta name="author" content="Mediaverse">
         <meta name="language" content="{{strtoupper(App::getLocale())}}">
-        <meta name="robots" content="">
-        <meta name="revisit-after" content="periode">
+        <meta name="robots" content="index">
+        <meta name="revisit-after" content="15 days">
         <meta name="googlebot" content="noodp">
+
+        <meta property="fb:admins" content="214283949025796" />
+        <meta property="fb:app_id" content="214283949025796" />
+
+        <meta property="og:locale" content="{{App::getLocale() == 'us' || App::getLocale() == 'gb' || App::getLocale() == 'eu' ? 'en' : App::getLocale() }}_{{strtoupper(App::getLocale())}}" />
+        @foreach (Config::get('languages') as $lang => $language)
+            @if($lang != App::getLocale())
+                <meta property="og:locale:alternate" content="{{$lang == 'us' || $lang == 'gb' || $lang == 'eu' ? 'en' : $lang }}_{{strtoupper($lang)}}" />
+            @endif
+        @endforeach
 
         @stack('mate-tags')
         {{--<meta property="og:image" content="http://example.com/link-to-image.jpg" />--}}
@@ -31,11 +41,7 @@
         <link href="http://blazeworx.com/flags.css" rel="stylesheet">
 
         <style>
-            .fa-btn {
-                margin-right: 6px;
 
-
-            }
             html {
                 position: relative;
                 min-height: 100%;
@@ -54,42 +60,42 @@
                 background-color: #2B3E51;
             }
 
-            .navbar {
+            .top-menu-bar{
+                font-size: 18px;
                 box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
-                width: 100% !important;
-                height: 78px !important;
-                border-bottom: 30px solid #2B3E51 !important;
-                background: #F59D00 !important;
+            }
+            .navbar-default{
+                background: transparent;
+                border:none;
+            }
 
+            .top-menu-bar {
+                background: rgba(226, 150, 30, 0.94);
+                height: 60px !important;
+                padding: 5px;
+            }
+            .top-menu-bottom {
+                height: 48px !important;
+                background-color: rgba(43, 62, 81, 0.9) ;
+                padding: 5px;
+            }
+
+            .navbar {
+                width: 100% !important;
+                height: 108px !important;
             }
             .navbar-nav > li > a{
                 font-weight: bold;
                 color: #2B3E51 !important;
             }
 
-            #flag {
-                height: 50px;
-                position: relative;
-                color: white;
-            }
-            #flag:after {
-                content: "";
-                position: absolute;
-                left: 15px;
-                bottom: 0;
-                width: 0;
-                height: 0;
-                border-bottom: 10px solid #2B3E51;
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-            }
-
             body {
                 font-family: 'Lato' !important;
                 background-color: #f7f7f7 !important;
                 padding-bottom: 240px;
+                padding-top: 30px;
             }
 
             .thumbnail{
@@ -135,12 +141,10 @@
         @stack('stylesheet')
     </head>
 
-    <body id="app-layout">
+    <body id="app-layout" itemscope itemtype="{{Request::url()}}">
 
         <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container clear-top">
-                @include('includes.header')
-            </div>
+            @include('includes.header')
         </nav>
 
         <div id="warp" class=" container clear-top"  style="margin-top: 100px;">
@@ -156,6 +160,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
         <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
+
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '1210665952342358',
+                    xfbml      : true,
+                    version    : 'v2.8'
+                });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
         @stack('javascript')
 

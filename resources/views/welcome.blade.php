@@ -11,7 +11,7 @@
 @endpush
 
 {{--content from the page--}}
-@section('content')
+@section('content').
 
     {!! Breadcrumbs::render('home') !!}
 

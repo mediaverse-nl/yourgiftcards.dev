@@ -2,14 +2,13 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    winkelwagen
-@endsection
+@section('title', trans('seo.cart.page_title'))
+@section('description', trans('seo.cart.page_description'))
+@section('keywords', trans('seo.cart.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    online kaart verkoop
-@stop
+@push('mate-tags')
+    {{--<meta name="language" content="GB">--}}
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -32,71 +31,61 @@
                         </div>
                     </div>
                     <div class="panel-body">
-{{--                        @if(Session::has('cart'))--}}
+                        @foreach($cart as $item)
 
-                            {{--{{dd($products)}}--}}
-
-                            {{--{{dd($cart)}}--}}
-                            @foreach($cart as $item)
-
-                                <div class="row">
-                                    <div class="col-xs-2"><img class="img-responsive" src="/img/cardlayout/{{$item->options[0]->category->layout}}">
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <h4 class="product-name">
-                                            <strong>{{$item->options[0]->name}}</strong>
-                                        </h4>
-                                        <h4>
-                                            <small class="">{{str_limit($item->options[0]->category->description, 50, '...')}}</small>
-                                        </h4>
+                            <div class="row">
+                                <div class="col-xs-2"><img class="img-responsive" src="/img/cardlayout/{{$item->options[0]->category->layout}}">
+                                </div>
+                                <div class="col-xs-4">
+                                    <h4 class="product-name">
+                                        <strong>{{$item->options[0]->name}}</strong>
+                                    </h4>
+                                    <h4>
+                                        <small class="">{{str_limit($item->options[0]->category->description, 50, '...')}}</small>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="col-xs-4 text-right">
+                                        @if($item->options[0]->discount == 0)
+                                            <h6><strong>€{{$item->price - $item->options[0]->servicecosts}}<span class="text-muted"></span></strong></h6>
+                                        @else
+                                            <h6><span class="discount">€{{$item->options[0]->price}}</span><strong>€{{$item->price - $item->options[0]->servicecosts}}<span class="text-muted"></span></strong></h6>
+                                        @endif
+                                        <small class="text-muted">servicekoste<br>+ €{{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
                                     </div>
                                     <div class="col-xs-6">
-                                        <div class="col-xs-4 text-right">
-                                            @if($item->options[0]->discount == 0)
-                                                <h6><strong>€{{$item->price - $item->options[0]->servicecosts}}<span class="text-muted"></span></strong></h6>
-                                            @else
-                                                <h6><span class="discount">€{{$item->options[0]->price}}</span><strong>€{{$item->price - $item->options[0]->servicecosts}}<span class="text-muted"></span></strong></h6>
-                                            @endif
-                                            <small class="text-muted">servicekoste<br>+ €{{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label>Aantal</label><br><br>
-                                            <form method="POST" action="{{route('cart.decrease')}}" style="display: inline-block">
-                                                <input type="hidden" name="row" value="{{$item->rowId}}">
-                                                <input type="hidden" name="qty" value="{{$item->qty - 1}}">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn btn-fefault btn-xs add-to-cart">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </form>
-                                          {{$item->qty}}
-                                            <form method="POST" action="{{route('cart.increase')}}" style="display: inline-block">
-                                                <input type="hidden" name="row" value="{{$item->rowId}}">
-                                                <input type="hidden" name="qty" value="{{$item->qty + 1}}">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn btn-fefault btn-xs add-to-cart">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                        <div class="col-xs-2">
-                                            <form method="POST" action="{{route('cart.remove')}}">
-                                                <input type="hidden" name="row" value="{{$item->rowId}}">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn btn-fefault  btn-xs add-to-cart">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <label>Aantal</label><br><br>
+                                        <form method="POST" action="{{route('cart.decrease')}}" style="display: inline-block">
+                                            <input type="hidden" name="row" value="{{$item->rowId}}">
+                                            <input type="hidden" name="qty" value="{{$item->qty - 1}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-fefault btn-xs add-to-cart">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </form>
+                                      {{$item->qty}}
+                                        <form method="POST" action="{{route('cart.increase')}}" style="display: inline-block">
+                                            <input type="hidden" name="row" value="{{$item->rowId}}">
+                                            <input type="hidden" name="qty" value="{{$item->qty + 1}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-fefault btn-xs add-to-cart">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <form method="POST" action="{{route('cart.remove')}}">
+                                            <input type="hidden" name="row" value="{{$item->rowId}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-fefault  btn-xs add-to-cart">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                                <hr>
-                            @endforeach
-
-                        {{--@else--}}
-                            {{--empty cart--}}
-                        {{--@endif--}}
-
+                            </div>
+                            <hr>
+                        @endforeach
                     </div>
                     <div class="panel-footer">
                         <div class="row text-center">
@@ -117,15 +106,15 @@
             </div>
         </div>
     </div>
-@endsection
+@stop
 
 {{--this page javascripts--}}
-@section('javascript')
+@push('javascript')
 
-@endsection
+@endpush
+
 {{--this page styling--}}
-@section('stylesheet')
-
+@push('stylesheet')
     <style>
         .discount {
             position: relative;
@@ -146,4 +135,4 @@
             transform: rotate(-5deg);
         }
     </style>
-@endsection
+@endpush

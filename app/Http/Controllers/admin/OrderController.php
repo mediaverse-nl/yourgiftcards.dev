@@ -6,6 +6,7 @@ use App\Order;
 use App\Orderdetail;
 use App\Category;
 
+use App\OrderedProduct;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,7 +18,7 @@ class OrderController extends Controller
     {
         $this->category = new Category;
         $this->order = new Order;
-        $this->orderDetails = new Orderdetail;
+        $this->orderDetails = new OrderedProduct;
     }
 
     /**

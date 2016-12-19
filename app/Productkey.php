@@ -25,14 +25,14 @@ class Productkey extends Model
      *
      * @var array
      */
-    protected $fillable = ['key', 'copy'];
+    protected $fillable = [];
 
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['key', 'copy'];
+    protected $guarded = [];
 
     /**
      * Get the phone record associated with the user.
@@ -45,6 +45,11 @@ class Productkey extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function orderedProduct()
+    {
+        return $this->hasOne('App\OrderedProduct');
     }
 
 }

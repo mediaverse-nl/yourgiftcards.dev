@@ -2,14 +2,13 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    @lang('categories.page_title')
-@stop
+@section('title', trans('seo.categories.page_title'))
+@section('description', trans('seo.categories.page_description'))
+@section('keywords', trans('seo.categories.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    @lang('categories.page_description')
-@stop
+@push('mate-tags')
+{{--<meta name="language" content="GB">--}}
+@endpush
 
 {{--content from the page--}}
 @section('content')

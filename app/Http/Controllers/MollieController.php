@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderedProduct;
 use App\Product;
 
+use App\Productkey;
 use Validator;
 use Cart;
 use Mail;
@@ -68,7 +70,6 @@ class MollieController extends Controller
                 'order_id' => $neworder->id,
             ),
             "method" => $neworder->method,
-//            "issuer" => $order->payment_method == 'ideal' ? $request->issuer_id : '',
         ]);
 
         $order = $this->order->find($neworder->id);
@@ -78,10 +79,20 @@ class MollieController extends Controller
 
         $order->save();
 
-//        Mail::send('emails.bedankt', ['order' => $order], function($m) use ($order){
-////            $m->from('another@email.com', 'My name');
-//            $m->to($order->email, $order->name)->subject('Bedankt voor uw bestelling!');
-//        });
+        $data = [];
+        foreach (Cart::content() as $item){
+
+            Productkey::where('product_id', $item->options[0]->id)->where('status', 'sell')->get();
+
+            $data[] = [
+                'order_id' => $order->id,
+                'productkey_id' => $item->options[0]->id,
+                'price'=> $item->options[0]->price,
+                'servicecosts' => $item->options[0]->servicecosts
+            ];
+        }
+
+        OrderedProduct::insert($data);
 
         return redirect($payment->getPaymentUrl());
     }

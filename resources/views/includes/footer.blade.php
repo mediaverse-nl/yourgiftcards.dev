@@ -16,10 +16,19 @@
             <div class="col-lg-3">
                 <h2 style="font-size: 18px;">Social media</h2>
                 <ul>
-                    <li><a href="#">facebook</a></li>
+                    <li>
+                        <a href="#">facebook</a>
+                        <div
+                                class="fb-like"
+                                data-share="true"
+                                data-width="450"
+                                data-show-faces="true">
+                        </div>
+                    </li>
                     <li><a href="#">twitter</a></li>
                     <li><a href="#">google+</a></li>
                     <li><a href="#">tumblr</a></li>
+
                 </ul>
             </div>
 
@@ -33,6 +42,7 @@
                     <h3 style="font-size: 14px; margin-top: -20px;">{{$nieuws->title}}</h3>
                     <p style="font-size: 12px; color: #F7F7F7;">{{str_limit($nieuws->text, 60, '... ')}}<br> <a href="{{route('blog.show', str_replace(' ', '-', $nieuws->title))}}">@lang('button.read_more')</a></p>
                 </div>
+
             </div>
 
             <div class="col-lg-12">

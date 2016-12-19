@@ -1,15 +1,13 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-{{--title from the page--}}
-@section('title')
-    @lang('category.page_title')
-@stop
+@section('title', trans('seo.category.page_title'))
+@section('description', trans('seo.category.page_description'))
+@section('keywords', trans('seo.category.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    @lang('category.page_description')
-@stop
+@push('mate-tags')
+    <meta name="language" content="GB">
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -45,7 +43,7 @@
             {{$category->description}}
             <hr>
         </div>
-        <div class="col-lg-3 thumbnail">
+        <div class="col-lg-3 thumbnail" style="border: 1px dashed #ddd;">
             <br>
             <h3 class="text-center" style="margin: -10px 0px 7px 0px;">Betaal methodes</h3>
             <p class="text-center">
@@ -99,13 +97,4 @@
     {{$category->instructions}}
     <hr>
 
-@endsection
-
-{{--this page javascripts--}}
-@section('javascript')
-
-@endsection
-{{--this page styling--}}
-@section('stylesheet')
-
-@endsection
+@stop

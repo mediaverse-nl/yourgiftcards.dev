@@ -41,4 +41,11 @@ class Category extends Model
     {
         return $this->hasMany('App\Product');
     }
+    /**
+     * Get the user that owns the phone.
+     */
+    public function blog()
+    {
+        return $this->hasMany('App\Blog');
+    }
 }

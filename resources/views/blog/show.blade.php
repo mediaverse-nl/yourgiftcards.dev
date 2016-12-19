@@ -2,29 +2,23 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    nieuws
-@endsection
+@section('title', $product->name.' | '.trans('seo.product.online_giftcards').' | '.env('APP_URL'))
+@section('description', $category->description)
+@section('keywords', $product->category->name .', '. trans('seo.product.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    nieuws
-@endsection
+@push('mate-tags')
+    <meta property=”og:title” content="{{$product->name}}"/>
+    <meta property=”og:image” content="/img/thumbnail/{{$product->category->thumbnail}}"/>
+    <meta property=”og:url” content="{{Request::url()}}"/>
+    <meta property=”og:description” content="{{$category->description}}"/>
+    <meta property="og:site_name" content="Justgiftcards.nl" />
 
-{{--meta tag keywords--}}
-@section('keywords')
-    nieuws
-@endsection
-
-{{--meta tag keywords--}}
-@section('mate-tags')
-
-    <meta property="og:title" content="Stuffed Cookies" />
-    <meta property="og:image" content="http://fbwerks.com:8000/zhen/cookie.jpg" />
-    <meta property="og:description" content="The Turducken of Cookies" />
-    <meta property="og:url" content="http://fbwerks.com:8000/zhen/cookie.html">
-
-@endsection
+    <meta name=”twitter:card” content=”summary”>
+    <meta name=”twitter:url” content="{{Request::url()}}">
+    <meta name=”twitter:title” content="{{$product->name}}">
+    <meta name=”twitter:description” content="{{$category->description}}">
+    <meta name=”twitter:image” content="/img/thumbnail/{{$product->category->thumbnail}}">
+@endpush
 
 {{--content from the page--}}
 @section('content')

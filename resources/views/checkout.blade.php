@@ -1,15 +1,13 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-{{--title from the page--}}
-@section('title')
-    winkelwagen
-@endsection
+@section('title', '')
+@section('description', '')
+@section('keywords', '')
 
-{{--meta tag description--}}
-@section('description')
-    online kaart verkoop
-@stop
+@push('mate-tags')
+    {{--<meta name="language" content="GB">--}}
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -86,13 +84,4 @@
         </div>
 
     </div>
-@endsection
-
-{{--this page javascripts--}}
-@section('javascript')
-
-@endsection
-{{--this page styling--}}
-@section('stylesheet')
-
-@endsection
+@stop
