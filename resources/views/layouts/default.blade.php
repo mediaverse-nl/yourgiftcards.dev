@@ -60,22 +60,25 @@
                 background-color: #2B3E51;
             }
 
-            .top-menu-bar{
-                font-size: 18px;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-            }
             .navbar-default{
                 background: transparent;
                 border:none;
             }
 
             .top-menu-bar {
-                background: rgba(226, 150, 30, 0.94);
+                font-size: 18px;
+                background: #FFA50A;
                 height: 60px !important;
                 padding: 5px;
             }
+
+            .container-shadow {
+                box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                -moz-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                border-collapse: separate;
+            }
+
             .top-menu-bottom {
                 height: 48px !important;
                 background-color: rgba(43, 62, 81, 0.9) ;
