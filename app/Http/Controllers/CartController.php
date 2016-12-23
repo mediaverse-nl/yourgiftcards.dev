@@ -37,7 +37,7 @@ class CartController extends Controller
             Cart::update($item->rowId, $stock > $item->qty ? $item->qty : $stock);
         }
 
-        return view('cart', ['cart' => $cart]);
+        return view('cart', ['cart' => $cart])->with('mollie', $this->mollie->methods()->all());
     }
 
     public function add(Request $request)
@@ -78,8 +78,14 @@ class CartController extends Controller
         if (Cart::count() == 0)
             return redirect()->route('cart.index');
 
+        $array = [];
+        foreach ( Cart::content() as $item){
+            $array[] = $item->options[0]->servicecosts * $item->qty ;
+        }
+
         return view('checkout')
             ->with('cart', Cart::content())
+            ->with('servicecosts', array_sum($array))
             ->with('mollie', $this->mollie->methods()->all());
     }
 

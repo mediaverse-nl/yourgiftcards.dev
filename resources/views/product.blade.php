@@ -8,7 +8,7 @@
 
 @push('mate-tags')
     <meta property=”og:title” content="{{$product->name}}"/>
-    <meta property=”og:image” content="/img/thumbnail/{{$product->category->thumbnail}}"/>
+    <meta property=”og:image” content="/img/thumbnail/{{$product->category->layout}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
     <meta property=”og:description” content="{{$category->description}}"/>
     <meta property="og:site_name" content="Justgiftcards.nl" />
@@ -17,7 +17,7 @@
     <meta name=”twitter:url” content="{{Request::url()}}">
     <meta name=”twitter:title” content="{{$product->name}}">
     <meta name=”twitter:description” content="{{$category->description}}">
-    <meta name=”twitter:image” content="/img/thumbnail/{{$product->category->thumbnail}}">
+    <meta name=”twitter:image” content="/img/thumbnail/{{$product->category->layout}}">
 @endpush
 
 {{--content from the page--}}
@@ -64,7 +64,6 @@
             @else
                 <input class="btn btn-primary pull-left" value="@lang('button.soldout')" type="submit" style="border-radius: 0px; height: 34px;  border: none; background-color: #F59D00;" disabled>
                 {{Form::selectRange('number', 0, 1, null, ['class'=> 'form-control pull-left', 'name' => 'qty', 'style' => 'width: 57px; margin-left: 0px; border-radius: 1px;', 'disabled'])}}
-                {{--<a class="btn btn-primary" disabled="">@lang('button.soldout')</a>--}}
             @endif
             <br>
 
@@ -86,17 +85,21 @@
 
         <div class="col-lg-7">
             <h2>@lang('text.title_description')</h2>
-            <p itemprop="description">Luisterd u of graag naar muziek dan is :category of kinderen dan is :category het beste cadeua om te geven. </p>
-            {{$category->description}}aa
+            <p itemprop="description">
+                @lang('categories.description.'.$category->name)
+            </p>
+            <hr>
 
-            <hr>
             <h2>@lang('text.title_guide')</h2>
-            Uw kunt deze :category giftcard van €:euro verzilveren op :domein deze code is wel t/m 13 jaar gelding na aankoop
-            {{$category->instructions}}
+            <p>
+                @lang('categories.instructions.'.$category->name)
+            </p>
             <hr>
+
             <h2>@lang('text.title_delivery')</h2>
-            Deze :category giftcard word per direct via mail geleverd
-            {{$category->levering}}
+            <p>
+                @lang('categories.delivery.'.$category->name)
+            </p>
             <hr>
         </div>
     </div>

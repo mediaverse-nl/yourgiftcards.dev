@@ -27,29 +27,29 @@
                         </div>
                     </div>
 
-                    <!-- description -->
-                    <div class="form-group">
-                        {!! Form::label('description', 'description', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'description']) !!}
-                        </div>
-                    </div>
+                    {{--<!-- description -->--}}
+                    {{--<div class="form-group">--}}
+                        {{--{!! Form::label('description', 'description', ['class' => 'col-lg-2 control-label']) !!}--}}
+                        {{--<div class="col-lg-10">--}}
+                            {{--{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'description']) !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                    <!-- levering -->
-                    <div class="form-group">
-                        {!! Form::label('levering', 'levering', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::textarea('levering', null, ['class' => 'form-control', 'placeholder' => 'levering']) !!}
-                        </div>
-                    </div>
+                    {{--<!-- levering -->--}}
+                    {{--<div class="form-group">--}}
+                        {{--{!! Form::label('levering', 'levering', ['class' => 'col-lg-2 control-label']) !!}--}}
+                        {{--<div class="col-lg-10">--}}
+                            {{--{!! Form::textarea('levering', null, ['class' => 'form-control', 'placeholder' => 'levering']) !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                    <!-- instructions -->
-                    <div class="form-group">
-                        {!! Form::label('instructions', 'instructions', ['class' => 'col-lg-2 control-label']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::textarea('instructions', null, ['class' => 'form-control', 'placeholder' => 'instructions']) !!}
-                        </div>
-                    </div>
+                    {{--<!-- instructions -->--}}
+                    {{--<div class="form-group">--}}
+                        {{--{!! Form::label('instructions', 'instructions', ['class' => 'col-lg-2 control-label']) !!}--}}
+                        {{--<div class="col-lg-10">--}}
+                            {{--{!! Form::textarea('instructions', null, ['class' => 'form-control', 'placeholder' => 'instructions']) !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                     <!-- status -->
                     <div class="form-group">

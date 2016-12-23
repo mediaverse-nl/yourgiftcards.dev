@@ -14,16 +14,26 @@
 @section('content')
     <div class="row">
 
-        contact pagina
+        <div class="col-lg-6">
+            <div class="panel">
+                <a href="{{route('guide')}}">
+                <div class="panel-body">
+                    Handleiding
+                </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel">
+                {{--<a href="{{route('guide')}}">--}}
+                <div class="panel-body">
+                    <h2>Contact</h2>
+                </div>
+                {{--</a>--}}
+            </div>
+        </div>
 
     </div>
 @stop
 
-{{--this page javascripts--}}
-@push('javascript')
-
-@endpush
-{{--this page styling--}}
-@push('stylesheet')
-
-@endpush

@@ -37,7 +37,7 @@
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->discount}}</td>
                                 <td>{{$product->value}}</td>
-                                <td>{{$stock->where('product_id', $product->id)->count()}}</td>
+                                <td>{{$stock->where('product_id', $product->id)->where('status', 'sell')->count()}}</td>
                                 <td style="width: 120px;">
                                     <a class="btn btn-info btn-sm" href="{{route('admin.product.edit', $product->id)}}">edit</a>
                                     {{ Form::open(['method' => 'DELETE', 'style' => 'width:50px; display: inline;', 'route' => ['admin.product.destroy', $product->id]]) }}

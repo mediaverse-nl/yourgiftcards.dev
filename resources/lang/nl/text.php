@@ -18,4 +18,14 @@ return array (
   'latest_news' => 'Laatste nieuws',
   'categories_title' => 'Kies een giftcard',
   'categories_text' => ' Opzoek naar een giftcard zoek niet langer u kunt hier kiezen uit onze select aan giftcards',
+  'quote' => 
+  array (
+    'fast_direct' => 'snel makkelijk en direct',
+    'direct_delivery' => 'Direct geleverd per e-mail',
+  ),
+  'tag_total' => 'Totaal',
+  'cart' => 'Winkelwagen',
+  'tag_mothde' => 'Betaal methode',
+  'edit' => 'Wijzigen',
+  'products' => 'Producten',
 );

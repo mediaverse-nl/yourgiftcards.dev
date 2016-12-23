@@ -14,7 +14,7 @@
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand" href="{{ route('home') }}">
-            yourgiftcards
+            justgiftcards
         </a>
 
         <!-- Left Side Of Navbar -->
@@ -30,12 +30,17 @@
             @if (Auth::check())
                 <li><a href="{{route('admin')}}"><i class="fa fa-btn fa-tachometer"></i>admin</a></li>
             @endif
+
             <li>
-                <a href="{{route('cart.index')}}"><i class="fa fa-btn fa-shopping-cart"></i>
-                    <span class="badge">{{Cart::count()}}</span>
-                    @lang('button.cart')
+                <a href="{{route('cart.index')}}" style="">
+                    <i class="fa fa-btn fa-shopping-cart" style="margin-top: -20px; display: inline-block; position: relative; font-size: 38px; vertical-align: middle; line-height: 50px; margin-right:15px;">
+                        <span class="badge" style=" position: absolute; border-radius: 50%; padding: 3px 6px !important; border: 2px solid #FFA50A; font-weight: bolder;
+                                    color: #FFA50A; top: 3px; right: -7px;">{{Cart::count()}}</span>
+                    </i>
+                    {{--@lang('button.cart')--}}
                 </a>
             </li>
+
 
         </ul>
     </div>
@@ -47,11 +52,11 @@
         {{--<span style="color: #fff;">Zie ook: </span>--}}
         @foreach($categories as $category)
             <a href="{{route('giftcards', str_replace(' ', '-', $category->name))}}">
-                <img class="img-circle" style="height: 35px; width: 35px; border: 1px solid white; margin-right: 2px;" src="/img/icon/{{$category->icon}}">
+                <img class="img-circle cate-icons" src="/img/icon/{{$category->icon}}">
             </a>
         @endforeach
 
-        <span class="pull-right" style="margin-left: 20px; margin-top: 6px;">
+        <span class="pull-right lang">
             <div id="lang-select" data-selected-country="{{strtoupper(App::getLocale())}}" class="flagstrap">
                 <select id="flagstrap-Wct8wGJT" style="display: none;">
                     @foreach (Config::get('languages') as $lang => $language)
@@ -73,7 +78,7 @@
             {{--<div id="lang-select" data-selected-country="{{strtoupper(App::getLocale())}}"></div>--}}
         </span>
 
-        <span class="pull-right" style="color: #eeeeee; margin-top: 7px;">@lang('text.delivery')</span>
+        <span class="pull-right delivery-text">@lang('text.delivery')</span>
 
     </div>
 </div>

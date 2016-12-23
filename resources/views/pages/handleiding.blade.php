@@ -1,30 +1,13 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-{{--title from the page--}}
-@section('title')
-    Yourgiftcards - Disclaimer
-@endsection
+@section('title', trans('seo.user_guide.online_giftcards').' | '.env('APP_URL'))
+@section('description', trans('seo.user_guide.page_description'))
+@section('keywords', ','. trans('seo.user_guide.keywords'))
 
-{{--meta tag description--}}
-@section('description')
+@push('mate-tags')
 
-@endsection
-
-{{--meta tag keywords--}}
-@section('keywords')
-    yourgiftcards, disclaimer
-@endsection
-
-{{--meta tag meta tags--}}
-@section('mate-tags')
-
-    {{--<meta property="og:title" content="Stuffed Cookies" />--}}
-    {{--<meta property="og:image" content="http://fbwerks.com:8000/zhen/cookie.jpg" />--}}
-    {{--<meta property="og:description" content="The Turducken of Cookies" />--}}
-    {{--<meta property="og:url" content="http://fbwerks.com:8000/zhen/cookie.html">--}}
-
-@endsection
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -33,28 +16,72 @@
 
         {!! Breadcrumbs::render('manuals') !!}
 
-        <div class="col-lg-7">
-            <h1>title</h1>
+        <div class="col-lg-9">
 
-            <h3>lorem ipsum</h3>
-            <p>Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.</p>
-            <h3>lorem ipsum</h3>
-            <p>Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.</p>
-            <h3>lorem ipsum</h3>
-            <p>Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.</p>
+            <div class="panel-group" id="accordion">
+                <h1 class="">@lang('text.title_guide')</h1>
+                @foreach($categories as $category)
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{str_replace(' ', '-', $category->name)}}">
+                                    {{$category->name}}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{str_replace(' ', '-', $category->name)}}" class="panel-collapse collapse" >
+                            <div class="panel-body">
+                                @lang('categories.instructions.'.$category->name)
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
         </div>
 
     </div>
 
     <hr>
 
-@endsection
+@stop
 
 {{--this page javascripts--}}
-@section('javascript')
+@push('javascript')
 
-@endsection
+@endpush
+
 {{--this page styling--}}
-@section('stylesheet')
+@push('stylesheet')
 
-@endsection
+<style>
+    .panel-group .panel {
+        border-radius: 0px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: FontAwesome;
+        content: '\f04b'; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+</style>
+@endpush

@@ -38,7 +38,7 @@ class MollieController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            'fullname' => 'required|alpha',
+            'fullname' => 'required',
             'email' => 'required|email',
             'methods' => 'required'
         ];

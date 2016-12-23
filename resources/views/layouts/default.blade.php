@@ -46,11 +46,6 @@
                 position: relative;
                 min-height: 100%;
             }
-            /*body {*/
-            /*!* Margin bottom by footer height *!*/
-            /*padding-bottom: 200px;*/
-            /*!*font-family: 'Lato';*!*/
-            /*}*/
             footer {
                 position: absolute;
                 bottom: 0px;
@@ -59,6 +54,11 @@
                 height: 200px;
                 background-color: #2B3E51;
             }
+            footer ul > li > a{
+                color: #fff;
+            }
+
+            footer h2{ font-weight: bold}
 
             .navbar-default{
                 background: transparent;
@@ -96,7 +96,7 @@
 
             body {
                 font-family: 'Lato' !important;
-                background-color: #f7f7f7 !important;
+                background-color: #EEEEEE !important;
                 padding-bottom: 240px;
                 padding-top: 30px;
             }
@@ -138,6 +138,45 @@
                 font-family: 'Muli', sans-serif;
                 margin-bottom: 15px;
             }
+            .cate-icons{
+                height: 35px;
+                width: 35px;
+                border: 1px solid #fff;
+                margin-right: 2px;
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+            .delivery-text{
+                margin-top: 7px !important;
+                color: #eeeeee;
+            }
+            .lang{
+                margin-top: 6px !important;
+                margin-left: 5px;
+            }
+            .top-menu-bottom.smaller .delivery-text{
+                margin-top: 3px !important;
+            }
+            .top-menu-bottom.smaller .lang{
+                margin-top: 1px !important;
+            }
+
+            .top-menu-bottom.smaller .cate-icons {
+                height: 25px !important;
+                width: 25px !important;
+                -webkit-transition: all 0.1s;
+                -moz-transition: all 0.1s;
+                -ms-transition: all 0.1s;
+                -o-transition: all 0.1s;
+                transition: all 0.1s;
+            }
+            .top-menu-bottom.smaller {
+                height: 35px !important;
+                line-height: 20px;
+            }
 
         </style>
 
@@ -165,6 +204,7 @@
         <script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
 
         <script>
+            {{--facebook sdk--}}
             window.fbAsyncInit = function() {
                 FB.init({
                     appId      : '1210665952342358',
@@ -180,6 +220,18 @@
                 js.src = "//connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <script>
+            {{--scroll menu bar--}}
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 40) {
+                    $('.top-menu-bottom ').addClass('smaller');
+                } else {
+                    $('.top-menu-bottom ').removeClass('smaller');
+                }
+            });
+
         </script>
 
         @stack('javascript')
