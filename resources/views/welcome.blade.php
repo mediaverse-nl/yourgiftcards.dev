@@ -17,8 +17,7 @@
 
     <div class="single-item" style="height: 200px;">
         <div class="col-lg-12 text-center" style="background-color: #F59D00; height: 200px;"> <h1>Giftcards 24/7 via mail</h1></div>
-        <div class="col-lg-12" style="background-color: #F59D00; height: 200px;"> <h1>actie prijs </h1></div>
-        <div class="col-lg-12" style="background-color: #F59D00; height: 200px;"> <h1>Geen account nodig simpel betalen en je krijgt meteen je gift(s) per mail binnen een simpele betaling via ideal </h1></div>
+        <div class="col-lg-12 text-center" style="background-color: #F59D00; height: 200px;"> <h1>Geen account nodig simpel betalen met ideal, of een van onze andere opties, en je krijgt meteen je gift(s) per mail toegestuurd.</h1></div>
     </div>
 
     <br>

@@ -2,14 +2,13 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    @lang('categories.page_title')
-@stop
+@section('title', trans('seo.categories.page_title'))
+@section('description', trans('seo.categories.page_description'))
+@section('keywords', trans('seo.categories.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    @lang('categories.page_description')
-@stop
+@push('mate-tags')
+{{--<meta name="language" content="GB">--}}
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -24,8 +23,8 @@
         </div>
 
          @foreach($category as $item)
-            <div class="col-xs-6 col-md-3 " style="height: 140px !important; margin: 45px 0px; padding: 10px !important; ">
-                <a href="{{URL::route('giftcards', $item->name)}}" class="thumbnail">
+            <div class="col-xs-6 col-md-3" style="height: 140px !important; margin: 50px 0px; padding: 10px !important; ">
+                <a href="{{URL::route('giftcards', $item->name)}}" class="thumbnail container-shadow">
                     <img style="height: 140px; width: 100%" src="img/thumbnail/{{$item->thumbnail}}" alt="">
                     <div class="caption">
                         <h2 class="text-center" style="font-size: 20px; margin: 15px;">{{$item->name}}</h2>

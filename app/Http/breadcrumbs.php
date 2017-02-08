@@ -15,6 +15,13 @@ Breadcrumbs::register('contact', function($breadcrumbs)
     $breadcrumbs->push('contact', route('klantenservice'));
 });
 
+// Home > cart
+Breadcrumbs::register('cart', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Cart', route('cart.index'));
+});
+
 // Home > algemene voorwaarden
 Breadcrumbs::register('algemenevoorwaarden', function($breadcrumbs)
 {

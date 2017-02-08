@@ -34,13 +34,8 @@ class Order extends Model
      */
     protected $guarded = ['order_id', 'product_id'];
 
-    public function orderdetail()
+    public function orderedProduct()
     {
-        return $this->hasMany('App\Orderdetail');
-    }
-
-    public function product()
-    {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\OrderedProduct');
     }
 }

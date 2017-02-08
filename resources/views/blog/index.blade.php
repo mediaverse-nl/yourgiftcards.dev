@@ -1,30 +1,13 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-{{--title from the page--}}
-@section('title')
-    Yourgiftcards - nieuws
-@endsection
+@section('title', trans('seo.blog.page_title'))
+@section('description', trans('seo.blog.page_description'))
+@section('keywords', trans('seo.blog.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    volg ons voor het nieuws over je favoriete platform
-@endsection
+@push('mate-tags')
 
-{{--meta tag keywords--}}
-@section('keywords')
-    nieuws
-@endsection
-
-{{--meta tag meta tags--}}
-@section('mate-tags')
-
-    <meta property="og:title" content="Stuffed Cookies" />
-    <meta property="og:image" content="http://fbwerks.com:8000/zhen/cookie.jpg" />
-    <meta property="og:description" content="The Turducken of Cookies" />
-    <meta property="og:url" content="http://fbwerks.com:8000/zhen/cookie.html">
-
-@endsection
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -52,15 +35,4 @@
 
     {!! $blogs->render() !!}
 
-
-
-@endsection
-
-{{--this page javascripts--}}
-@section('javascript')
-
-@endsection
-{{--this page styling--}}
-@section('stylesheet')
-
-@endsection
+@stop

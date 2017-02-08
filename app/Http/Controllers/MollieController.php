@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderedProduct;
 use App\Product;
 
+use App\Productkey;
 use Validator;
 use Cart;
 use Mail;
@@ -36,7 +38,7 @@ class MollieController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            'fullname' => 'required|alpha',
+            'fullname' => 'required',
             'email' => 'required|email',
             'methods' => 'required'
         ];
@@ -68,7 +70,6 @@ class MollieController extends Controller
                 'order_id' => $neworder->id,
             ),
             "method" => $neworder->method,
-//            "issuer" => $order->payment_method == 'ideal' ? $request->issuer_id : '',
         ]);
 
         $order = $this->order->find($neworder->id);
@@ -78,10 +79,22 @@ class MollieController extends Controller
 
         $order->save();
 
-//        Mail::send('emails.bedankt', ['order' => $order], function($m) use ($order){
-////            $m->from('another@email.com', 'My name');
-//            $m->to($order->email, $order->name)->subject('Bedankt voor uw bestelling!');
-//        });
+        $data = [];
+        foreach (Cart::content() as $item){
+
+            $keys = Productkey::where('product_id', $item->options[0]->id)->where('status', 'sell')->get();
+
+            foreach ($keys as $key){
+                $data[] = [
+                    'order_id' => $order->id,
+                    'productkey_id' => $key->id,
+                    'price'=> $item->options[0]->price,
+                    'servicecosts' => $item->options[0]->servicecosts
+                ];
+            }
+        }
+
+        OrderedProduct::insert($data);
 
         return redirect($payment->getPaymentUrl());
     }
@@ -94,20 +107,20 @@ class MollieController extends Controller
 
         if ($payment->isPaid())
         {
-//            if ($order->status != 'paid'){
-//                foreach($order->orderItems as $product){
-//                    $new_stock = (int)$product->property->stock - $product->amount;
-//                    $this->property->where('id', $product->property_id)
-//                        ->update(array('stock' => $new_stock));
-//                }
-//            }
             $order->status = self::STATUS_COMPLETED;
-//            Mail::send('emails.payment', ['payment' => $order], function($m) use ($order){
-////                $m->from('info@esigareteindhoven.com');
+
+            foreach ($order->orderedProduct as $item){
+                Productkey::where('id', '=', $item->productkey_id)
+                    ->where('status', '!=', 'sold')
+                    ->update(['status' => 'sold']);
+            }
+
+//            Mail::send('mail.payment', ['payment' => $order], function($m) use ($order){
+//                $m->from('info@justgiftcards.com');
 //                $m->to($order->email, $order->name)->subject('Betaalbevestiging!');
 //            });
         }
-        elseif (! $payment->isOpen())
+        elseif (!$payment->isOpen())
         {
             $order->status = self::STATUS_CANCELLED;
         }

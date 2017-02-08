@@ -63,9 +63,9 @@ class CategoryController extends Controller
             'thumbnail'     => 'required|mimes:jpeg,png,jng,bmp',
             'layout'     => 'required|mimes:jpeg,png,jng,bmp',
             'icon'     => 'required|mimes:jpeg,png,jng,bmp,ico',
-            'description'     => 'required|max:250',
-            'levering'     => 'required|max:250',
-            'instructions'     => 'required|max:250',
+//            'description'     => 'required|max:250',
+//            'levering'     => 'required|max:250',
+//            'instructions'     => 'required|max:250',
             'status'     => 'required',
         ];
 
@@ -78,27 +78,27 @@ class CategoryController extends Controller
                 ->withInput();
         }
 
-        $destinationPath = base_path().'\public\img';
+        $destinationPath = public_path().'/img';
 
         $minetype1 = $request->file('thumbnail')->getClientOriginalExtension();
         $full_path_1 = str_random(20).'.'.$minetype1;
-        $request->file('thumbnail')->move($destinationPath.'\thumbnail', $full_path_1);
+        $request->file('thumbnail')->move($destinationPath.'/thumbnail', $full_path_1);
 
         $minetype2 = $request->file('layout')->getClientOriginalExtension();
         $full_path_2 = str_random(20).'.'.$minetype2;
-        $request->file('layout')->move($destinationPath.'\cardlayout', $full_path_2);
+        $request->file('layout')->move($destinationPath.'/cardlayout', $full_path_2);
 
         $minetype3 = $request->file('icon')->getClientOriginalExtension();
         $full_path_3 = str_random(20).'.'.$minetype3;
-        $request->file('icon')->move($destinationPath.'\icon', $full_path_3);
+        $request->file('icon')->move($destinationPath.'/icon', $full_path_3);
 
         $this->category->thumbnail =  $full_path_1;
         $this->category->layout =  $full_path_2;
         $this->category->icon =  $full_path_3;
         $this->category->name =  $request->name;
-        $this->category->description =  $request->description;
-        $this->category->levering =  $request->levering;
-        $this->category->instructions =  $request->instructions;
+//        $this->category->description =  $request->description;
+//        $this->category->levering =  $request->levering;
+//        $this->category->instructions =  $request->instructions;
         $this->category->status =  $request->status;
 
         $this->category->save();
@@ -140,9 +140,9 @@ class CategoryController extends Controller
             'thumbnail'     => 'mimes:jpeg,png,jng,bmp',
             'layout'     => 'mimes:jpeg,png,jng,bmp',
             'icon'     => 'mimes:jpeg,png,jng,bmp,ico',
-            'description'     => 'required|max:250',
-            'levering'     => 'required|max:250',
-            'instructions'     => 'required|max:250',
+//            'description'     => 'required|max:250',
+//            'levering'     => 'required|max:250',
+//            'instructions'     => 'required|max:250',
             'status'     => 'required',
         ];
 
@@ -155,34 +155,34 @@ class CategoryController extends Controller
                 ->withInput();
         }
 
-        $destinationPath = base_path().'\public\img';
+        $destinationPath = public_path().'/img';
 
         $category = $this->category->find($id);
 
         $category->name =  $request->name;
-        $category->description =  $request->description;
-        $category->levering =  $request->levering;
-        $category->instructions =  $request->instructions;
+//        $category->description =  $request->description;
+//        $category->levering =  $request->levering;
+//        $category->instructions =  $request->instructions;
         $category->status =  $request->status;
 
         if($request->hasFile('thumbnail')){
             $minetype1 = $request->file('thumbnail')->getClientOriginalExtension();
             $full_path_1 = str_random(20).'.'.$minetype1;
-            $request->file('thumbnail')->move($destinationPath.'\thumbnail', $full_path_1);
+            $request->file('thumbnail')->move($destinationPath.'/thumbnail', $full_path_1);
             $category->thumbnail = $full_path_1;
         }
 
         if($request->hasFile('layout')){
             $minetype2 = $request->file('layout')->getClientOriginalExtension();
             $full_path_2 = str_random(20).'.'.$minetype2;
-            $request->file('layout')->move($destinationPath.'\cardlayout', $full_path_2);
+            $request->file('layout')->move($destinationPath.'/cardlayout', $full_path_2);
             $category->layout =  $full_path_2;
         }
 
         if($request->hasFile('icon')){
             $minetype3 = $request->file('icon')->getClientOriginalExtension();
             $full_path_3 = str_random(20).'.'.$minetype3;
-            $request->file('icon')->move($destinationPath.'\icon', $full_path_3);
+            $request->file('icon')->move($destinationPath.'/icon', $full_path_3);
             $category->icon =  $full_path_3;
         }
 

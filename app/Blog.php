@@ -37,9 +37,14 @@ class Blog extends Model
     /**
      * Get the user that owns the phone.
      */
-    public function blog()
+    public function user()
     {
-        return $this->belongsTo('App\Blog');
+        return $this->belongsTo('App\User');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
     }
 
 }

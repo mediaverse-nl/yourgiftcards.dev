@@ -2,29 +2,23 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    nieuws
-@endsection
+@section('title', $blog->title.' | '.trans('seo.product.online_giftcards').' | '.env('APP_URL'))
+@section('description', $blog->text)
+@section('keywords', $blog .', '. trans('seo.product.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    nieuws
-@endsection
+@push('mate-tags')
+    <meta property=”og:title” content="{{$blog->title}}"/>
+    <meta property=”og:image” content="/img/blog/{{$blog->image}}"/>
+    <meta property=”og:url” content="{{Request::url()}}"/>
+    <meta property=”og:description” content="{{$blog->text}}"/>
+    <meta property="og:site_name" content="Justgiftcards.nl" />
 
-{{--meta tag keywords--}}
-@section('keywords')
-    nieuws
-@endsection
-
-{{--meta tag keywords--}}
-@section('mate-tags')
-
-    <meta property="og:title" content="Stuffed Cookies" />
-    <meta property="og:image" content="http://fbwerks.com:8000/zhen/cookie.jpg" />
-    <meta property="og:description" content="The Turducken of Cookies" />
-    <meta property="og:url" content="http://fbwerks.com:8000/zhen/cookie.html">
-
-@endsection
+    <meta name=”twitter:card” content=”summary”>
+    <meta name=”twitter:url” content="{{Request::url()}}">
+    <meta name=”twitter:title” content="{{$blog->title}}">
+    <meta name=”twitter:description” content="{{$blog->text}}">
+    <meta name=”twitter:image” content="/img/blog/{{$blog->image}}">
+@endpush
 
 {{--content from the page--}}
 @section('content')
@@ -33,12 +27,12 @@
 
         {!! Breadcrumbs::render('blog.post', $blog) !!}
 
-
-        <div class="col-lg-8">
-            <img class="image" src="/img/blog/{{$blog->image}}" alt="">
+        <div class="col-lg-9">
+            <img class="image img-responsive" src="/img/blog/{{$blog->image}}" alt="">
             <h1>{{$blog->title}}</h1>
             <p>{{$blog->text}}</p>
-            <p>{{$blog->created_at}}</p>
+            <small class="text-muted">posted: {{$blog->updated_at}}</small><br>
+            <small class="text-muted">posted: {{$blog->created_at}}</small>
         </div>
 
     </div>

@@ -41,7 +41,6 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
-
     /**
      * Get the phone record associated with the user.
      */

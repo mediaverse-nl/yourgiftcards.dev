@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -58,6 +59,8 @@ class PageController extends Controller
      */
     public function guide()
     {
-        return view('pages.handleiding');
+        $categories = Category::where('status', 'on')->get();
+
+        return view('pages.handleiding')->with('categories', $categories);
     }
 }

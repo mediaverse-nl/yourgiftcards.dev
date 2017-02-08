@@ -1,5 +1,8 @@
 <?php
 
 return array (
-  'cart' => '',
+  'product' => 
+  array (
+    'online_giftcards' => 'ddasdasd',
+  ),
 );

@@ -12,4 +12,12 @@ return array (
     'keywords' => 'een, woord, per, keer, aan, vullend, met, de, comma',
     'page_title' => 'Title van de pagina',
   ),
+  'product' => 
+  array (
+    'online_giftcards' => 'Online giftcards',
+  ),
+  'cart' => 
+  array (
+    'page_title' => 'Winkelwagen',
+  ),
 );

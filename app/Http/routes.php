@@ -11,7 +11,19 @@
 |
 */
 
-Route::auth();
+//Route::auth();
+// User authentication routes...
+//Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
+//Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
+//Route::get('password/email', 'Auth\PasswordController@getEmail');
+//Route::post('password/email', 'Auth\PasswordController@postEmail');
+//Route::get('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
+//Route::post('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
+Route::get('/inloggen', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+Route::post('/login', ['as' => 'login.post', 'uses' => 'Auth\AuthController@postLogin']);
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
+
+
 
 //set the language session
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
@@ -19,7 +31,7 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('giftcards', ['as' => 'giftcards.index', 'uses' => 'CategoryController@index']);
 Route::get('giftcards/{category}', ['as' => 'giftcards', 'uses' => 'CategoryController@show']);
-Route::get('{category}/c/{name}', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
+Route::get('{category}/{name}/c', ['as' => 'giftcard.show', 'uses' => 'ProductController@show']);
 
 Route::get('algemene-voorwaarden', ['as' => 'algemeen.voorwaarden', 'uses' => 'PageController@algemenevoorwaarden']);
 Route::get('disclaimer', ['as' => 'disclaimer', 'uses' => 'PageController@disclaimer']);

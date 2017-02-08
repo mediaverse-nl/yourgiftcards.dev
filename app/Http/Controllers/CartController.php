@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 
+use App\Productkey;
 use Cart;
 use Session;
 use Redirect;
@@ -31,14 +32,18 @@ class CartController extends Controller
     {
         $cart = Cart::content();
 
-        return view('cart', ['cart' => $cart]);
+        foreach ($cart as $item){
+            $stock = Productkey::where('product_id', $item->id)->where('status', 'sell')->count();
+            Cart::update($item->rowId, $stock > $item->qty ? $item->qty : $stock);
+        }
+
+        return view('cart', ['cart' => $cart])->with('mollie', $this->mollie->methods()->all());
     }
 
     public function add(Request $request)
     {
         $rules = [
             'product_id' => 'required',
-//            'qty' => 'required'
         ];
 
         $validator = Validator::make(Request()->all(), $rules);
@@ -55,7 +60,7 @@ class CartController extends Controller
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
-            'qty' => $request->qty ? $request->qty : 1,
+            'qty' => Request()->get('qty') ? Request()->get('qty') : 1,
             'options' => [$product],
             'price' => ($product->price + $product->servicecosts) - $product->discount
         ]);
@@ -73,65 +78,32 @@ class CartController extends Controller
         if (Cart::count() == 0)
             return redirect()->route('cart.index');
 
+        $array = [];
+        foreach ( Cart::content() as $item){
+            $array[] = $item->options[0]->servicecosts * $item->qty ;
+        }
+
         return view('checkout')
             ->with('cart', Cart::content())
+            ->with('servicecosts', array_sum($array))
             ->with('mollie', $this->mollie->methods()->all());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function remove()
     {
-        $rules = [
-            'levering' => 'required',
-            'payment_method' => 'required',
-            'email' => 'required|email',
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->route('cart.checkout')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $array = [];
-        foreach (Cart::content() as $item){
-            $property = $this->product->where('serialNumber', $item->id)->first();
-            $array[] = [
-                'property_id' => $property->id,
-                'order_id' => $order->id,
-                'selling_price' => $item->price,
-                'amount' => $item['qty']
-            ];
-        }
-
-        OrderItem::insert($array);
-
-        Cart::destroy();
-    }
-
-    public function remove(){
         Cart::remove(Request()->get('row'));
         return redirect()->route('cart.index');
     }
 
-    public function decrease()
+    public function decrease(Request $request)
     {
-        Cart::update(Request()->get('row'), Request()->get('qty'));
+        Cart::update(Request()->get('row'), Request()->get('qty') ? Request()->get('qty') : 1);
         return redirect()->route('cart.index');
     }
 
-    public function increase()
+    public function increase(Request $request)
     {
-        Cart::update(Request()->get('row'), Request()->get('qty'));
+        Cart::update(Request()->get('row'), Request()->get('qty') ? Request()->get('qty') : 1);
         return redirect()->route('cart.index');
     }
 

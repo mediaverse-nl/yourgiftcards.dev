@@ -2,32 +2,38 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title')
-    contact & support
-@endsection
+@section('title', trans('seo.contact.page_title'))
+@section('description', trans('seo.contact.page_description'))
+@section('keywords', trans('seo.contact.keywords'))
 
-{{--meta tag description--}}
-@section('description')
-    contact & support
-@endsection
+@push('mate-tags')
+    <meta name="language" content="GB">
+@endpush
 
 {{--content from the page--}}
 @section('content')
-
     <div class="row">
 
-contact pagina
+        <div class="col-lg-6">
+            <div class="panel">
+                <a href="{{route('guide')}}">
+                <div class="panel-body">
+                    Handleiding
+                </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel">
+                {{--<a href="{{route('guide')}}">--}}
+                <div class="panel-body">
+                    <h2>Contact</h2>
+                </div>
+                {{--</a>--}}
+            </div>
+        </div>
 
     </div>
+@stop
 
-
-@endsection
-
-{{--this page javascripts--}}
-@section('javascript')
-
-@endsection
-{{--this page styling--}}
-@section('stylesheet')
-
-@endsection
