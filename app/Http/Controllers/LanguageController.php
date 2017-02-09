@@ -18,4 +18,5 @@ class LanguageController extends Controller
         }
         return Redirect::back();
     }
+
 }

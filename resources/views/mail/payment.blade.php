@@ -1,2 +1,2 @@
 
-mail order
+@lang('mail.payment')

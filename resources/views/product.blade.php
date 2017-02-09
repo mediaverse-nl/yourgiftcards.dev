@@ -2,16 +2,18 @@
 @extends('layouts.default')
 
 {{--title from the page--}}
-@section('title', $product->name.' | '.trans('seo.product.online_giftcards').' | '.env('APP_URL'))
-@section('description', $category->description)
-@section('keywords', $product->category->name .', '. trans('seo.product.keywords'))
+{{--@section('title', $product->name.' | '.trans('text.delivery').' | '.env('APP_URL'))--}}
+@section('title', str_replace(':price', $product->price - $product->discount, $product->name.' :price ').trans('text.currency').' | '.trans('text.delivery').' | '.env('APP_URL'))
+@section('description', str_replace([':category', ':price'], [$product->category->name, $product->price - $product->discount], trans('seo.categories.page_description'). ', Category: :category, Price: €:price'))
 
 @push('mate-tags')
+    <meta name="robots" content="index, follow">
+
     <meta property=”og:title” content="{{$product->name}}"/>
     <meta property=”og:image” content="/img/thumbnail/{{$product->category->layout}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
     <meta property=”og:description” content="{{$category->description}}"/>
-    <meta property="og:site_name" content="Justgiftcards.nl" />
+    <meta property="og:site_name" content="justgiftcards.nl" />
 
     <meta name=”twitter:card” content=”summary”>
     <meta name=”twitter:url” content="{{Request::url()}}">
@@ -35,18 +37,18 @@
                         <span class="price-tag"><a href="javascript:void();"><small>@lang('text.tag_discount')</small> €{{$product->discount}}</a></span>
                     </span>
                 @endif
-                <img itemprop="image" style="width: 100%;" src="/img/thumbnail/{{$product->category->thumbnail}}">
+                <img itemprop="image" style="width: 100%;" src="/img/thumbnail/{{$product->category->thumbnail}}" alt="{{$product->name}}">
             </div>
 
             <h1 class="" itemprop="name" >{{$product->name}}</h1>
 
             @if($product->discount != '0.00')
-                <b style="font-weight: bold">@lang('text.tag_price'):</b> <del class="small">{{$product->price}}</del>
-                <b style="font-size: 18px;">{{$product->price - $product->discount}}</b><br>
+                <b style="font-weight: bold">@lang('text.tag_price'):</b> <del class="small">€{{$product->price}}</del>
+                <b style="font-size: 18px;">€{{$product->price - $product->discount}}</b><br>
             @endif
 
             @if($product->discount == '0.00')
-                <b>@lang('text.tag_price'): </b>{{$product->price}}<br>
+                <b>@lang('text.tag_price'): </b>€{{$product->price}}<br>
             @endif
 
             <span class="small">@lang('text.tag_servicecosts'): + {{$product->servicecosts}}</span>
@@ -73,9 +75,9 @@
             @foreach($category->product as $item)
                 @if($product->name != $item->name)
                     <div class="thumbnail" style=" width: 80px; display: inline-block">
-                        <a href="{{route('giftcard.show', [$category, str_replace(' ', '-', $item->name)])}}">
+                        <a href="{{route('giftcard.show', [str_replace(' ', '-', $category->name), str_replace(' ', '-', $item->name)])}}">
                             <img src="/img/cardlayout/{{$item->category->layout}}">
-                            <span>{{$item->value}}</span>
+                            <span>€{{$item->value}}</span>
                         </a>
                     </div>
                 @endif
@@ -98,7 +100,10 @@
 
             <h2>@lang('text.title_delivery')</h2>
             <p>
-                @lang('categories.delivery.'.$category->name)
+                @php
+                    $text = trans('categories.delivery.'.$category->name);
+                    echo  str_replace([':category', ':value'], [$category->name, $product->value], $text)
+                @endphp
             </p>
             <hr>
         </div>

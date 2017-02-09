@@ -62,7 +62,7 @@
                                 <fieldset>
                                     <div class="form-group">
                                         {!! Form::label('fullname', trans('text.first_lastname'), ['class' => 'control-label']) !!}
-                                        {!! Form::text(trans('text.name'), null, ['class' => 'form-control', 'placeholder' => 'John Doe']) !!}
+                                        {!! Form::text('fullname', null, ['class' => 'form-control', 'placeholder' => 'John Doe']) !!}
                                     </div>
                                     <!-- email -->
                                     <div class="form-group">
@@ -71,7 +71,7 @@
                                     </div>
                                     <!-- payment methods -->
                                     <div class="form-group">
-                                        {!! Form::label('methods', trans('text.tag_mothde'), ['class' => 'control-label']) !!}
+                                        {!! Form::label('methods', trans('text.tag_method'), ['class' => 'control-label']) !!}
                                         {!! Form::select('methods', collect($mollie)->pluck('id', 'id'), null, ['class' => 'form-control', 'placeholder' => '--- select ---']) !!}
                                     </div>
                                     <!-- Submit Button -->
@@ -104,11 +104,6 @@
                                     <td class="text-right">€{{Cart::subtotal()}}</td>
                                 </tr>
                             </table>
-
-                            {{--<span>{{$servicecosts}}</span>--}}
-                            {{--<span class=""></span>--}}
-
-
 
                         </div>
 

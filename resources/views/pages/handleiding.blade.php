@@ -3,10 +3,9 @@
 
 @section('title', trans('seo.user_guide.online_giftcards').' | '.env('APP_URL'))
 @section('description', trans('seo.user_guide.page_description'))
-@section('keywords', ','. trans('seo.user_guide.keywords'))
 
 @push('mate-tags')
-
+    <meta name="robots" content="index,nofollow">
 @endpush
 
 {{--content from the page--}}

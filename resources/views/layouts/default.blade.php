@@ -8,13 +8,13 @@
         <title>@yield('title')</title>
 
         <meta name="description" content="@yield('description')">
-        <meta name="keywords" content="@yield('keywords')">
+        {{--<meta name="keywords" content="@yield('keywords')">--}}
 
-        <meta name="author" content="Mediaverse">
+        <meta name="author" content="Mediaverse.nl">
         <meta name="language" content="{{strtoupper(App::getLocale())}}">
-        <meta name="robots" content="index">
-        <meta name="revisit-after" content="15 days">
-        <meta name="googlebot" content="noodp">
+
+        {{--<meta name="revisit-after" content="15 days">--}}
+        {{--<meta name="googlebot" content="noodp">--}}
 
         <meta property="fb:admins" content="214283949025796" />
         <meta property="fb:app_id" content="214283949025796" />
@@ -34,6 +34,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>
+
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -51,7 +54,7 @@
                 bottom: 0px;
                 width: 100%;
                 /* Set the fixed height of the footer here */
-                height: 200px;
+                height: 250px;
                 background-color: #2B3E51;
             }
             footer ul > li > a{
@@ -64,12 +67,40 @@
                 background: transparent;
                 border:none;
             }
-
+            .navbar-nav{
+                font-size: 18px;
+                /*margin-top: -10px;*/
+                /*margin-bottom: -15px;*/
+            }
+            .navbar-nav > li {
+                margin-top: 10px;
+            }
+            .cart-icon{
+                /*display: inline-block;*/
+                /*position: relative;*/
+                font-size: 38px;
+                /*vertical-align: middle;*/
+                margin-right:15px;
+                margin-top: -10px;
+            }
+            .cart-badge{
+                position: absolute;
+                border-radius: 50%;
+                padding: 3px 6px !important;
+                border: 2px solid #FFA50A;
+                /*font-weight: bolder;*/
+                color: #FFA50A;
+                top: 1px;
+                right: 20px
+            }
+            .breadcrumb{
+                background-color: transparent;
+            }
             .top-menu-bar {
                 font-size: 18px;
                 background: #FFA50A;
-                height: 60px !important;
-                padding: 5px;
+                height: 50px !important;
+                /*padding: 5px;*/
             }
 
             .container-shadow {
@@ -87,7 +118,7 @@
 
             .navbar {
                 width: 100% !important;
-                height: 108px !important;
+                /*height: 108px !important;*/
             }
             .navbar-nav > li > a{
                 font-weight: bold;
@@ -97,8 +128,9 @@
             body {
                 font-family: 'Lato' !important;
                 background-color: #EEEEEE !important;
-                padding-bottom: 240px;
-                padding-top: 30px;
+                padding-bottom: 300px;
+                padding-top: 0px;
+
             }
 
             .thumbnail{
@@ -119,7 +151,7 @@
 
             h1 {
                 padding-bottom: 15px;
-                color: #ff6600 !important;
+                color: #FFA50A !important;
             }
 
             h1 a {
@@ -129,7 +161,7 @@
             }
 
             h1 a:hover {
-                color: #ff6600;
+                color: #FFA50A;
                 text-decoration: none;
             }
 
@@ -177,7 +209,35 @@
                 height: 35px !important;
                 line-height: 20px;
             }
+            .caret-up {
+                width: 0;
+                height: 0;
+                border-left: 4px solid rgba(0, 0, 0, 0);
+                border-right: 4px solid rgba(0, 0, 0, 0);
+                border-bottom: 4px solid;
 
+                display: inline-block;
+                margin-left: 2px;
+                vertical-align: middle;
+            }
+            .visable-nav{
+               display: block;
+                background-color: #FFA50A !important;
+            }
+            /*.open, .open:focus, .open:hover{*/
+                /*background-color: saddlebrown !important;*/
+                /*background: #F59D00;*/
+                /*!*background-color: saddlebrown !important;*!*/
+            /*}*/
+            @media (max-width: 767px) {
+                /* CSS goes here */
+                footer{
+                    background-color: #2B3E51 !important;
+                    height: auto;
+                    margin-top: 300px;
+                }
+
+            }
         </style>
 
         @stack('stylesheet')
@@ -231,7 +291,22 @@
                     $('.top-menu-bottom ').removeClass('smaller');
                 }
             });
+        </script>
 
+        <script>
+            $(function(){
+                $(".dropdown").hover(
+                    function() {
+                        $('.dropdown-menu-lang', this).stop( true, true ).fadeIn("fast");
+                        $(this).toggleClass('visable-nav');
+                        $('b', this).toggleClass("caret caret-up");
+                    },
+                    function() {
+                        $('.dropdown-menu-lang', this).stop( true, true ).fadeOut("fast");
+                        $(this).toggleClass('visable-nav');
+                        $('b', this).toggleClass("caret caret-up");
+                    });
+            });
         </script>
 
         @stack('javascript')

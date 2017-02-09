@@ -1,11 +1,12 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-@section('title', $category->name.' | '.trans('seo.product.online_giftcards').' | '.env('APP_URL'))
-@section('description', trans('categories.description.'.$category->name))
-@section('keywords', $category->name .','. trans('seo.category.keywords'))
+@section('title', str_replace([':category', ':price'], [$tip->category->name, $tip->price], trans('seo.category.page_title')).' | '.trans('text.delivery').' | '.env('APP_URL'))
+@section('description', str_replace([':category'], [$category->name ], trans('seo.category.page_description'). ', Category: :category'))
 
 @push('mate-tags')
+    <meta name="robots" content="index,follow">
+
     <meta property=”og:title” content="{{$category->name}}"/>
     <meta property=”og:image” content="/img/thumbnail/{{$category->thumbnail}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
@@ -30,9 +31,12 @@
             {{--<h3>@lang('text.tip')</h3>--}}
             <div class="thumbnail container-shadow " style="height: auto">
                 <a href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $tip->name)])}}">
-                    <h2 class="text-center" style="color: #3E4F61;">{{$tip->name}}</h2>
-                    <span class="badge" style="top: 150px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">€{{$tip->value}}</span>
-                    <img src="/img/cardlayout/{{$tip->category->layout}}" >
+                    <h1 class="text-center" style="color: #3E4F61 !important; font-size: 30px !important;">{{$tip->name}}</h1>
+                    <span class="badge" style="top: 230px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">
+                        €{{$tip->value}}<br>
+                        <p style="color: #333333;"></p>
+                    </span>
+                    <img src="/img/cardlayout/{{$tip->category->layout}}" style="margin: 0px 17px; width: 90%;">
                 </a>
                 <br>
                 @if($stock->where('product_id', $tip->id)->where('status', 'sell')->count() >= 1)
@@ -49,13 +53,18 @@
             <hr>
         </div>
         <div class="col-lg-5 bottom">
-            <h2>@lang('text.product_description')</h2>
-            <p>@lang('categories.description.'.$category->name)</p>
+            <h2 style="font-size: 35px;">@lang('text.product_description')</h2>
+            <p>{{str_replace([':category'], [$category->name ], trans('categories.description.'.$category->name))}}</p>
+            <hr>
+            <h3>@lang('text.instructions')</h3>
+            <p>
+                @lang('categories.instructions.'.$category->name)
+            </p>
             <hr>
         </div>
         <div class="col-lg-3 thumbnail " style="border: 1px dashed #ddd;">
             <br>
-            <h3 class="text-center" style="margin: -10px 0px 7px 0px;">@lang('text.tag_mothde')</h3>
+            <h3 class="text-center" style="margin: -10px 0px 7px 0px;">@lang('text.tag_method')</h3>
             <p class="text-center">
                 @foreach($mollie as $item)
                     <img style="padding: 3px;" src="{{$item->image->normal}}">
@@ -81,7 +90,7 @@
                     @if($product->id != $tip->id)
                         <div class="col-xs-6 col-md-3">
                             <div class="thumbnail container-shadow " style="height: auto">
-                                <a  href="{{route('giftcard.show',[$category->name, str_replace(' ', '-', $product->name)])}}">
+                                <a  href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $product->name)])}}">
                                     <h3 class="text-center" style="font-size:16px; color: #3E4F61 !important;">{{$product->name}}</h3>
                                     <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">€{{$product->value}}</span>
                                     <img src="/img/cardlayout/{{$product->category->layout}}" >
@@ -105,11 +114,5 @@
             </div>
         </div>
     </div>
-
-    <h3>@lang('text.instructions')</h3>
-    <p>
-        @lang('categories.instructions.'.$category->name)
-    </p>
-    <hr>
 
 @stop

@@ -14,12 +14,14 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('orderdetail_id')->unsigned();
+            $table->foreign('orderdetail_id')->references('id')->on('orderdetail');
+            $table->string('orderid');
             $table->string('email', 80);
             $table->string('fullname', 60);
             $table->string('method');
-            $table->decimal('total', 19, 2);
+            $table->decimal('total', 5, 2);
             $table->enum('status', ['open', 'cancelled', 'expired', 'failed', 'pending', 'paid', 'paidout', 'refunded', 'charged_back']);
-            $table->string('payment_id', 60);
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@
 @section('keywords', trans('seo.cart.keywords'))
 
 @push('mate-tags')
-    {{--<meta name="language" content="GB">--}}
+    <meta name="robots" content="noindex,nofollow">
 @endpush
 
 {{--content from the page--}}
@@ -17,11 +17,19 @@
 
         {!! Breadcrumbs::render('cart') !!}
 
-        <h1 class="col-lg-12">@lang('text.cart')</h1>
+        {{--<h1 class="col-lg-12">@lang('text.cart')</h1>--}}
+
 
         <div class="col-xs-8">
             <div class="panel">
                 <div class="panel-body">
+                    <span class="text-left" style="font-size: 23px; font-weight: bold">@lang('text.cart')</span>
+                    <hr>
+                    {{--{{dd($cart)}}--}}
+                    @if($cart->isEmpty())
+                        @lang('text.empty_cart')
+                    @endif
+
                     @foreach($cart as $item)
 
                         <div class="row">
@@ -108,12 +116,13 @@
                     {{Form::close()}}
 
                     <hr>
-                    <h2>@lang('text.tag_mothde')</h2>
+                    <h2>@lang('text.tag_method')</h2>
                     <p>
                         @foreach($mollie as $item)
                             <img style="padding: 3px;" src="{{$item->image->normal}}">
                         @endforeach
                     </p>
+                    <hr>
 
                 </div>
             </div>

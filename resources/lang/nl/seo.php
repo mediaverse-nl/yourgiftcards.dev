@@ -20,4 +20,9 @@ return array (
   array (
     'page_title' => 'Winkelwagen',
   ),
+  'category' => 
+  array (
+    'page_title' => 'koop online uw :category giftcards, al vanaf €:price.',
+    'page_description' => 'Koop uw :category giftcards online, snel en veilige betalen met IDEAL, paypal of een van onze andere betaalmethodes.',
+  ),
 );

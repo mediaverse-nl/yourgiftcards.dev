@@ -20,7 +20,7 @@ class CreateProductkeyTable extends Migration
             $table->foreign('user_id')->references('id')->on('user');
             $table->string('key')->unique();
             $table->string('copy');
-            $table->enum('status', ['sell', 'sold', 'nvt']);
+            $table->enum('status', ['sell', 'sold']);
             $table->timestamps();
         });
     }

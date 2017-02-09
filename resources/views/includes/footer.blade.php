@@ -1,4 +1,4 @@
-<div class="footer-basic-centered" style="height: 100%; border-top: 1px dashed #eee">
+<div class="footer-basic-centered" style="height: 100%; border-top: 1px dashed #eee; background-color: #2B3E51;">
     <div class="container" >
         <div class="col-lg-12" style="color: #F59D00">
 
@@ -14,17 +14,17 @@
             </div>
 
             <div class="col-lg-3">
-                <h2 style="font-size: 18px;">Social media</h2>
+                <h2 style="font-size: 18px;">Social m-edia</h2>
                 <ul>
                     <li>
-                        <a href="#">facebook </a>
+                        <a href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts">facebook </a>
                         <div class="fb-like"
-                             data-href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts"
-                             data-layout="button"
-                             data-action="like"
-                             data-size="small"
-                             data-show-faces="true"
-                             data-share="true"></div>
+                         data-href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts"
+                         data-layout="button"
+                         data-action="like"
+                         data-size="small"
+                         data-show-faces="true"
+                         data-share="true"></div>
                     </li>
                     <li><a href="#">twitter</a></li>
                     <li><a href="#">google+</a></li>
@@ -46,14 +46,11 @@
 
             </div>
 
-            <div class="col-lg-12" style="">
+            <div class="col-lg-12" style="margin-top: 40px;">
                 <span id="copyright text-right center-block">© Copyright 2015 yourgiftcard </span>
-                <span class="pull-right">Mediaverse.nl Company</span>
+                <span class="pull-right"><a style="color: #FFA50A" href="http://mediaverse.nl/">Mediaverse.nl</a> Company</span>
             </div>
 
-        </div>
-        <div class="col-lg-12">
-a
         </div>
     </div>
 </div>

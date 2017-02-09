@@ -13,17 +13,15 @@
 
 //Route::auth();
 // User authentication routes...
-//Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
-//Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
-//Route::get('password/email', 'Auth\PasswordController@getEmail');
-//Route::post('password/email', 'Auth\PasswordController@postEmail');
+Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
+Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
 //Route::get('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
 //Route::post('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
 Route::get('/inloggen', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 Route::post('/login', ['as' => 'login.post', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
-
-
 
 //set the language session
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
@@ -56,9 +54,8 @@ Route::post('/order/create', ['as' => 'order.create', 'uses' => 'MollieControlle
 Route::get('blog', ['as' => 'blog', 'uses' => 'BlogController@index']);
 Route::get('blog/{title}', ['as' => 'blog.show', 'uses' => 'BlogController@show']);
 
-Route::get('klantenservice', ['as' => 'klantenservice',  function () {
-    return view('contact');
-}]);
+Route::get('klantenservice', ['as' => 'klantenservice', 'uses' => 'ContactController@show']);
+Route::post('klantenservice', ['as' => 'klantenservice.store', 'uses' => 'ContactController@store']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 

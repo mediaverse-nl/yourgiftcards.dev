@@ -5,7 +5,7 @@
 @section('description', trans('seo.privacy.page_description'))
 
 @push('mate-tags')
-
+    <meta name="robots" content="noindex,nofollow">
 @endpush
 
 {{--content from the page--}}

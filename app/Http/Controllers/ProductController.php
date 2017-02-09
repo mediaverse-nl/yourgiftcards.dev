@@ -29,6 +29,10 @@ class ProductController extends Controller
     {
         $product = $this->product->where('name', str_replace('-', ' ', $name))->first();
 
+        if(str_replace('-', ' ', $category) != $product->category->name){
+            return redirect()->route('giftcard.show', [str_replace(' ', '-', $product->category->name), $name]);
+        }
+
         return view('product')
             ->with('category', $product->category)
             ->with('product', $product)
