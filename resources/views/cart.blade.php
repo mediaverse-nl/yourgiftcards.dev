@@ -78,18 +78,18 @@
                                     <b>@lang('text.tag_price')</b>
                                     @if($item->options[0]->discount == 0)
                                         <h6>
-                                            <strong>€{{$item->price - $item->options[0]->servicecosts}}</strong>
+                                            <strong>@lang('text.valuta_sign'){{$item->price - $item->options[0]->servicecosts}}</strong>
                                         </h6>
                                     @else
                                         <h6>
-                                            <span class="discount">€{{$item->options[0]->price}}</span>
+                                            <span class="discount">@lang('text.valuta_sign'){{$item->options[0]->price}}</span>
                                             <strong>
-                                                €{{$item->price - $item->options[0]->servicecosts}}
+                                                @lang('text.valuta_sign'){{$item->price - $item->options[0]->servicecosts}}
                                             </strong>
                                         </h6>
                                     @endif
                                     <small class="text-muted">@lang('text.tag_servicecosts')
-                                        <br>+ €{{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
+                                        <br>+ @lang('text.valuta_sign'){{number_format($item->options[0]->servicecosts * $item->qty, 2)}}</small>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                 <div class="panel-body">
 
                     <span class="text-left" style="font-size: 23px; font-weight: bold">@lang('text.tag_total')</span>
-                    <span class="text-right" style="font-size: 23px; float: right">€ {{Cart::subtotal()}}</span>
+                    <span class="text-right" style="font-size: 23px; float: right">@lang('text.valuta_sign') {{Cart::subtotal()}}</span>
 
                     <hr>
                     <a href="{{URL::route('cart.checkout')}}" class="btn btn-success btn-block">

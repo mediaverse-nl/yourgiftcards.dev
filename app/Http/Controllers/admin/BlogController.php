@@ -70,9 +70,11 @@ class BlogController extends Controller
                 ->withInput();
         }
 
+        $destinationPath = public_path().'/img';
+
         $minetype = $request->file('image')->getClientOriginalExtension();
         $full_path = str_random(15).'.'.$minetype;
-        $request->file('image')->move( base_path().'\public\img\blog', $full_path);
+        $request->file('image')->move( $destinationPath.'/blog', $full_path);
 
         $this->blog->user_id =  Auth::user()->id;
         $this->blog->title =  $request->title;
@@ -136,10 +138,11 @@ class BlogController extends Controller
         $blog->status =  $request->status;
 
         if($request->hasFile('image')){
+            $destinationPath = public_path().'/img';
             $minetype = $request->file('image')->getClientOriginalExtension();
             $full_path = str_random(15).'.'.$minetype;
-            $request->file('image')->move( base_path().'\public\img\blog', $full_path);
-            $this->blog->image =  $full_path;
+            $request->file('image')->move( $destinationPath.'/blog', $full_path);
+            $blog->image =  $full_path;
         }
 
         $blog->save();

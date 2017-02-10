@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('mailorder', [function(){
+
+    $order = \App\Order::find(80);
+
+    return view('mail.payment')->with('order', $order);
+}]);
+
+
 //Route::auth();
 // User authentication routes...
 Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);

@@ -15,7 +15,7 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $nieuws = Blog::orderBy('created_at', 'DESC')->first();
+        $nieuws = Blog::orderBy('created_at', 'DESC')->where('status', 'live')->first();
 
         view()->share('nieuws', $nieuws);
     }

@@ -96,10 +96,16 @@ class MollieController extends Controller
 
         OrderedProduct::insert($data);
 
-        Mail::send('mail.order', ['order' => Cart::content(), 'payment' => $order], function($m) use ($request){
+        $array = [];
+        foreach ( Cart::content() as $item){
+            $array[] = $item->options[0]->servicecosts * $item->qty ;
+        }
+
+        Mail::send('mail.order', ['order' => Cart::content(), 'payment' => $order, 'subtotal' => Cart::subtotal(), 'servicecost' => array_sum($array)], function($m) use ($request){
             $m->from('info@justgiftcards.com', 'Justgiftcard.nl');
             $m->to($request->email, $request->fullname)->subject(trans('mail.order.subject'));
         });
+
 
         return redirect($payment->getPaymentUrl());
     }
@@ -121,8 +127,8 @@ class MollieController extends Controller
             }
 
             Mail::send('mail.payment', ['payment' => $order], function($m) use ($order){
-                $m->from('info@justgiftcards.com');
-                $m->to($order->email, $order->name)->subject('Betaalbevestiging!');
+                $m->from('info@justgiftcards.com', 'Justgiftcard.nl');
+                $m->to($order->email, $order->fullname)->subject(trans('mail.payment.subject'));
             });
         }
         elseif (!$payment->isOpen())

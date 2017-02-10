@@ -29,10 +29,11 @@
                                 </div>
                             </div>
                         </div>
-
                     @endforeach
                 @else
-                    Betaling is gefaald
+                    <div>
+                        Betaling is gefaald
+                    </div>
                 @endif
 
 

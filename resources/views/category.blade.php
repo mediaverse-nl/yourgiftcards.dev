@@ -33,7 +33,7 @@
                 <a href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $tip->name)])}}">
                     <h1 class="text-center" style="color: #3E4F61 !important; font-size: 30px !important;">{{$tip->name}}</h1>
                     <span class="badge" style="top: 230px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">
-                        €{{$tip->value}}<br>
+                        @lang('text.valuta_sign'){{$tip->value}}<br>
                         <p style="color: #333333;"></p>
                     </span>
                     <img src="/img/cardlayout/{{$tip->category->layout}}" style="margin: 0px 17px; width: 90%;">
@@ -92,7 +92,7 @@
                             <div class="thumbnail container-shadow " style="height: auto">
                                 <a  href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $product->name)])}}">
                                     <h3 class="text-center" style="font-size:16px; color: #3E4F61 !important;">{{$product->name}}</h3>
-                                    <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">€{{$product->value}}</span>
+                                    <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">@lang('text.valuta_sign'){{$product->value}}</span>
                                     <img src="/img/cardlayout/{{$product->category->layout}}" >
                                 </a>
                                 <br>
@@ -104,7 +104,7 @@
                                 @else
                                     <input class="btn btn-default center-block" value="@lang('button.soldout')" style="background-color: #F59D00; color:#fff;" disabled>
                                 @endif
-                                <p class="text-center"><small class="text-muted">@lang('text.tag_servicecosts') + {{$tip->servicecosts}}</small></p>
+                                <p class="text-center"><small class="text-muted">@lang('text.tag_servicecosts') + @lang('text.valuta_sign'){{$tip->servicecosts}}</small></p>
 
                             </div>
                         </div>

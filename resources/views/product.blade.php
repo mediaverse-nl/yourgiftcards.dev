@@ -4,7 +4,7 @@
 {{--title from the page--}}
 {{--@section('title', $product->name.' | '.trans('text.delivery').' | '.env('APP_URL'))--}}
 @section('title', str_replace(':price', $product->price - $product->discount, $product->name.' :price ').trans('text.currency').' | '.trans('text.delivery').' | '.env('APP_URL'))
-@section('description', str_replace([':category', ':price'], [$product->category->name, $product->price - $product->discount], trans('seo.categories.page_description'). ', Category: :category, Price: €:price'))
+@section('description', str_replace([':category', ':price'], [$product->category->name, $product->price - $product->discount], trans('seo.categories.page_description'). ', Category: :category, Price: '.trans('text.valuta_sign').':price'))
 
 @push('mate-tags')
     <meta name="robots" content="index, follow">
@@ -34,7 +34,7 @@
             <div class="" style="position: relative"><br>
                 @if($product->discount != '0.00' )
                     <span class="tags">
-                        <span class="price-tag"><a href="javascript:void();"><small>@lang('text.tag_discount')</small> €{{$product->discount}}</a></span>
+                        <span class="price-tag"><a href="javascript:void();"><small>@lang('text.tag_discount')</small> @lang('text.valuta_sign'){{$product->discount}}</a></span>
                     </span>
                 @endif
                 <img itemprop="image" style="width: 100%;" src="/img/thumbnail/{{$product->category->thumbnail}}" alt="{{$product->name}}">
@@ -43,15 +43,15 @@
             <h1 class="" itemprop="name" >{{$product->name}}</h1>
 
             @if($product->discount != '0.00')
-                <b style="font-weight: bold">@lang('text.tag_price'):</b> <del class="small">€{{$product->price}}</del>
-                <b style="font-size: 18px;">€{{$product->price - $product->discount}}</b><br>
+                <b style="font-weight: bold">@lang('text.tag_price'):</b> <del class="small">@lang('text.valuta_sign'){{$product->price}}</del>
+                <b style="font-size: 18px;">@lang('text.valuta_sign'){{$product->price - $product->discount}}</b><br>
             @endif
 
             @if($product->discount == '0.00')
-                <b>@lang('text.tag_price'): </b>€{{$product->price}}<br>
+                <b>@lang('text.tag_price'): </b>@lang('text.valuta_sign'){{$product->price}}<br>
             @endif
 
-            <span class="small">@lang('text.tag_servicecosts'): + {{$product->servicecosts}}</span>
+            <span class="small">@lang('text.tag_servicecosts'): + @lang('text.valuta_sign'){{$product->servicecosts}}</span>
             <br>
             <br>
             <label>@lang('text.tag_amount')</label>
@@ -77,7 +77,7 @@
                     <div class="thumbnail" style=" width: 80px; display: inline-block">
                         <a href="{{route('giftcard.show', [str_replace(' ', '-', $category->name), str_replace(' ', '-', $item->name)])}}">
                             <img src="/img/cardlayout/{{$item->category->layout}}">
-                            <span>€{{$item->value}}</span>
+                            <span>@lang('text.valuta_sign'){{$item->value}}</span>
                         </a>
                     </div>
                 @endif

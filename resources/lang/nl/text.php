@@ -45,4 +45,5 @@ return array (
   'contact' => 'Contact',
   'currency' => 'euro',
   'empty_cart' => 'Uw winkelwagen is leeg.',
+  'valuta_sign' => '€',
 );
