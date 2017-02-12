@@ -31,7 +31,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        return view('admin.stock.index')->with('stock', $this->productkey->all());
+        return view('admin.stock.index')->with('stock', $this->productkey->orderBy('productkey.status', 'asc')->get());
     }
 
     /**

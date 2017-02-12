@@ -14,7 +14,7 @@
             <li class="{{ '/'.Request::path() == route('admin.stock', array(), false) ? 'active' : null}}"><a href="{{route('admin.stock')}}">stock</a></li>
             <li class="{{ '/'.Request::path() == route('admin.order', array(), false) ? 'active' : null}}"><a href="{{route('admin.order')}}">order</a></li>
             <li class="{{ '/'.Request::path() == route('admin.blog', array(), false) ? 'active' : null}}"><a href="{{route('admin.blog')}}">nieuws</a></li>
-            <li class="{{ '/'.Request::path() == route('admin.blog', array(), false) ? 'active' : null}}"><a href="{{route('admin.translations', '')}}">translation</a></li>
+            <li class=""><a href="{{route('admin.translations', '')}}">translation</a></li>
             <li><a href="#">nieuwsbrief</a></li>
             {{--<li><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Link 2 (toggle)</a>--}}
                 {{--<ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">--}}

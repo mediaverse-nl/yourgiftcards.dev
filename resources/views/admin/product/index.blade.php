@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                Category Panel <a href="{{route('admin.product.create')}}" class="btn btn-primary btn-sm pull-right">new</a>
+                Product Panel <a href="{{route('admin.product.create')}}" class="btn-xs btn btn-primary btn-sm pull-right">new</a>
             </div>
             <div class="panel-footer">
 
@@ -21,7 +21,7 @@
                             <th>id</th>
                             <th>category</th>
                             <th>name</th>
-                            <th>thumbnail</th>
+                            <th>price</th>
                             <th>discount</th>
                             <th>value</th>
                             <th>stock</th>
@@ -54,4 +54,18 @@
     </div>
 
 @endsection
+
+
+@push('script')
+
+
+<script>
+    $(document).ready(function(){
+        $('.table').DataTable({
+            "order": [[ 3, "asc" ]]
+        });
+    });
+</script>
+@endpush
+
 

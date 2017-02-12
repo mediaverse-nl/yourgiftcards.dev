@@ -7,9 +7,19 @@
     @include('includes.admin_menu')
 
     <div class="col-lg-10">
+
         <div class="panel panel-default">
             <div class="panel-body">
-                Stock Panel <a href="{{route('admin.stock.create')}}" class="btn btn-primary btn-sm pull-right">new</a>
+                Aantal Orders Per Maand
+            </div>
+            <div class="panel-footer">
+                <div id="myfirstchart" style="height: 250px;"></div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Stock Panel
             </div>
             <div class="panel-footer">
 
@@ -19,11 +29,11 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>order</th>
+                            <th>name</th>
                             <th>email</th>
                             <th>total</th>
-                            <th>date</th>
                             <th>status</th>
+                            <th>date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -50,4 +60,34 @@
     </div>
 
 @endsection
+
+@push('script')
+    <script>
+        new Morris.Line({
+            // ID of the element in which to draw the chart.
+            element: 'myfirstchart',
+            // Chart data records -- each entry in this array corresponds to a point on
+            // the chart.
+            data: {!! json_encode( \DB::table('order')
+            ->select(
+                DB::raw('MONTHNAME(updated_at) as month'),
+                DB::raw("DATE_FORMAT(updated_at,'%Y-%m') as monthNum"),
+                DB::raw('count(*) as orders')
+            )
+            ->groupBy('monthNum')
+            ->get())  !!},
+            // The name of the data record attribute that contains x-values.
+            xkey: 'monthNum',
+            // A list of names of data record attributes that contain y-values.
+            ykeys: ['orders'],
+            // Labels for the ykeys -- will be displayed when you hover over the
+            // chart.
+            labels: ['orders']
+        });
+
+        $(document).ready(function(){
+            $('.table').DataTable();
+        });
+    </script>
+@endpush
 
