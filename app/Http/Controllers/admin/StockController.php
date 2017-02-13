@@ -31,7 +31,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        return view('admin.stock.index')->with('stock', $this->productkey->orderBy('productkey.status', 'asc')->get());
+        return view('admin.stock.index')
+            ->with('stock', $this->productkey->orderBy('productkey.status', 'asc')->get());
     }
 
     /**
@@ -41,7 +42,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('admin.stock.create')->with('companies', $this->product->lists('name', 'id'));
+        return view('admin.stock.create')
+            ->with('companies', $this->product->lists('name', 'id'));
     }
 
     /**

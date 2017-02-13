@@ -19,7 +19,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
-                Stock Panel
+                Orders Panel
             </div>
             <div class="panel-footer">
 
@@ -86,7 +86,9 @@
         });
 
         $(document).ready(function(){
-            $('.table').DataTable();
+            $('.table').DataTable({
+                "order": [[ 0, "desc", 6, "asc" ]]
+            });
         });
     </script>
 @endpush

@@ -35,14 +35,6 @@
                         </div>
                     </div>
 
-                    <!-- category id -->
-                    <div class="form-group">
-                        {!! Form::label('category_id', 'category_id', ['class' => 'col-lg-2 control-label' , 'style' => 'margin-bottom: 0px !important;']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::select('category_id', $companies, null, ['class' => 'selectpicker form-control'])  !!}
-                        </div>
-                    </div>
-
                     <!-- status -->
                     <div class="form-group">
                         {!! Form::label('status', 'status', ['class' => 'col-lg-2 control-label']) !!}

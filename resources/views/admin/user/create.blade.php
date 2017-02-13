@@ -9,17 +9,17 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                edit nieuws
+                Nieuwe user
             </div>
             <div class="panel-footer">
 
                 @include('errors.message')
 
-                {!! Form::model($blog, array('route' => array('admin.blog.update', $blog->id), 'class' => 'form-horizontal', 'method' => 'patch', 'files' => true)) !!}
+                {!! Form::open(['route' => 'admin.blog.store', 'class' => 'form-horizontal', 'files' => true]) !!}
 
                 <fieldset>
 
-                    <!-- Email -->
+                    <!-- title -->
                     <div class="form-group">
                         {!! Form::label('title', 'title', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <!-- description -->
+                    <!-- text -->
                     <div class="form-group">
                         {!! Form::label('text', 'text', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
@@ -35,27 +35,18 @@
                         </div>
                     </div>
 
-                    <!-- category id -->
-                    <div class="form-group">
-                        {!! Form::label('category_id', 'category_id', ['class' => 'col-lg-2 control-label' , 'style' => 'margin-bottom: 0px !important;']) !!}
-                        <div class="col-lg-10">
-                            {!! Form::select('category_id', $companies, null, ['class' => 'selectpicker form-control'])  !!}
-                        </div>
-                    </div>
-
                     <!-- status -->
                     <div class="form-group">
                         {!! Form::label('status', 'status', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::select('status', \App\Blog::lists('status', 'status'), null, ['class' => 'form-control'] ) !!}
+                            {!! Form::select('status', array('live' => 'live', 'offline' => 'offline', 'deleted' => 'deleted'), null, ['class' => 'form-control'] ) !!}
                         </div>
                     </div>
 
-                    <!-- thumbnail -->
-                    <div class="form-group" style="margin: 50px 0px;">
+                    <!-- file image -->
+                    <div class="form-group">
                         {!! Form::label('image', 'image', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            <img height="200px;" src="\img\blog\{{ $blog->image }}">
                             {!! Form::file('image') !!}
                         </div>
                     </div>

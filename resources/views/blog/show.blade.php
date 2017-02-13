@@ -8,7 +8,7 @@
 
 @push('mate-tags')
     <meta property=”og:title” content="{{$blog->title}}"/>
-    <meta property=”og:image” content="/img/blog/{{$blog->image}}"/>
+    <meta property=”og:image” content="http://justgiftcards.nl/img/blog/{{$blog->image}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
     <meta property=”og:description” content="{{$blog->text}}"/>
     <meta property="og:site_name" content="Justgiftcards.nl" />
@@ -17,7 +17,7 @@
     <meta name=”twitter:url” content="{{Request::url()}}">
     <meta name=”twitter:title” content="{{$blog->title}}">
     <meta name=”twitter:description” content="{{$blog->text}}">
-    <meta name=”twitter:image” content="/img/blog/{{$blog->image}}">
+    <meta name=”twitter:image” content="http://justgiftcards.nl/img/blog/{{$blog->image}}">
 @endpush
 
 {{--content from the page--}}

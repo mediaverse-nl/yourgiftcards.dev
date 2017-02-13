@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Blog;
 
+use App\Category;
 use Auth;
 
 use Validator;
@@ -20,6 +21,7 @@ class BlogController extends Controller
     public function __construct()
     {
         $this->blog = new Blog;
+        $this->category = new Category;
     }
 
     /**
@@ -29,7 +31,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('admin.blog.index')->with('blogs', $this->blog->get());
+        return view('admin.blog.index')
+            ->with('blogs', $this->blog->get());
     }
 
     /**
@@ -39,7 +42,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.create');
+        return view('admin.blog.create')
+            ->with('companies', $this->category->lists('name', 'id'));
     }
 
     /**
@@ -51,14 +55,14 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'title.required'        => 'geef een categorie naam op',
-            'image.mimes'      => 'file type must be (JPEG, PNG, JNG or BMP) ',
-
+//            'title.required'        => 'geef een blog title op',
+//            'image.mimes'      => 'file type must be (JPEG, PNG, JNG or BMP) ',
         ];
 
         $rules = [
-            'title' => 'required|unique:blog|max:40',
-            'image'     => 'required|mimes:jpeg,png,jng,bmp',
+            'title'         => 'required|unique:blog|max:40',
+            'image'         => 'required|mimes:jpeg,png,jng,bmp',
+            'category_id'   => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -80,7 +84,8 @@ class BlogController extends Controller
         $this->blog->title =  $request->title;
         $this->blog->text =  $request->text;
         $this->blog->image =  $full_path;
-        $this->blog->status =  $request->status;;
+        $this->blog->status =  $request->status;
+        $this->blog->category_id =  $request->category_id;
 
         $this->blog->save();
 
@@ -97,7 +102,9 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.blog.edit')->with('blog', $this->blog->findOrFail($id));
+        return view('admin.blog.edit')
+            ->with('blog', $this->blog->findOrFail($id))
+            ->with('companies', $this->category->lists('name', 'id'));
     }
 
     /**
@@ -110,15 +117,16 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $messages = [
-            'title.required'   => 'geef een unique title op',
-            'image.mimes'      => 'file type must be (JPEG, PNG, JNG or BMP) ',
+//            'title.required'   => 'geef een unique title op',
+//            'image.mimes'      => 'file type must be (JPEG, PNG, JNG or BMP) ',
         ];
 
         $rules = [
-            'title'     => 'required|max:40',
-            'image'     => 'mimes:jpeg,png,jng,bmp',
-            'text'      => 'required',
-            'status'    => 'required',
+            'title'         => 'required|max:40',
+            'image'         => 'mimes:jpeg,png,jng,bmp',
+            'text'          => 'required',
+            'status'        => 'required',
+            'category_id'   => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -136,6 +144,7 @@ class BlogController extends Controller
         $blog->title =  $request->title;
         $blog->text =  $request->text;
         $blog->status =  $request->status;
+        $blog->category_id =  $request->category_id;
 
         if($request->hasFile('image')){
             $destinationPath = public_path().'/img';

@@ -10,7 +10,7 @@
     <meta name="robots" content="index, follow">
 
     <meta property=”og:title” content="{{$product->name}}"/>
-    <meta property=”og:image” content="/img/thumbnail/{{$product->category->layout}}"/>
+    <meta property=”og:image” content="http://justgiftcards.nl//img/thumbnail/{{$product->category->layout}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
     <meta property=”og:description” content="{{$category->description}}"/>
     <meta property="og:site_name" content="justgiftcards.nl" />
@@ -19,7 +19,7 @@
     <meta name=”twitter:url” content="{{Request::url()}}">
     <meta name=”twitter:title” content="{{$product->name}}">
     <meta name=”twitter:description” content="{{$category->description}}">
-    <meta name=”twitter:image” content="/img/thumbnail/{{$product->category->layout}}">
+    <meta name=”twitter:image” content="http://justgiftcards.nl/img/thumbnail/{{$product->category->layout}}">
 @endpush
 
 {{--content from the page--}}

@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                Category Panel <a href="{{route('admin.category.create')}}" class="btn btn-primary btn-sm pull-right">new</a>
+                Category Panel <a href="{{route('admin.category.create')}}" class="btn btn-xs btn-primary btn-sm pull-right">new</a>
             </div>
             <div class="panel-footer">
 

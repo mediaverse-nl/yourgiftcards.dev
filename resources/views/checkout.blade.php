@@ -6,7 +6,7 @@
 {{--@section('keywords', '')--}}
 
 @push('mate-tags')
-    {{--<meta name="language" content="GB">--}}
+    <meta name="robots" content="noindex,nofollow">
 @endpush
 
 {{--content from the page--}}

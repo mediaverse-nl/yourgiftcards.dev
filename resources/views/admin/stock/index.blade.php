@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->product->name}}</td>
-                                <td>{{str_limit($item->key, 10, '...')}}</td>
+                                <td>{{str_limit($item->key, 5, '...')}}</td>
                                 {{--<td>{{$item->copy}}</td>--}}
                                 <td>{{$item->status}}</td>
                                 <td>{{$item->user->name}}</td>

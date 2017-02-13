@@ -46,6 +46,7 @@ class ProductController extends Controller
             ->with('companies', $this->category->lists('name', 'id'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      *

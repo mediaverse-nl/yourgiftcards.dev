@@ -47,8 +47,8 @@
             </div>
 
             <div class="col-lg-12" style="margin-top: 40px;">
-                <span id="copyright text-right center-block">© Copyright 2015 yourgiftcard </span>
-                <span class="pull-right"><a style="color: #FFA50A" href="http://mediaverse.nl/">Mediaverse.nl</a> Company</span>
+                <span id="copyright text-right center-block">© Copyright 2015 Justgiftcards </span>
+                <span class="pull-right"> <a style="color: #FFA50A" href="http://mediaverse.nl/">Mediaverse.nl</a> Company</span>
             </div>
 
         </div>

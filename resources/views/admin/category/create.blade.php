@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                new category
+                Nieuwe Categorie
             </div>
             <div class="panel-footer">
 

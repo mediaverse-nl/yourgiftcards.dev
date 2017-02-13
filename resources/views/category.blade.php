@@ -8,7 +8,7 @@
     <meta name="robots" content="index,follow">
 
     <meta property=”og:title” content="{{$category->name}}"/>
-    <meta property=”og:image” content="/img/thumbnail/{{$category->thumbnail}}"/>
+    <meta property=”og:image” content="http://justgiftcards.nl/img/thumbnail/{{$category->thumbnail}}"/>
     <meta property=”og:url” content="{{Request::url()}}"/>
     <meta property=”og:description” content="{{$category->description}}"/>
     <meta property="og:site_name" content="Justgiftcards.nl" />
@@ -17,7 +17,7 @@
     <meta name=”twitter:url” content="{{Request::url()}}">
     <meta name=”twitter:title” content="{{$category->name}}">
     <meta name=”twitter:description” content="{{$category->description}}">
-    <meta name=”twitter:image” content="/img/thumbnail/{{$category->thumbnail}}">
+    <meta name=”twitter:image” content="http://justgiftcards.nl/img/thumbnail/{{$category->thumbnail}}">
 @endpush
 
 {{--content from the page--}}
@@ -34,7 +34,9 @@
                     <h1 class="text-center" style="color: #3E4F61 !important; font-size: 30px !important;">{{$tip->name}}</h1>
                     <span class="badge" style="top: 230px; right: 30px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">
                         @lang('text.valuta_sign'){{$tip->value}}<br>
-                        <p style="color: #333333;"></p>
+                        <p style="color: #333333; font-size: 11px; margin-top: -40px;">
+                            {{--@lang('text.tag_servicecosts')--}}
+                            + {{$tip->servicecosts}}</p>
                     </span>
                     <img src="/img/cardlayout/{{$tip->category->layout}}" style="margin: 0px 17px; width: 90%;">
                 </a>

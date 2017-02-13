@@ -12,12 +12,9 @@
 */
 
 Route::get('mailorder', [function(){
-
     $order = \App\Order::find(80);
-
     return view('mail.payment')->with('order', $order);
 }]);
-
 
 //Route::auth();
 // User authentication routes...
@@ -70,6 +67,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //main admin page
     Route::get('/', ['as' => 'admin', 'uses' => 'admin\HomeController@index']);
 
+    Route::get('/user', ['as' => 'admin.user', 'uses' => 'admin\UserController@index']);
+    Route::get('/user/create', ['as' => 'admin.user.create', 'uses' => 'admin\UserController@create']);
+    Route::post('/user', ['as' => 'admin.user.store', 'uses' => 'admin\UserController@store']);
+    Route::get('/user/{id}', ['as' => 'admin.user.show', 'uses' => 'admin\UserController@show']);
+    Route::get('/user/{id}/edit', ['as' => 'admin.user.edit', 'uses' => 'admin\UserController@edit']);
+    Route::patch('/user/{id}', ['as' => 'admin.user.update', 'uses' => 'admin\UserController@update']);
+    Route::delete('/user/{id}', ['as' => 'admin.user.destroy', 'uses' => 'admin\UserController@destroy']);
+
     Route::get('/blog', ['as' => 'admin.blog', 'uses' => 'admin\BlogController@index']);
     Route::get('/blog/create', ['as' => 'admin.blog.create', 'uses' => 'admin\BlogController@create']);
     Route::post('/blog', ['as' => 'admin.blog.store', 'uses' => 'admin\BlogController@store']);
@@ -106,5 +111,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/order/{id}', ['as' => 'admin.order.show', 'uses' => 'admin\OrderController@show']);
     Route::get('/order/{id}/edit', ['as' => 'admin.order.edit', 'uses' => 'admin\OrderController@edit']);
     Route::patch('/order/{id}', ['as' => 'admin.order.update', 'uses' => 'admin\OrderController@update']);
-
 });

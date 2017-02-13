@@ -9,17 +9,13 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                edit product
+                Wijzig Product
             </div>
             <div class="panel-footer">
 
                 @include('errors.message')
 
-                Tesseract OCR for PHP
-                "thiagoalessio/tesseract_ocr": "1.0.0-RC"
-
-
-                {{$product->productkey->where('status', 'sell')->count()}}
+                {{--{{$product->productkey->where('status', 'sell')->count()}}--}}
 
                 {!! Form::model($product, array('route' => array('admin.product.update', $product->id), 'class' => 'form-horizontal', 'method' => 'patch' )) !!}
 
@@ -95,11 +91,11 @@
             </div>
         </div>
 
-        <div>
-            @foreach($product->productkey as $stock)
-                {{$stock}}
-            @endforeach
-        </div>
+        {{--<div>--}}
+            {{--@foreach($product->productkey as $stock)--}}
+                {{--{{$stock}}--}}
+            {{--@endforeach--}}
+        {{--</div>--}}
 
     </div>
 

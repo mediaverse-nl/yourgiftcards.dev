@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use Mail;
 
 use Illuminate\Http\Request;
 
@@ -33,10 +34,9 @@ class ContactController extends Controller
                 ->withInput();
         }
 
-        Mail::send('mail.contact', ['name' => $name, 'email' => $email, 'message' => $message], function ($m) use ($name, $email, $message) {
-            $m->from('contact@justgiftcards.nl', 'Justgiftcards');
-
-            $m->to($email, $name)->subject('Contact');
+        Mail::send('mail.contact', ['name' => $request->name, 'email' => $request->email, 'message' => $request->message], function ($m) use ($request) {
+            $m->from('contact@justgiftcards.nl', 'Justgiftcards - Info');
+            $m->to($request->email, $request->name)->subject('Contact');
         });
 
         \Session::flash('succes_message', trans('text.successfully'));

@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                new category
+                Nieuwe Blog Post
             </div>
             <div class="panel-footer">
 
@@ -32,6 +32,14 @@
                         {!! Form::label('text', 'text', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
                             {!! Form::textarea('text', null, ['class' => 'form-control', 'placeholder' => 'text']) !!}
+                        </div>
+                    </div>
+
+                    <!-- category id -->
+                    <div class="form-group">
+                        {!! Form::label('category_id', 'category_id', ['class' => 'col-lg-2 control-label' , 'style' => 'margin-bottom: 0px !important;']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::select('category_id', $companies, null, ['class' => 'selectpicker form-control'])  !!}
                         </div>
                     </div>
 

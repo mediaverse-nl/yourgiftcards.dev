@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderedProduct;
 use App\Product;
-
 use App\Productkey;
+
 use Validator;
 use Cart;
 use Mail;
@@ -106,7 +106,6 @@ class MollieController extends Controller
             $m->to($request->email, $request->fullname)->subject(trans('mail.order.subject'));
         });
 
-
         return redirect($payment->getPaymentUrl());
     }
 
@@ -126,7 +125,7 @@ class MollieController extends Controller
                     ->update(['status' => 'sold']);
             }
 
-            Mail::send('mail.payment', ['payment' => $order], function($m) use ($order){
+            Mail::send('mail.payment', ['order' => $order], function($m) use ($order){
                 $m->from('info@justgiftcards.com', 'Justgiftcard.nl');
                 $m->to($order->email, $order->fullname)->subject(trans('mail.payment.subject'));
             });

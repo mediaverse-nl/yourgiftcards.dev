@@ -57,8 +57,6 @@
 
 
 @push('script')
-
-
 <script>
     $(document).ready(function(){
         $('.table').DataTable({

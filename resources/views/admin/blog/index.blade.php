@@ -9,7 +9,7 @@
     <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                Category Panel <a href="{{route('admin.blog.create')}}" class="btn btn-primary btn-sm pull-right">new</a>
+                Blog Panel <a href="{{route('admin.blog.create')}}" class="btn btn-xs btn-primary btn-sm pull-right">new</a>
             </div>
             <div class="panel-footer">
 
@@ -20,8 +20,8 @@
                         <tr>
                             <th>id</th>
                             <th>title</th>
+                            <th>category</th>
                             <th>image</th>
-                            <th>text</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -30,12 +30,13 @@
                             <tr class="{{ 'deleted' == $blog->status ? 'danger' : ''}}{{ 'offline' == $blog->status ? 'warning' : ''}}">
                                 <td>{{$blog->id}}</td>
                                 <td>{{$blog->title}}</td>
+                                <td>{{$blog->category->name}}</td>
                                 <td>
                                     <img height="50px;" src="\img\blog\{{ $blog->image }}">
                                 </td>
-                                <td>
-                                  <p> {{ $blog->text }}{{ $blog->status }}</p>
-                                </td>
+                                {{--<td>--}}
+{{--                                  <p> {{ $blog->text }}{{ $blog->status }}</p>--}}
+                                {{--</td>--}}
                                 <td style="width: 120px;">
                                     <a class="btn btn-info btn-sm" href="{{route('admin.blog.edit', $blog->id)}}">edit</a>
                                     {{ Form::open(['method' => 'DELETE', 'style' => 'width:50px; display: inline;', 'route' => ['admin.blog.destroy', $blog->id]]) }}
