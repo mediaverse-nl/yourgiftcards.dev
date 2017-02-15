@@ -14,7 +14,7 @@
             </div>
 
             <div class="col-lg-3">
-                <h2 style="font-size: 18px;">Social m-edia</h2>
+                <h2 style="font-size: 18px;">Social media</h2>
                 <ul>
                     <li>
                         <a href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts">facebook </a>

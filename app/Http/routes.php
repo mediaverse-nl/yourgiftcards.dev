@@ -11,9 +11,24 @@
 |
 */
 
+
+Route::get('bestelling', [function(){
+
+    $payment = \App\Order::find(30);
+
+    $order = Cart::content();
+
+    return view('mail.order')->with('payment', $payment);
+}]);
+
+
 Route::get('mailorder', [function(){
-    $order = \App\Order::find(80);
-    return view('mail.payment')->with('order', $order);
+
+    $payment = \App\Order::find(30);
+
+    $order = Cart::content();
+
+    return view('mail.payment')->with('order', $payment);
 }]);
 
 //Route::auth();

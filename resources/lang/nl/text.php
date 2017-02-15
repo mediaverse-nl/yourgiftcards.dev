@@ -25,6 +25,7 @@ return array (
   'categories_title' => 'Kies een giftcard',
   'categories_text' => 'Opzoek naar een giftcard zoek niet langer u kunt hier kiezen uit onze select aan giftcards',
   'amount' => 'Aantal',
+  'successfully' => 'Succes',
   'best_sold' => 'Best verkocht',
   'customer_service' => 'Klantenservice',
   'customerservice' => 'Klantenservice
@@ -41,9 +42,13 @@ return array (
   'take_a_look' => 'Bekijk al onze kaarten',
   'tag_subtotal' => 'Subtotaal',
   'tag_total' => 'Totaal',
+  'customerservice_text' => 'Wanneer iets onduidelijk is kunt u altijd tussen onze handleidingen kijken voor meer informatie.',
   'contact_us_text' => 'U kunt ook heel makkelijk contact opnemen via Facebook.',
   'contact' => 'Contact',
+  'tag_category' => 'Categorie ',
   'currency' => 'euro',
   'empty_cart' => 'Uw winkelwagen is leeg.',
+  'bedankt_title' => 'Dankuwel voor uw aankoop',
+  'bedankt_aankoop' => 'U krijgt naast hier, ook een code toegestuurd naar uw mail met een link naar waar u de code kunt verzilveren. Wij hopen u goed van dienst te zijn geweest. Voor vragen of klachten kunt u bij de klantenservice terecht.',
   'valuta_sign' => '€',
 );

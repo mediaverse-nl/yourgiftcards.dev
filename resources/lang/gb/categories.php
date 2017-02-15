@@ -1,9 +1,8 @@
 <?php
 
 return array (
-  'instructions' => 
+  'delivery' => 
   array (
-    'league of legend' => 'hgfcujygihyiu',
-    'blizzard' => 'vbnfdfg',
+    'blizzard' => 'Your :category card for :value pound will be delivered to you after your transaction is completed',
   ),
 );

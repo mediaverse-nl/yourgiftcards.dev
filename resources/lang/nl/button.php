@@ -1,19 +1,17 @@
 <?php
 
 return array (
-  'cart' => 'winkelwagen',
+  'cart' => 'Winkelwagen',
   'checkout' => 'Afrekenen',
   'empty' => 'Legen',
-  'add' => 'plus',
-  'min' => 'min',
+  'add' => 'Plus',
+  'min' => 'Min',
   'remove' => 'verwijderen uit winkelwagen',
   'continue' => 'Verder winkelen',
-  'lang-select' => 'select
-',
   'home' => 'Home',
   'giftcards' => 'giftcards
 ',
-  'blog' => 'nieuws',
+  'blog' => 'Nieuws',
   'service' => 'Klantenservice',
   'soldout' => 'Uitverkocht',
   'read_more' => 'Lees verder',
@@ -23,4 +21,9 @@ return array (
   'terms' => 'Terms and Conditions',
   'to_cart' => 'Direct bestellen',
   'add_to_cart' => 'Toevoegen aan winkelwagen',
+  'user_guide' => 'Gebruikshandleiding',
+  'send' => 'Verzenden
+',
+  'here' => 'hier
+',
 );

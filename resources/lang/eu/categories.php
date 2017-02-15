@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'instructions' => 
+  'delivery' => 
   array (
-    'blizzard' => 'hdfhhfjj',
+    'blizzard' => 'Your :category card for :value euro will be delivered to you after your transaction is completed',
   ),
 );

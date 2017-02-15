@@ -40,7 +40,7 @@
                                             {{$item->name}}<br>
                                             {{$item->options[0]->category->name}}
                                         </td>
-                                        <td>{{$item->qty}}</td>
+                                        <td>x {{$item->qty}}</td>
                                         <td>{{number_format($item->options[0]->price - $item->options[0]->discount, 2)}}</td>
                                     </tr>
                                 @endforeach
@@ -93,15 +93,15 @@
                             <table class="table">
                                 <tr>
                                     <td ><b>@lang('text.tag_subtotal')</b></td>
-                                    <td class="text-right">@lang('text.valuta_sign'){{Cart::subtotal() - $servicecosts}}</td>
+                                    <td class="text-right">@lang('text.valuta_sign'){{number_format(Cart::subtotal() - $servicecosts, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>@lang('text.tag_servicecosts')</b></td>
-                                    <td class="text-right">@lang('text.valuta_sign'){{$servicecosts}}</td>
+                                    <td class="text-right">@lang('text.valuta_sign'){{number_format($servicecosts, 2)}}</td>
                                 </tr>
                                 <tr style="font-size: 20px; font-weight: bold; ">
                                     <td ><b>@lang('text.tag_total')</b></td>
-                                    <td class="text-right">@lang('text.valuta_sign'){{Cart::subtotal()}}</td>
+                                    <td class="text-right">@lang('text.valuta_sign'){{number_format(Cart::subtotal(), 2)}}</td>
                                 </tr>
                             </table>
 

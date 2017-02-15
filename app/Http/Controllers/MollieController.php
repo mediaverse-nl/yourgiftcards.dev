@@ -82,7 +82,10 @@ class MollieController extends Controller
         $data = [];
         foreach (Cart::content() as $item){
 
-            $keys = Productkey::where('product_id', $item->options[0]->id)->where('status', 'sell')->get();
+            $keys = Productkey::where('product_id', $item->options[0]->id)
+                ->where('status', 'sell')
+                ->limit($item->qty)
+                ->get();
 
             foreach ($keys as $key){
                 $data[] = [
@@ -105,6 +108,8 @@ class MollieController extends Controller
             $m->from('info@justgiftcards.com', 'Justgiftcard.nl');
             $m->to($request->email, $request->fullname)->subject(trans('mail.order.subject'));
         });
+
+        Cart::destroy();
 
         return redirect($payment->getPaymentUrl());
     }
