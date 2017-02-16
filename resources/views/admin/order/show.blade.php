@@ -52,6 +52,7 @@
                             <div class="col-md-8">
                                 <h1>{{$item->productkey->product->name}}</h1>
                                 Code: {{$item->productkey->key}}<br><br>
+                                status: {{$item->productkey->status}}<br><br>
                             </div>
                         </div>
                     </div>

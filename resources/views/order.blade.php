@@ -6,11 +6,17 @@
     <div class="row">
         <div class="col-xs-4">
             <div class="panel panel-info">
-                <div class="panel-body">
+                <div class="panel-body">                @if($order->status === 'paid')
+
                     <h2>@lang('text.bedankt_title')</h2>
                     <p>
                         @lang('text.bedankt_aankoop')
                     </p>
+                    @else
+                    <div>
+                        Betaling is gefaald
+                    </div>
+                @endif
                 </div>
             </div>
         </div>
