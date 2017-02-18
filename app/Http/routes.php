@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('voorraad_test', ['uses' => 'admin\StockController@updateStock']);
 
 Route::get('bestelling', [function(){
 

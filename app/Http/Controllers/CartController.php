@@ -37,7 +37,9 @@ class CartController extends Controller
             Cart::update($item->rowId, $stock > $item->qty ? $item->qty : $stock);
         }
 
-        return view('cart', ['cart' => $cart])->with('mollie', $this->mollie->methods()->all());
+        return view('cart', ['cart' => $cart])
+            ->with('mollie', $this->mollie->methods()->all())
+            ->with('', '');
     }
 
     public function add(Request $request)

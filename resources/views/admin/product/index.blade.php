@@ -23,6 +23,7 @@
                             <th>name</th>
                             <th>price</th>
                             <th>discount</th>
+                            <th>servicecosts</th>
                             <th>value</th>
                             <th>stock</th>
                             <th></th>
@@ -36,6 +37,7 @@
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->discount}}</td>
+                                <td>{{$product->servicecosts}}</td>
                                 <td>{{$product->value}}</td>
                                 <td>{{$stock->where('product_id', $product->id)->where('status', 'sell')->count()}}</td>
                                 <td style="width: 120px;">

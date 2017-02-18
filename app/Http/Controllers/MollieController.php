@@ -37,6 +37,9 @@ class MollieController extends Controller
 
     public function create(Request $request)
     {
+        if (Cart::count() == 0)
+            return redirect()->route('cart.index');
+
         $rules = [
             'fullname' => 'required',
             'email' => 'required|email',
@@ -87,7 +90,16 @@ class MollieController extends Controller
                 ->limit($item->qty)
                 ->get();
 
+            if($item->qty !== count($keys)){
+                return redirect()->route('cart.index');
+            }
+
             foreach ($keys as $key){
+                //update product status
+                Productkey::where('id', $key->id)
+                    ->where('status', '!=', 'sold')
+                    ->update(['status' => 'pending']);
+
                 $data[] = [
                     'order_id' => $order->id,
                     'productkey_id' => $key->id,
@@ -103,6 +115,9 @@ class MollieController extends Controller
         foreach ( Cart::content() as $item){
             $array[] = $item->options[0]->servicecosts * $item->qty ;
         }
+//
+        session()->forget('trash');
+        session(['trash' => $payment->id]);
 
         Mail::send('mail.order', ['order' => Cart::content(), 'payment' => $order, 'subtotal' => Cart::subtotal(), 'servicecost' => array_sum($array)], function($m) use ($request){
             $m->from('info@justgiftcards.com', 'Justgiftcard.nl');
@@ -119,6 +134,9 @@ class MollieController extends Controller
         $order = $this->order->find($id);
 
         $payment =  $this->mollie->payments()->get($order->payment_id);
+
+        if(session('trash') !== $order->payment_id)
+            return redirect()->route('cart.index');
 
         if ($payment->isPaid())
         {
@@ -138,6 +156,12 @@ class MollieController extends Controller
         elseif (!$payment->isOpen())
         {
             $order->status = self::STATUS_CANCELLED;
+
+            foreach ($order->orderedProduct as $item){
+                Productkey::where('id', '=', $item->productkey_id)
+                    ->where('status', '!=', 'sold')
+                    ->update(['status' => 'sell']);
+            }
         }
 
         $order->save();
