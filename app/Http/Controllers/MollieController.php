@@ -90,7 +90,7 @@ class MollieController extends Controller
                 ->limit($item->qty)
                 ->get();
 
-            if($item->qty !== count($keys)){
+            if(!($item->qty <= count($keys))){
                 return redirect()->route('cart.index');
             }
 

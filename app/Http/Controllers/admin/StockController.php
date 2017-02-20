@@ -155,24 +155,28 @@ class StockController extends Controller
         return Redirect()->route('items.index');
     }
 
-    public function updateStock()
-    {
-        $products = $this->productkey->where('status', 'pending')->get();
-
-        foreach ($products as $product)
-        {
-            $startTime = Carbon::parse($product->updated_at);
-            $finishTime = Carbon::now();
-            $totalDuration = $finishTime->diffInSeconds($startTime);
-
-            dd(gmdate('H:i:s', $totalDuration));
-
-            //als deze tijd groter is dan 15 min moet de instatie geupdate worden.
-
-        }
-
-        return $products;
-
-    }
+//    public function updateStock()
+//    {
+//        $products = $this->productkey->where('status', 'pending')->get();
+//
+//        foreach ($products as $product)
+//        {
+//            $startTime = Carbon::parse($product->updated_at);
+//            $finishTime = Carbon::now();
+//            $totalDuration = $finishTime->diffInSeconds($startTime);
+//
+//            if($totalDuration > 900)
+//            {
+//                //als deze tijd groter is dan 15 min moet de instatie geupdate worden.
+////                dd([gmdate('H:i:s', $totalDuration), $totalDuration]);
+//                $this->productkey->where('id', $product->id)
+//                    ->where('status', '=', 'pending')
+//                    ->update(['status' => 'sell']);
+//
+//            }
+//        }
+//
+////        return $products;
+//    }
 
 }

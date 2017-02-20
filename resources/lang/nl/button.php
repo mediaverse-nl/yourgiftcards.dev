@@ -1,17 +1,19 @@
 <?php
 
 return array (
-  'cart' => 'Winkelwagen',
+  'cart' => 'winkelwagen',
   'checkout' => 'Afrekenen',
   'empty' => 'Legen',
-  'add' => 'Plus',
-  'min' => 'Min',
+  'add' => 'plus',
+  'min' => 'min',
   'remove' => 'verwijderen uit winkelwagen',
   'continue' => 'Verder winkelen',
+  'lang-select' => 'select
+',
   'home' => 'Home',
   'giftcards' => 'giftcards
 ',
-  'blog' => 'Nieuws',
+  'blog' => 'nieuws',
   'service' => 'Klantenservice',
   'soldout' => 'Uitverkocht',
   'read_more' => 'Lees verder',

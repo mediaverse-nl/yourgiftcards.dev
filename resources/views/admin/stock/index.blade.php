@@ -27,26 +27,26 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>id</th>
+                            {{--<th>id</th>--}}
                             <th>product</th>
                             <th>key</th>
                             {{--<th>copy</th>--}}
                             <th>status</th>
                             <th>username</th>
-                            <th>created at</th>
+                            <th>updated at</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($stock as $item)
                             <tr>
-                                <td>{{$item->id}}</td>
+                                {{--<td>{{$item->id}}</td>--}}
                                 <td>{{$item->product->name}}</td>
                                 <td>{{str_limit($item->key, 5, '...')}}</td>
                                 {{--<td>{{$item->copy}}</td>--}}
                                 <td>{{$item->status}}</td>
                                 <td>{{$item->user->name}}</td>
-                                <td>{{$item->created_at}}</td>
+                                <td>{{$item->updated_at}}</td>
                                 <td style="width: 60px;">
                                     <a class="btn btn-info btn-sm" href="{{route('admin.stock.edit', $item->id)}}">edit</a>
                                 </td>

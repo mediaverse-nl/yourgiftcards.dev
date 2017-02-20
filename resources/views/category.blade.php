@@ -95,7 +95,7 @@
                                 <a  href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $product->name)])}}">
                                     <h3 class="text-center" style="font-size:16px; color: #3E4F61 !important;">{{$product->name}}</h3>
                                     <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">@lang('text.valuta_sign'){{$product->value}}</span>
-                                    <img src="/img/cardlayout/{{$product->category->layout}}" >
+                                    <img style="padding: 10px;" src="/img/cardlayout/{{$product->category->layout}}" >
                                 </a>
                                 <br>
                                 @if($stock->where('product_id', $product->id)->where('status', 'sell')->count() >= 1)
