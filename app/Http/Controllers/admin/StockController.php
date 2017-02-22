@@ -76,6 +76,8 @@ class StockController extends Controller
 
         $this->productkey->product_id     =  $request->product_id;
         $this->productkey->key            =  $request->key;
+        $this->productkey->region         =  $request->region;
+        $this->productkey->cardnumber     =  $request->cardnumber;
         $this->productkey->user_id        =  Auth::user()->id;
 
         $this->productkey->save();
@@ -107,16 +109,14 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $messages = [
-            'key.required'        => 'geef een product naam op',
-        ];
-
         $rules = [
-            'key'          => 'required|max:40',
+            'key'          => 'required|max:60|unique:productkey,key,'.$id,
             'product_id'          => 'required|max:40',
+            'region'          => 'required|max:3',
+            'cardnumber'          => 'required|max:100|unique:productkey,cardnumber,'.$id,
         ];
 
-        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return redirect()
@@ -130,6 +130,8 @@ class StockController extends Controller
         $productkey->key           =  $request->key;
         $productkey->product_id    =  $request->product_id;
         $productkey->copy          =  $request->copy;
+        $productkey->region         =  $request->region;
+        $productkey->cardnumber     =  $request->cardnumber;
 
         $productkey->save();
 

@@ -28,7 +28,6 @@
                 <div class="panel-body">
                     <h1>@lang('text.take_a_look')</h1><br><hr style="margin-top: -25px;">
                     @foreach($category as $cate)
-                        {{--{{dd($cate->name)}}--}}
                         <a href="{{route('giftcards', str_replace(' ', '-', $cate->name))}}">
                             <img style="width: 24%; padding: 5px;" src="/img/cardlayout/{{$cate->layout}}">
                         </a>
@@ -43,10 +42,10 @@
                 <h1 class="col-lg-12">@lang('text.best_sold')</h1>
                 @foreach($product as $item)
                     <div class="col-xs-6 col-md-3">
-                        <a href="{{URL::route('giftcard.show', [$item->id, str_replace(' ', '-', $item->name)] )}}" class="thumbnail">
-                            <img style="height: 145px !important; width: 100%;" src="/img/thumbnail/{{$item->category->thumbnail}}" alt="">
+                        <a href="{{URL::route('giftcard.show', [$item['id'], str_replace(' ', '-', $item['name'])] )}}" class="thumbnail">
+                            <img style="height: 145px !important; width: 100%;" src="/img/thumbnail/{{$item['category']['thumbnail']}}" alt="">
                         </a>
-                        <h2>{{$item->name}}</h2>
+                        <h2>{{($item['name'])}}</h2>
                     </div>
                 @endforeach
             </div>

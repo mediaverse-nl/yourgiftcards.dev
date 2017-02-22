@@ -23,7 +23,7 @@
         <div class="col-xs-8">
             <div class="panel">
                 <div class="panel-body">
-                    <span class="text-left" style="font-size: 23px; font-weight: bold">@lang('text.cart')</span>
+                    <span class="text-left" style="font-size: 23px; font-weight: bold">{{trans('text.cart')}}</span>
                     <hr>
                     {{--{{dd($cart)}}--}}
                     @if($cart->isEmpty())
@@ -72,7 +72,7 @@
                                         <input type="hidden" name="qty" value="{{$item->qty + 1}}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-fefault btn-xs add-to-cart"
-                                        {{$item->qty < \App\Productkey::where('product_id', $item->id)->where('status', 'sell')->count() ? : 'disabled'}}>
+                                        {{$item->qty < \App\Productkey::where('product_id', $item->id)->where('status', 'sell')->where('region', App::getLocale())->count() ? : 'disabled'}}>
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </form>

@@ -159,7 +159,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CategoryServiceProvider::class,
 
-        'Collective\Html\HtmlServiceProvider',
+        Collective\Html\HtmlServiceProvider::class,
 
         Mollie\Laravel\MollieServiceProvider::class,
 
@@ -177,7 +177,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
-        'Barryvdh\TranslationManager\TranslationServiceProvider',
+        Barryvdh\TranslationManager\TranslationServiceProvider::class,
 
 
     ],
@@ -226,8 +226,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
 

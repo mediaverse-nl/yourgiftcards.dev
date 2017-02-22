@@ -20,9 +20,9 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name'           => 'required|max:40',
-            'email'           => 'required|email|max:60',
-            'message'           => 'required|max:250',
+            'name'     => 'required|max:40',
+            'email'    => 'required|email|max:60',
+            'message'  => 'required|max:250',
         ];
 
         $validator = Validator::make($request->all(), $rules);

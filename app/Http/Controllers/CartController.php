@@ -33,7 +33,7 @@ class CartController extends Controller
         $cart = Cart::content();
 
         foreach ($cart as $item){
-            $stock = Productkey::where('product_id', $item->id)->where('status', 'sell')->count();
+            $stock = Productkey::where('product_id', $item->id)->where('status', 'sell')->where('region', \App::getLocale())->count();
             Cart::update($item->rowId, $stock > $item->qty ? $item->qty : $stock);
         }
 
@@ -80,10 +80,19 @@ class CartController extends Controller
         if (Cart::count() == 0)
             return redirect()->route('cart.index');
 
+        $cart = Cart::content();
+
+        foreach ($cart as $item_cart){
+            $stock = Productkey::where('product_id', $item_cart->id)->where('status', 'sell')->where('region', \App::getLocale())->count();
+            Cart::update($item_cart->rowId, $stock > $item_cart->qty ? $item_cart->qty : $stock);
+        }
+
         $array = [];
-        foreach ( Cart::content() as $item){
+        foreach ($cart as $item){
             $array[] = $item->options[0]->servicecosts * $item->qty ;
         }
+
+//        dd( $this->mollie->methods()->settlements());
 
         return view('checkout')
             ->with('cart', Cart::content())

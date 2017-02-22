@@ -24,8 +24,29 @@
                     <a class="btn btn-default" style="background-color: #F59D00; border-radius: 0px; border: none; color: #fff;" href="{{route('guide')}}">@lang('button.user_guide')</a>
                     <br>
                     <br>
-                    @lang('text.contact_us_text')<br><br>
+                    @lang('text.contact_us_text')<br>
+                    <b>@justgiftcards</b>
+                    <br>
+                    <br>
                     <a class="btn btn-default" style="background-color: #F59D00; border-radius: 0px; border: none; color: #fff;" href="https://www.facebook.com/Justgiftcardsnl-214283949025796/">Facebook</a>
+
+                    <br>
+                    <br>
+
+                    <b>@lang('text.mail_us')</b><br>
+                    E-mail : info@justgiftcards.nl<br>
+                    Maandag t/m vrijdag: 08.00 - 22.00 uur<br>
+                    {{--Zaterdag en zondag: 10.00 - 22.00 uur<br>--}}
+                    <br>
+                    <b>@lang('text.adres')</b><br>
+                    Mediaverse<br>
+                    Daalakkersweg 2<br>
+                    5641JA Eindhoven<br>
+                    The netherlands<br>
+
+                    <br>
+                    KVK: 58808442<br>
+                    BTW: NL212068842B01<br>
 
                 </div>
             </div>

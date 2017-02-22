@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $this->product = new Product();
         $this->category = new Category();
-        $this->stock = Productkey::with('product')->orderBy('product_id')->get();
+        $this->stock = Productkey::with('product')->where('region', \App::getLocale())->orderBy('product_id')->get();
     }
 
     /**

@@ -27,11 +27,27 @@
                         </div>
                     </div>
 
+                    <!-- name -->
+                    <div class="form-group">
+                        {!! Form::label('cardnumber', 'cardnumber', ['class' => 'col-lg-2 control-label']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::text('cardnumber', null, ['class' => 'form-control', 'placeholder' => 'cardnumber']) !!}
+                        </div>
+                    </div>
+
+                    <!-- product id -->
+                    <div class="form-group">
+                        {!! Form::label('region', 'region', ['class' => 'col-lg-2 control-label']) !!}
+                        <div class="col-lg-10">
+                            {!! Form::select('region', Config::get('languages'))  !!}
+                        </div>
+                    </div>
+
                     <!-- product id -->
                     <div class="form-group">
                         {!! Form::label('product_id', 'product_id', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-10">
-                            {!! Form::select('product_id', $companies)  !!}
+                            {!! Form::select('product_id', $companies, ['class' => 'form-control'])  !!}
                         </div>
                     </div>
 
@@ -44,11 +60,8 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
                             {!! Form::submit('Submit', ['class' => 'btn btn-sm btn-primary pull-right'] ) !!}
-                        </div>
-                    </div>
+
 
                 </fieldset>
 

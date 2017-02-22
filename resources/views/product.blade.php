@@ -68,8 +68,33 @@
                 {{Form::selectRange('number', 0, 1, null, ['class'=> 'form-control pull-left', 'name' => 'qty', 'style' => 'width: 57px; margin-left: 0px; border-radius: 1px;', 'disabled'])}}
             @endif
             <br>
-
             <br>
+            <br>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-lg-6">
+                        Deze code is te gebruiken in:
+                        <br>
+                        <span class="flag-icon flag-icon-{{App::getLocale()}}" style="margin-top: 10px; font-size: 20px !important;"></span>
+                        @foreach (Config::get('languages') as $lang => $language)
+                            @if($lang == App::getLocale())
+                                <span style="font-size: 20px !important;">{{$language}}</span>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="col-lg-6">
+                        verkrijgbaar in
+                        <br>
+                        @foreach ($product->productkey->groupBy('region') as $lang => $language)
+                            @if($lang != App::getLocale())
+                                <li><a href="{{ route('lang.switch', $lang) }}" data-val="{{strtoupper($lang)}}"><span class="flag-icon flag-icon-{{$lang}}" style="margin-right: 20px;"></span></i></a></li>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
             <br>
             <label>@lang('text.tag_check_this')</label><br>
             @foreach($category->product as $item)

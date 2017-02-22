@@ -86,6 +86,7 @@ class MollieController extends Controller
         foreach (Cart::content() as $item){
 
             $keys = Productkey::where('product_id', $item->options[0]->id)
+                ->where('region', \App::getLocale())
                 ->where('status', 'sell')
                 ->limit($item->qty)
                 ->get();
