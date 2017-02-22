@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
 //         Commands\Inspire::class,
-         Commands\UpdateStock::class,
+        Commands\UpdateStock::class,
+        Commands\UpdateOrders::class,
     ];
 
     /**
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('inspire')
 //                  ->hourly();
          $schedule->command('stock:update')
+                  ->everyMinute();
+         $schedule->command('update:orders')
                   ->everyMinute();
     }
 }
