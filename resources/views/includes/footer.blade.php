@@ -17,7 +17,7 @@
                 <h2 style="font-size: 18px;">Social media</h2>
                 <ul>
                     <li>
-                        <a href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts">facebook </a>
+                        <a href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts">facebook </a><br>
                         <div class="fb-like"
                          data-href="https://www.facebook.com/Justgiftcardsnl-214283949025796/?fref=ts"
                          data-layout="button"
@@ -26,9 +26,23 @@
                          data-show-faces="true"
                          data-share="true"></div>
                     </li>
-                    <li><a href="#">twitter</a></li>
-                    <li><a href="#">google+</a></li>
-                    <li><a href="#">tumblr</a></li>
+                    <li style="padding: 5px 0px;">
+                        <a>twitter</a><br>
+                        <a href="https://twitter.com/justgiftcardsNL" class="twitter-follow-button" data-show-count="false">Follow @justgiftcardsNL</a>
+                        <script>
+                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],
+                                    p=/^http:/.test(d.location)?'http':'https';
+                                if(!d.getElementById(id)){
+                                    js=d.createElement(s);js.id=id;
+                                    js.src=p+'://platform.twitter.com/widgets.js';
+                                    fjs.parentNode.insertBefore(js,fjs);
+                                }}(document, 'script', 'twitter-wjs');
+                        </script>
+
+
+                    </li>
+                    {{--<li><a href="#">google+</a></li>--}}
+                    {{--<li><a href="#">tumblr</a></li>--}}
 
                 </ul>
             </div>

@@ -39,14 +39,14 @@
                     {{--Zaterdag en zondag: 10.00 - 22.00 uur<br>--}}
                     <br>
                     <b>@lang('text.adres')</b><br>
-                    Mediaverse<br>
+                    Justgiftcards<br>
                     Daalakkersweg 2<br>
                     5641JA Eindhoven<br>
-                    The netherlands<br>
+                    The Netherlands<br>
 
                     <br>
-                    KVK: 58808442<br>
-                    BTW: NL212068842B01<br>
+                    KVK: 669976227<br>
+                    BTW: NL856778345B01<br>
 
                 </div>
             </div>
