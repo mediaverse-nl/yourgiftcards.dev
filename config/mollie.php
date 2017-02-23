@@ -34,12 +34,60 @@ return [
     'test_mode' => env('MOLLIE_TEST_MODE', true),
 
     'keys' => [
-
         'live' => env('MOLLIE_KEY_LIVE', 'live_xxx'),
         'test' => env('MOLLIE_KEY_TEST', 'test_cdfhyQ9KceV2JAqEsvfb7sN86fHC4f'),
-
     ],
 
+    'transaction_costs' => [
+        'ideal' => [
+            'percentage' => 0,
+            'price' => 0.29,
+        ],
+        'creditcard' => [
+            'percentage' => 0.028,
+            'price' => 0.25,
+        ],
+        'mistercash' => [
+            'percentage' => 0.015,
+            'price' => 0.25,
+        ],
+        'sofort' => [
+            'percentage' => 00.009,
+            'price' => 0.25,
+        ],
+        'banktransfer' => [
+            'percentage' => 0,
+            'price' => 0.25,
+        ],
+        'directdebit' => [
+            'percentage' => 0,
+            'price' => 0.45,
+        ],
+        'paypal' => [
+            'percentage' => 0.034,
+            'price' => 0.45,
+        ],
+        'bitcoin' => [
+            'percentage' => 0,
+            'price' => 0.25,
+        ],
+        'podiumcadeaukaart' => [
+            'percentage' => 0,
+            'price' => 0.65,
+        ],
+        'paysafecard' => [
+            'percentage' => 0.15,
+            'price' => 0,
+        ],
+        'kbc' => [
+            'percentage' => 00.009,
+            'price' => 0.25,
+        ],
+        'belfius' => [
+            'percentage' => 00.009,
+            'price' => 0.25,
+        ],
+    ],
     // Place the following in the 'config/services.php'
     // 'mollie' => [
     //     'client_id'     => env('MOLLIE_CLIENT_ID', 'app_xxx'),

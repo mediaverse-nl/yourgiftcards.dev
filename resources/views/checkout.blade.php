@@ -69,11 +69,56 @@
                                         {!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
                                         {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'email@justgiftcards.nl']) !!}
                                     </div>
-                                    <!-- payment methods -->
-                                    <div class="form-group">
-                                        {!! Form::label('methods', trans('text.tag_method'), ['class' => 'control-label']) !!}
-                                        {!! Form::select('methods', collect($mollie)->pluck('id', 'id'), null, ['class' => 'form-control', 'placeholder' => '--- select ---']) !!}
+                                    {!! Form::label('email', trans('text.tag_method'), ['class' => 'control-label']) !!}<br>
+
+                                    <div class="row">
+                                        @foreach(collect($mollie)->pluck('id', 'id') as $value => $item)
+                                            <label for="{{$value}}" class="control-label pay-lb col-ms-12 col-md-12 col-lg-12">
+                                                <div class="image-payment pull-left">
+                                                    {!! Form::radio('methods', $value, null, ['id' => $value, 'class' => 'method']) !!}
+                                                    @foreach($mollie as $name)
+                                                        {{--{{dd($name->description)}}--}}
+                                                        @if($name->id == $value)
+                                                            <img src="{{$name->image->normal}}">
+                                                            {!! Form::label($value, $name->description, ['class' => 'control-label pay-lb']) !!}
+                                                        @endif
+                                                    @endforeach
+                                                    @php
+                                                        $pirce = Config::get('mollie.transaction_costs.'.$value.'.price');
+                                                        $percentage =  Config::get('mollie.transaction_costs.'.$value.'.percentage');
+                                                    @endphp
+                                                </div>
+                                                <div class="pricing pull-right ">
+                                                    <small class="muted" style="line-height: 50px;">
+                                                    @if($pirce != 0)
+                                                        @lang('text.valuta_sign'){{$pirce}}
+                                                        {{--{{number_format((Cart::subtotal() + $pirce) * $percentage + Cart::subtotal(),2 )}} --}}
+            {{--                                            {{number_format((Cart::subtotal() + $item['price']) * $item['percentage'] + Cart::subtotal(),2 )}}--}}
+                                                    @endif
+                                                    @if($percentage != 0)
+                                                        + {{number_format($percentage,2)}}%
+                                                    @endif
+                                                    </small>
+                                                </div>
+                                            </label>
+                                        @endforeach
                                     </div>
+
+                                    <style>
+                                        input[type="radio"]{
+                                            visibility:hidden;
+                                        }
+                                        input[type="radio"]:checked{
+                                            visibility:hidden;
+                                        }
+                                    </style>
+                                    <br>
+
+                                    <!-- payment methods -->
+                                    {{--<div class="form-group">--}}
+                                        {{--{!! Form::label('methods', trans('text.tag_method'), ['class' => 'control-label']) !!}--}}
+                                        {{--{!! Form::select('methods', collect($mollie)->pluck('id', 'id'), null, ['class' => 'form-control', 'dir' => 'rtl', 'placeholder' => '--- select ---']) !!}--}}
+                                    {{--</div>--}}
                                     <!-- Submit Button -->
                                     <div class="form-group">
                                         {!! Form::submit('Afrekenen', ['class' => 'btn btn-pay'] ) !!}
@@ -115,8 +160,40 @@
     </div>
 @stop
 
+@push('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.pay-lb ').on('click', function(){
+                $(".selected").removeClass('selected');
+                $(this).addClass('selected');
+            });
+        });
+//            $('.method').click(function(){
+//                if() {
+//                    $(this).addClass("selected");
+//                } else {
+//                    $(this).removeClass("selected");
+//                }
+//            });
+//        });
+    </script>
+@endpush
+
 @push('stylesheet')
     <style>
+        .pay-lb{
+            height: 50px;
+        }
+        .pricing{
+
+        }
+        .image-payment{
+            margin-left: -15px;
+        }
+        .selected{
+            background: gray;
+        }
+
         .form-control{
             border-radius: 0px;
         }
