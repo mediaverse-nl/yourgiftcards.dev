@@ -73,47 +73,36 @@
 
                                     <div class="row">
                                         @foreach(collect($mollie)->pluck('id', 'id') as $value => $item)
-                                            <label for="{{$value}}" class="control-label pay-lb col-ms-12 col-md-12 col-lg-12">
-                                                <div class="image-payment pull-left">
+                                            @php
+                                                $pirce = Config::get('mollie.transaction_costs.'.$value.'.price');
+                                                $percentage =  Config::get('mollie.transaction_costs.'.$value.'.percentage');
+                                            @endphp
+
+                                            <label for="{{$value}}" class="control-label pay-lb col-ms-6 col-md-6 col-lg-6" style="margin-bottom: -10px;">
+                                                <div class="thumbnail" style="border: 1px solid #ccc; border-radius: 5px; height: 70px !important;">
                                                     {!! Form::radio('methods', $value, null, ['id' => $value, 'class' => 'method']) !!}
                                                     @foreach($mollie as $name)
-                                                        {{--{{dd($name->description)}}--}}
                                                         @if($name->id == $value)
-                                                            <img src="{{$name->image->normal}}">
-                                                            {!! Form::label($value, $name->description, ['class' => 'control-label pay-lb']) !!}
+                                                            <div style="margin-top: -25px;">
+                                                                {!! Form::label($value, $name->description, ['class' => 'control-label']) !!}
+                                                                <br>
+                                                                <small class="muted" style="">
+                                                                    @if($pirce != 0)
+                                                                        @lang('text.valuta_sign'){{$pirce}}
+                                                                    @endif
+                                                                    @if($percentage != 0)
+                                                                        + {{number_format($percentage,2)}}%
+                                                                    @endif
+                                                                </small>
+                                                                <img class="pull-right" src="{{$name->image->normal}}" style="margin-top: -10px;">
+                                                            </div>
                                                         @endif
                                                     @endforeach
-                                                    @php
-                                                        $pirce = Config::get('mollie.transaction_costs.'.$value.'.price');
-                                                        $percentage =  Config::get('mollie.transaction_costs.'.$value.'.percentage');
-                                                    @endphp
-                                                </div>
-                                                <div class="pricing pull-right ">
-                                                    <small class="muted" style="line-height: 50px;">
-                                                    @if($pirce != 0)
-                                                        @lang('text.valuta_sign'){{$pirce}}
-                                                        {{--{{number_format((Cart::subtotal() + $pirce) * $percentage + Cart::subtotal(),2 )}} --}}
-            {{--                                            {{number_format((Cart::subtotal() + $item['price']) * $item['percentage'] + Cart::subtotal(),2 )}}--}}
-                                                    @endif
-                                                    @if($percentage != 0)
-                                                        + {{number_format($percentage,2)}}%
-                                                    @endif
-                                                    </small>
+
                                                 </div>
                                             </label>
                                         @endforeach
                                     </div>
-
-                                    <style>
-                                        input[type="radio"]{
-                                            visibility:hidden;
-                                        }
-                                        input[type="radio"]:checked{
-                                            visibility:hidden;
-                                        }
-                                    </style>
-                                    <br>
-
                                     <!-- payment methods -->
                                     {{--<div class="form-group">--}}
                                         {{--{!! Form::label('methods', trans('text.tag_method'), ['class' => 'control-label']) !!}--}}
@@ -138,7 +127,7 @@
                             <table class="table">
                                 <tr>
                                     <td ><b>@lang('text.tag_subtotal')</b></td>
-                                    <td class="text-right">@lang('text.valuta_sign'){{number_format(Cart::subtotal() - $servicecosts, 2)}}</td>
+                                    <td class="text-right" id="price-tag"> @lang('text.valuta_sign'){{number_format(Cart::subtotal() - $servicecosts, 2)}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>@lang('text.tag_servicecosts')</b></td>
@@ -163,9 +152,10 @@
 @push('javascript')
     <script>
         $(document).ready(function(){
-            $('.pay-lb ').on('click', function(){
+            $('.pay-lb').on('click', function(){
                 $(".selected").removeClass('selected');
                 $(this).addClass('selected');
+//                $('#price-tag').html();
             });
         });
 //            $('.method').click(function(){
@@ -181,17 +171,41 @@
 
 @push('stylesheet')
     <style>
-        .pay-lb{
-            height: 50px;
+
+        input[type="radio"]{
+            visibility:hidden;
         }
+        input[type="radio"]:checked{
+            visibility:hidden;
+        }
+        .pay-lb{
+            /*height: 60px;*/
+            /*border: 1px solid gray;*/
+            /*!*float: left;*!*/
+            /*position: relative;*/
+            /*padding: 5px;*/
+        }
+        /*.pay-lb > p {*/
+            /*position: absolute;*/
+           /*width: 100px;*/
+            /*top: 10px;*/
+        /*}*/
+        /*.image-payment {*/
+            /*!*margin-top: -18px !important;*!*/
+            /*top: 10px;*/
+            /*width: 30px;*/
+            /*!*float: left;*!*/
+        /*}*/
         .pricing{
 
         }
         .image-payment{
             margin-left: -15px;
         }
-        .selected{
-            background: gray;
+        .selected > .thumbnail{
+            background: #3D4E60 !important;
+            opacity: 0.7;
+            color: #fff;
         }
 
         .form-control{

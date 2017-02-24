@@ -31,10 +31,10 @@
  */
 return [
 
-    'test_mode' => env('MOLLIE_TEST_MODE', true),
+    'test_mode' => env('MOLLIE_TEST_MODE', false),
 
     'keys' => [
-        'live' => env('MOLLIE_KEY_LIVE', 'live_xxx'),
+        'live' => env('MOLLIE_KEY_LIVE', 'live_xTQAKqRgVeet2fgt9BcRh3VpHkufrs'),
         'test' => env('MOLLIE_KEY_TEST', 'test_cdfhyQ9KceV2JAqEsvfb7sN86fHC4f'),
     ],
 

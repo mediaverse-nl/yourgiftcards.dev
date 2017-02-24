@@ -10,6 +10,7 @@ use App\Productkey;
 use Validator;
 use Cart;
 use Mail;
+use Config;
 
 use Illuminate\Http\Request;
 
@@ -55,10 +56,22 @@ class MollieController extends Controller
                 ->withInput();
         }
 
+        $price = Config::get('mollie.transaction_costs.'.$request->methods.'.price');
+        $percentage =  Config::get('mollie.transaction_costs.'.$request->methods.'.percentage');
+
+        $total = number_format((Cart::subtotal() + $price) * ($percentage + 1), 2);
+
+        $service_cost = [];
+        foreach (Cart::content() as $item){
+            $service_cost[] = $item->options[0]->servicecosts * $item->qty ;
+        }
+
         $neworder = $this->order;
 
         $neworder->status = self::STATUS_OPEN;
-        $neworder->total = Cart::subtotal();
+        $neworder->total = $total;
+        $neworder->service_cost = array_sum($service_cost);
+        $neworder->transaction_cost = ($total - Cart::subtotal());
         $neworder->method = $request->methods;
         $neworder->fullname = $request->fullname;
         $neworder->email = $request->email;
@@ -66,7 +79,7 @@ class MollieController extends Controller
         $neworder->save();
 
         $payment =  $this->mollie->payments()->create([
-            "amount"      => Cart::subtotal(),
+            "amount"      => $total,
             "description" => "Order Nr. ". $neworder->id,
             "redirectUrl" => route('order.get', $neworder->id),
             'metadata'    => array(
@@ -88,6 +101,7 @@ class MollieController extends Controller
             $keys = Productkey::where('product_id', $item->options[0]->id)
                 ->where('region', \App::getLocale())
                 ->where('status', 'sell')
+                ->orderBy('created_at', 'DESC')
                 ->limit($item->qty)
                 ->get();
 
