@@ -51,7 +51,7 @@
                 <h2 style="font-size: 18px;">@lang('text.latest_news')</h2>
                 <hr>
                 <a href="{{route('blog.show', str_replace(' ', '-', $nieuws->title))}}">
-                    <img class="col-lg-5" style="height: 70px;" src="/img/blog/{{$nieuws->image}}"><br>
+                    <img class="col-lg-5" style="height: 70px;" src="/img/blog/{{$nieuws->image}}" alt="{{$nieuws->title}}" height="70"><br>
                 </a>
                 <div class="col-lg-7">
                     <h3 style="font-size: 14px; margin-top: -20px;">{{$nieuws->title}}</h3>

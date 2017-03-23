@@ -28,18 +28,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $product = Product::where('status', 'on')->take(4)->get();
+//        $product = Product::where('status', 'on')->take(4)->get();
 
-        $bestOrdered = OrderedProduct::leftJoin('productkey', 'ordered_product.productkey_id', '=', 'productkey.id')
-            ->selectRaw('productkey.product_id,  count(productkey.product_id) as SoldItems')
-            ->groupBy('productkey.product_id')
-            ->orderBy('SoldItems', 'desc')
-            ->take(4)
-            ->get();
+//        $bestOrdered = OrderedProduct::leftJoin('productkey', 'ordered_product.productkey_id', '=', 'productkey.id')
+//            ->selectRaw('productkey.product_id,  count(productkey.product_id) as SoldItems')
+//            ->groupBy('productkey.product_id')
+//            ->orderBy('SoldItems', 'desc')
+//            ->take(4)
+//            ->get();
+        $bestOrdered = [6,10,2,16];
+
+//        dd($bestOrdered);
 
         $array = [];
         foreach ($bestOrdered as $prod){
-            $array[] = Product::find($prod->product_id);
+//            dd($prod);
+            $array[] = Product::find($prod);
         }
 
         return view('welcome')

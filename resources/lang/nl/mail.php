@@ -17,4 +17,5 @@ return array (
     'subject' => 'Bestelling justgiftcards ',
   ),
   'payment_description' => 'Uw betaling is ontvangen en bevestigd. U zult uw code binnen enkele ogenblikken toegestuurd krijgen. Gebeurt dit niet of heeft u nog vragen/opmerkingen? Neem dan contact op met onze klantenservice ',
+  'dear' => 'Beste',
 );

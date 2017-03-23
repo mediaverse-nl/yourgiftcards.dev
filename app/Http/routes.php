@@ -11,26 +11,24 @@
 |
 */
 
-Route::get('voorraad_test', ['uses' => 'admin\StockController@updateStock']);
-
-Route::get('bestelling', [function(){
-
-    $payment = \App\Order::find(30);
-
-    $order = Cart::content();
-
-    return view('mail.order')->with('payment', $payment);
-}]);
-
-
-Route::get('mailorder', [function(){
-
-    $payment = \App\Order::find(30);
-
-    $order = Cart::content();
-
-    return view('mail.payment')->with('order', $payment);
-}]);
+//Route::get('bestelling', [function(){
+//
+//    $payment = \App\Order::find(1);
+//
+//    $order = Cart::content();
+//
+//    return view('mail.order')->with('payment', $payment);
+//}]);
+//
+//
+//Route::get('mailorder', [function(){
+//
+//    $payment = \App\Order::find(30);
+//
+//    $order = Cart::content();
+//
+//    return view('mail.payment')->with('order', $payment);
+//}]);
 
 //Route::auth();
 // User authentication routes...
@@ -40,7 +38,7 @@ Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 //Route::get('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
 //Route::post('/registreren', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
-Route::get('/inloggen', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 Route::post('/login', ['as' => 'login.post', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 

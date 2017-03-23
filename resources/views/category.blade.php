@@ -1,7 +1,7 @@
 {{--default layout from site--}}
 @extends('layouts.default')
 
-@section('title', str_replace([':category', ':price'], [$tip->category->name, $tip->price], trans('seo.category.page_title')).' | '.trans('text.delivery').' | '.env('APP_URL'))
+@section('title', str_replace([':category', ':price'], [$tip->category->name, $tip->price], trans('seo.category.page_title')).' | '.trans('text.delivery'))
 @section('description', str_replace([':category'], [$category->name ], trans('seo.category.page_description'). ', Category: :category'))
 
 @push('mate-tags')
@@ -38,7 +38,7 @@
                             {{--@lang('text.tag_servicecosts')--}}
                             + {{$tip->servicecosts}}</p>
                     </span>
-                    <img src="/img/cardlayout/{{$tip->category->layout}}" style="margin: 0px 17px; width: 90%;">
+                    <img src="/img/cardlayout/{{$tip->category->layout}}" style="margin: 0px 17px; width: 90%;" width="300" alt="{{$category->name}}">
                 </a>
                 <br>
                 @if($stock->where('product_id', $tip->id)->where('status', 'sell')->count() >= 1)
@@ -69,7 +69,7 @@
             <h3 class="text-center" style="margin: -10px 0px 7px 0px;">@lang('text.tag_method')</h3>
             <p class="text-center">
                 @foreach($mollie as $item)
-                    <img style="padding: 3px;" src="{{$item->image->normal}}">
+                    <img style="padding: 3px;" src="{{$item->image->normal}}" alt="{{$item->id}} logo">
                 @endforeach
             </p>
             <hr>
@@ -95,7 +95,7 @@
                                 <a  href="{{route('giftcard.show',[str_replace(' ', '-', $category->name), str_replace(' ', '-', $product->name)])}}">
                                     <h3 class="text-center" style="font-size:16px; color: #3E4F61 !important;">{{$product->name}}</h3>
                                     <span class="badge" style="border-radius: 100%;  font-size: 20px; top: 50px; right: 20px; height: 50px; width: 50px; line-height: 45px; position: absolute; background-color:#F59D00;">@lang('text.valuta_sign'){{$product->value}}</span>
-                                    <img style="padding: 10px;" src="/img/cardlayout/{{$product->category->layout}}" >
+                                    <img style="padding: 10px;" src="/img/cardlayout/{{$product->category->layout}}" alt="{{$product->name}}">
                                 </a>
                                 <br>
                                 @if($stock->where('product_id', $product->id)->where('status', 'sell')->count() >= 1)

@@ -4,7 +4,7 @@
         "be" => "België",
         "de" => "Deutschland",
         "fr" => "Français",
-        "se" => "España",
+        "es" => "España",
         "gb" => "United Kingdom",
         "us" => "United States",
         "eu" => "Europa",

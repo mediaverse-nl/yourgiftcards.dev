@@ -1,6 +1,6 @@
 <?php
 
 return array (
-  'checkout' => 'Afrekenen',
   'cart' => '',
+  'lang-select' => 'selecte',
 );

@@ -38,6 +38,9 @@
 
             </div>
         </div>
+        <div class="col-lg-3">
+            <img class="img-responsive" src="/JustGiftcardLogoV2.png">
+        </div>
 
     </div>
 

@@ -29,7 +29,7 @@
                     <h1>@lang('text.take_a_look')</h1><br><hr style="margin-top: -25px;">
                     @foreach($category as $cate)
                         <a href="{{route('giftcards', str_replace(' ', '-', $cate->name))}}">
-                            <img style="width: 24%; padding: 5px;" src="/img/cardlayout/{{$cate->layout}}">
+                            <img style="width: 24%; padding: 5px;" src="/img/cardlayout/{{$cate->layout}}" alt="{{$cate->name}} giftcard">
                         </a>
                     @endforeach
                 </div>
@@ -42,8 +42,13 @@
                 <h1 class="col-lg-12">@lang('text.best_sold')</h1>
                 @foreach($product as $item)
                     <div class="col-xs-6 col-md-3">
+                        <span class="badge" style="top: 90px; right: 10px; position: absolute; border-radius: 100%; font-size: 25px; height: 70px; width: 70px; line-height: 60px; background-color:#F59D00;">
+                        €{{number_format($item->price)}}<br>
+                        <p style="color: #333333; font-size: 11px; margin-top: -40px;">
+                                                        + {{number_format($item->servicecosts, 2)}}</p>
+                    </span>
                         <a href="{{URL::route('giftcard.show', [$item['id'], str_replace(' ', '-', $item['name'])] )}}" class="thumbnail">
-                            <img style="height: 145px !important; width: 100%;" src="/img/thumbnail/{{$item['category']['thumbnail']}}" alt="">
+                            <img style="height: 145px !important; width: 100%;" src="/img/cardlayout/{{$item['category']['layout']}}" alt="{{$item->category->name}} giftcard">
                         </a>
                         <h2>{{($item['name'])}}</h2>
                     </div>

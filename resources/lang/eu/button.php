@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'cart' => 'Shoppingcart',
+  'cart' => 'shoppingcart',
   'home' => 'Home',
   'giftcards' => 'Giftcard',
   'blog' => 'News',
@@ -12,15 +12,15 @@ return array (
   'privacy' => 'Privacy',
   'return_policy' => 'Return Policy',
   'read_more' => 'Read more',
+  'add_to_cart' => 'Add to shopping cart',
+  'to_cart' => 'Order now',
   'checkout' => 'Checkout',
   'empty' => 'Empty',
   'add' => 'Plus',
-  'add_to_cart' => 'Add to shopping cart',
   'continue' => 'Continue shopping',
   'here' => 'Here',
   'min' => 'Minus',
   'remove' => 'Delete from shoppingcart',
   'send' => 'Send',
-  'to_cart' => 'Order now',
   'user_guide' => 'User manual',
 );

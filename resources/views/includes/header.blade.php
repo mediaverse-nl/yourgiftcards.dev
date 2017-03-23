@@ -1,15 +1,17 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid" style="background-color: #FFA50A;">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {{--<a class="navbar-brand" href="#">WebSiteName</a>--}}
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <div class="container">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="{{route('home')}}" title="Buy Sell Rent Everyting">
+                    <img style="max-width:200px; margin-top: -15px; margin-right: -30px;" src="/JustGiftcardLogo.png" alt="justgiftcards logo" width="200" height="auto">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav ">
                     <li><a href="{{route('home')}}">@lang('button.home')</a></li>
                     <li ><a href="{{route('giftcards.index')}}" >@lang('button.giftcards')</a></li>
@@ -46,6 +48,7 @@
                     </li>
 
                 </ul>
+
             </div>
 
         </div>

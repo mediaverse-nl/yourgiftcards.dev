@@ -9,7 +9,7 @@ return array (
   ),
   'tag_method' => 'Betaal Methodes',
   'delivery' => 'direct geleverd per mail 24/7',
-  'product_description' => 'product description',
+  'product_description' => 'product beschrijving',
   'instructions' => 'Instructies',
   'tip' => 'Onze tip',
   'title_guide' => 'Handleiding',
@@ -51,4 +51,5 @@ return array (
   'bedankt_title' => 'Dankuwel voor uw aankoop',
   'bedankt_aankoop' => 'U krijgt naast hier, ook een code toegestuurd naar uw mail met een link naar waar u de code kunt verzilveren. Wij hopen u goed van dienst te zijn geweest. Voor vragen of klachten kunt u bij de klantenservice terecht.',
   'valuta_sign' => '€',
+  'tag_cadeau_tip' => 'Onze cadeau Tip',
 );

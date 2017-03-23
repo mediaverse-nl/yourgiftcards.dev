@@ -25,7 +25,7 @@
          @foreach($category as $item)
             <div class="col-xs-6 col-md-3" style="height: 140px !important; margin: 50px 0px; padding: 10px !important; ">
                 <a href="{{ route('giftcards', str_replace(' ', '-', $item->name))}}" class="thumbnail container-shadow">
-                    <img style="height: 140px; width: 100%" src="img/thumbnail/{{$item->thumbnail}}" alt="">
+                    <img style="height: 140px; width: 100%" src="img/thumbnail/{{$item->thumbnail}}" alt="{{$item->name}}" height="140">
                     <div class="caption">
                         <h2 class="text-center" style="font-size: 20px; margin: 15px;">{{$item->name}}</h2>
                     </div>
